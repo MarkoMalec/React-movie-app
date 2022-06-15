@@ -1,5 +1,8 @@
 @import url(//fonts.googleapis.com/css?family=Vibur);
 
+.header-title span {
+  color: tomato;
+}
 
 .featured-title {
     text-align: center;

@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { useState } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
-import { Container, Spinner, Center } from '@chakra-ui/react';
-// import SearchBar from '../elements/SearchBar/SearchBar';
+import { Container, Spinner, Center, Box } from '@chakra-ui/react';
+import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 // import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 // import LoadingCircle from '../elements/LoadingCircle/LoadingCircle';
 import { useEffect } from 'react';
 import { ThemeContext } from '@emotion/react';
+import './Home.css';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,6 +31,18 @@ const Home = () => {
     }
   };
 
+  const searchMovies = (searchTerm) => {
+    let endpoint = '';
+    if(searchTerm === '') {
+      endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    } else {
+      endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+    }
+    // setSearchTerm(searchTerm);
+      fetchItems(endpoint)
+      console.log(searchTerm)
+  }
+
   if (loading) {
     return (
       <Center h="100vh" color="white">
@@ -45,8 +59,15 @@ const Home = () => {
 
   return (
     <>
-      <Container maxW="1600px">
-        <ThumbnailGrid>
+      <section className="search-section">
+        <SearchBar callback={searchMovies}/>
+      </section>
+      <Container as="main" maxW="1600px" pt="10rem">
+        
+        <ThumbnailGrid
+          preHeader={searchTerm ? 'Search Result for' : null}
+          header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
+          >
           {movies?.map((element, i) => {
             return (
               <Thumbnail

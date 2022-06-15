@@ -10,7 +10,6 @@ import {
   theme,
 } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { Logo } from '../../Logo';
 import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
 import Header from '../elements/Header/Header';
