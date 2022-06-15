@@ -31,7 +31,7 @@ const Home = () => {
     }
   };
 
-  const searchMovies = (searchTerm) => {
+  const searchMovies = searchTerm => {
     let endpoint = '';
     if(searchTerm === '') {
       endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
