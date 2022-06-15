@@ -1,0 +1,63 @@
+@import url(//fonts.googleapis.com/css?family=Vibur);
+
+
+.featured-title {
+    text-align: center;
+    /* font-size: 1 */
+    width: 80%;
+    min-width: 100px;
+    margin-bottom: 7em;
+    margin-inline: auto;
+     user-select: none;
+  }
+  
+  .featured-title b{
+    font: 400 10vw "Vibur";
+    color: #fee;
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em red, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  }
+  .featured-title b span{
+    animation: neon linear infinite 2s;
+  }
+  .featured-title b span:nth-of-type(2){
+    animation: neon linear infinite 3s;
+  }
+  @keyframes neon {
+    78% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    79%{
+       color: #333;
+    }
+    80% {
+      
+      text-shadow: none;
+    }
+    81% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    82% {
+      color: #333;
+      text-shadow: none;
+    }
+    83% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    92% {
+      color: #333;
+      text-shadow: none;
+    }
+    92.5% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .featured-title b {
+        font: 400 20vw "Vibur";
+    }
+  }

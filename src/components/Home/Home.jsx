@@ -1,0 +1,76 @@
+import React, { Component } from 'react';
+import { useState } from 'react';
+import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
+import { Container, Spinner, Center } from '@chakra-ui/react';
+// import SearchBar from '../elements/SearchBar/SearchBar';
+import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
+import Thumbnail from '../elements/Thumbnail/Thumbnail';
+// import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
+// import LoadingCircle from '../elements/LoadingCircle/LoadingCircle';
+import { useEffect } from 'react';
+import { ThemeContext } from '@emotion/react';
+
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    fetchItems(endpoint);
+  }, []);
+
+  const fetchItems = async endpoint => {
+    const result = await (await fetch(endpoint)).json();
+    try {
+      setMovies(result.results);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Center h="100vh" color="white">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Center>
+    );
+  }
+
+  return (
+    <>
+      <Container maxW="1600px">
+        <ThumbnailGrid>
+          {movies?.map((element, i) => {
+            return (
+              <Thumbnail
+                key={i}
+                clickable={true}
+                image={
+                  element.poster_path ? (
+                    `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
+                  ) : (
+                    <p>noposter</p>
+                  )
+                }
+                movieId={element.id}
+                movieName={element.title}
+                originalTitle={element.original_title}
+                releaseDate={element.release_date}
+                voteAverage={element.vote_average}
+              />
+            );
+          })}
+        </ThumbnailGrid>
+      </Container>
+    </>
+  );
+};
+
+export default Home;
