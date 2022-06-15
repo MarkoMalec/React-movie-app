@@ -40,7 +40,7 @@ const Home = () => {
     }
     // setSearchTerm(searchTerm);
       fetchItems(endpoint)
-      console.log(searchTerm)
+      // console.log(searchTerm)
   }
 
   if (loading) {
