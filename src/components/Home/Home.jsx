@@ -21,24 +21,24 @@ const Home = () => {
     fetchItems(endpoint);
   }, []);
 
-  const fetchItems = endpoint => {
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        setMovies(data.results);
-        setLoading(false);
-      })
-      .catch(err => console.log(err));
-  };
-  // const fetchItems = async endpoint => {
-  //   const result = await (await fetch(endpoint)).json();
-  //   try {
-  //     setMovies(result.results);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+  // const fetchItems = endpoint => {
+  //   fetch(endpoint)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setMovies(data.results);
+  //       setLoading(false);
+  //     })
+  //     .catch(err => console.log(err));
   // };
+  const fetchItems = async endpoint => {
+    const result = await (await fetch(endpoint)).json();
+    try {
+      setMovies(result.results);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const searchMovies = searchTerm => {
     let endpoint = '';
@@ -71,7 +71,7 @@ const Home = () => {
       <section className="search-section">
         <SearchBar callback={searchMovies} />
       </section>
-      <Container as="main" maxW="1600px" pt="10rem">
+      <Container as="main" maxW="1200px" pt="10rem">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}

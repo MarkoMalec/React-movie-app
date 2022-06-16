@@ -8,6 +8,7 @@ import {
   Code,
   Grid,
   theme,
+  extendTheme
 } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import { Logo } from '../../Logo';
@@ -23,10 +24,18 @@ import BrowseByYear from '../BrowseByYear/BrowseByYear';
 import NotFound from '../elements/NotFound/NotFound';
 import AppFooter from '../elements/AppFooter/AppFooter';
 import './App.css';
-
+const themee = extendTheme({
+  colors: {
+    brand: {
+      100: "red",
+      // ...
+      900: "#1a202c",
+    },
+  },
+})
 function App() {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={themee}>
       <AnimatePresence>
       <Router basename=''>
         <Header />

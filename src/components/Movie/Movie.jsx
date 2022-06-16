@@ -21,8 +21,7 @@ const Movie = () => {
         const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
         setLoading(false);
         fetchItems(endpoint);
-        console.log(movieId);
-    }, [])
+    }, [movieId])
 
     const fetchItems = async endpoint => {
         // const movieId = useLocation();

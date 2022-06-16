@@ -8,16 +8,16 @@ const SearchBar = ({ callback }) => {
   var timeout = null;
 
   const doSearch = e => {
-    setValue(e.target.value);
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      callback(value);
-    }, 500);
+      setValue(e.target.value);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+          callback(e.target.value);
+        }, 500);
   };
 
   return (
     <>
-      <Container maxW="1600px">
+      <Container maxW="1200px">
         <Input
           type="text"
           placeholder="Search for a movie"

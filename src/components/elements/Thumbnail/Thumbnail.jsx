@@ -13,21 +13,21 @@ const Thumbnail = ({ clickable, movieId, movieName, image, releaseDate, original
       }
       {movieName ?
         <div className="movie-thumbnail-description">
-          <div className="movie-thumbnail-year">{releaseDate ? releaseDate.slice(0, 4) : null}</div>        
+          <div className="movie-thumbnail-year">{releaseDate ? releaseDate.slice(0, 4) : null}</div>
           {clickable ?
             <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
-              <h3>{movieName}</h3>            
+              <h3>{movieName}</h3>
             </Link>
             :
             <h3>{movieName}</h3>
           }
           {originalTitle === movieName ? null : <div className="movie-thumbnail-og-title"> Original Title: {originalTitle}</div>}
-          {voteAverage ? <div>{voteAverage}</div> : null}          
+          {voteAverage ? <div>{voteAverage}</div> : null}
         </div>
         :
         null
-      }                
-    </div>      
+      }
+    </div>
   )
 }
 
