@@ -13,7 +13,7 @@ import './Home.css';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,27 +21,36 @@ const Home = () => {
     fetchItems(endpoint);
   }, []);
 
-  const fetchItems = async endpoint => {
-    const result = await (await fetch(endpoint)).json();
-    try {
-      setMovies(result.results);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
+  const fetchItems = endpoint => {
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => {
+        setMovies(data.results);
+        setLoading(false);
+      })
+      .catch(err => console.log(err));
   };
+  // const fetchItems = async endpoint => {
+  //   const result = await (await fetch(endpoint)).json();
+  //   try {
+  //     setMovies(result.results);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const searchMovies = searchTerm => {
     let endpoint = '';
-    if(searchTerm === '') {
+    if (searchTerm === '') {
       endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
     } else {
       endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
     }
-    // setSearchTerm(searchTerm);
-      fetchItems(endpoint)
-      // console.log(searchTerm)
-  }
+    fetchItems(endpoint);
+    setSearchTerm(searchTerm);
+    console.log(searchTerm);
+  };
 
   if (loading) {
     return (
@@ -60,14 +69,13 @@ const Home = () => {
   return (
     <>
       <section className="search-section">
-        <SearchBar callback={searchMovies}/>
+        <SearchBar callback={searchMovies} />
       </section>
       <Container as="main" maxW="1600px" pt="10rem">
-        
         <ThumbnailGrid
-          preHeader={searchTerm ? 'Search Result for' : null}
+          preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
-          >
+        >
           {movies?.map((element, i) => {
             return (
               <Thumbnail
