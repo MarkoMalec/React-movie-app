@@ -8,11 +8,15 @@ const SearchBar = ({ callback }) => {
   var timeout = null;
 
   const doSearch = e => {
-      setValue(e.target.value);
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-          callback(e.target.value);
-        }, 500);
+    setValue(e.target.value);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      callback(e.target.value);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }, 500);
   };
 
   return (
@@ -21,6 +25,8 @@ const SearchBar = ({ callback }) => {
         <Input
           type="text"
           placeholder="Search for a movie"
+          size="sm"
+          focusBorderColor="tomato"
           onChange={doSearch}
           value={value}
         />

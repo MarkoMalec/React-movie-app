@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
 import { motion } from "framer-motion";
 
+import './Movie.css';
+
 
 const Movie = () => {
     const [movie, setMovie] = useState(null);
@@ -44,7 +46,7 @@ const Movie = () => {
             setDirectors()
             setWriters()
             setLoading(false)
-            
+            console.log(creditsResult.cast)
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
@@ -57,10 +59,23 @@ const Movie = () => {
 
       return(
         <>
-        <motion.div className="movie" style={{ backgroundColor: 'blue', height: '100vw' }} transition={{ default: {duration: 1} }} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} exit={{ x: window.innerWidth }}>
+        <motion.div className="movie" style={{ backgroundColor: '', height: '100vw' }} transition={{ default: {duration: 0.1} }} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ x: window.innerWidth }}>
             {movie && videos ? 
-            <div>
-              <Heading color='tomato'>{movie.title}</Heading>
+            <div className="movie-container">
+              <div className="movie-header">
+                {movie.title}
+
+              </div>
+              <div className="movie-content">
+                {actors?.map((el, i) => {
+                  return (
+                    <div key={i}>
+                      {el.name}
+                      
+                    </div>
+                  )
+                })}
+              </div>
             </div> 
             : <div>nothiong</div>}
             </motion.div>

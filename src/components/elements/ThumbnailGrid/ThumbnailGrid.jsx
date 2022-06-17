@@ -4,13 +4,13 @@ import {
   Box,
   Center,
 } from '@chakra-ui/react';
-// import { Box } from "@chakra-ui/react";
+import './ThumbnailGrid.css';
 
 const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   const renderElements = () => {
     const GridElements = children.map((element, i) => {
       return (
-        <Box maxW="250px" key={i} h="100%">
+        <Box maxW="275px" key={i} h="100%">
           {element}
         </Box>
       );
