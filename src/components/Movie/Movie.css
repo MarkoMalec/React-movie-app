@@ -1,3 +1,13 @@
 .movie-container {
     padding-top: 4rem;
 }
+
+.movie-header {
+    
+}
+
+.movie-header h1 {
+    color: tomato;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
