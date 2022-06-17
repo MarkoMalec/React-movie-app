@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { API_URL, API_KEY } from "../../fetch";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
+import Actor from "../elements/Actor/Actor";
 import { motion } from "framer-motion";
 
 import './Movie.css';
@@ -66,15 +67,16 @@ const Movie = () => {
                 {movie.title}
 
               </div>
+              {actors ? 
+                <ThumbnailGrid header="Movie Cast">
+                  {actors.map((el, i) => {
+                    return <Actor key={i} actor={el} />
+                  })}
+
+                </ThumbnailGrid>
+                :
+                <p>No cast for this movie.</p>}
               <div className="movie-content">
-                {actors?.map((el, i) => {
-                  return (
-                    <div key={i}>
-                      {el.name}
-                      
-                    </div>
-                  )
-                })}
               </div>
             </div> 
             : <div>nothiong</div>}
