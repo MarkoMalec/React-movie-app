@@ -1,0 +1,18 @@
+.movie-header-poster {
+    max-width: 250px;
+}
+
+.movie-header-poster {
+    min-width: 250px;
+}
+
+.movie-header-overview h1 {
+    color: tomato;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.movie-header-description {
+    margin-top: 3rem;
+    font-size: .85rem;
+}

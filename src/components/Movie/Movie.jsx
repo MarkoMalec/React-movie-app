@@ -1,13 +1,14 @@
 import React from "react";
 import { Heading } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { API_URL, API_KEY } from "../../fetch";
+import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../fetch";
 import { useState, useEffect } from "react";
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
 import Actor from "../elements/Actor/Actor";
 import { motion } from "framer-motion";
 
 import './Movie.css';
+import MovieInfo from "../elements/MovieInfo/MovieInfo";
 
 
 const Movie = () => {
@@ -51,7 +52,7 @@ const Movie = () => {
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
-            
+            console.log(movie);
           }
         } catch(error) {
           console.log('error: ', error);
@@ -62,26 +63,30 @@ const Movie = () => {
         <>
         <motion.div className="movie" style={{ backgroundColor: '', height: '100vw' }} transition={{ default: {duration: 0.1} }} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ x: window.innerWidth }}>
             {movie && videos ? 
-            <div className="movie-container">
-              <div className="movie-header">
-                {movie.title}
-
-              </div>
+            // <div className="movie-container">
+            //   <div className="movie-header">
+            //     <img src={`${IMAGE_BASE_URL}w342${movie.backdrop_path}`} />
+            //     <h1>{movie.title}</h1>
+            //   </div>
+              <>
+                <MovieInfo movie={movie} />
+            
               {actors ? 
                 <ThumbnailGrid header="Movie Cast">
                   {actors.map((el, i) => {
                     return <Actor key={i} actor={el} />
                   })}
-
                 </ThumbnailGrid>
                 :
                 <p>No cast for this movie.</p>}
               <div className="movie-content">
               </div>
-            </div> 
-            : <div>nothiong</div>}
+            </>
+            : <div>nothing</div>}
+            
             </motion.div>
         </>
+        
       )
 }
 
