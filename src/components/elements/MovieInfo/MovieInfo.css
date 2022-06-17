@@ -6,6 +6,19 @@
     min-width: 250px;
 }
 
+.movie-header-wrapper {
+    /* margin-top: 60px; */
+    /* padding-bottom: 80px; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.movie-header-filter {
+    background-color: rgba(0, 29, 110, .85);
+    /* margin-bottom:  */
+}
+
 .movie-header-overview h1 {
     color: tomato;
     font-size: 2rem;

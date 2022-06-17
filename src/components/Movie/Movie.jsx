@@ -25,10 +25,12 @@ const Movie = () => {
         const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
         setLoading(false);
         fetchItems(endpoint);
+        window.scrollTo({
+          top: -50,
+        });
     }, [movieId])
 
     const fetchItems = async endpoint => {
-        // const movieId = useLocation();
         try {
           const result = await (await fetch(endpoint)).json();
           if (result.status_code) {
@@ -48,7 +50,6 @@ const Movie = () => {
             setDirectors()
             setWriters()
             setLoading(false)
-            console.log(creditsResult.cast)
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);

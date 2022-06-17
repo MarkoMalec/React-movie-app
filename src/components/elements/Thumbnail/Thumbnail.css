@@ -18,22 +18,25 @@
 .movie-thumbnail-description {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 20px 1fr 20px;
+    grid-template-rows: 20px 1fr;
     font-size: 0.85rem;
     padding-left: 6px;
     padding-bottom: 5px;
     bottom: 0;
 }
 .movie-thumbnail-title {
+    /* position: relative; */
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 1;
     grid-column-end: 3;
-    align-self: center;
     color: tomato;
+    font-size-adjust: .6;
     font-weight: 700;
     letter-spacing: .4px;
     font-family: var(--ff-w1);
+    /* padding-top: 1.7em; */
+    /* bottom: -20px; */
 }
 .movie-thumbnail-title:hover {
     color: aliceblue;
@@ -51,12 +54,14 @@
     font-size: 0.75rem;
 }
 .movie-average-score {
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
     grid-column-start: 3;
     grid-column-end: 4;
     align-self: flex-end;
     margin-right: 5px;
+    font-size-adjust: .55;
+    font-optical-sizing: auto;
     font-family: var(--var-ff-w1);
 }
 

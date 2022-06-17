@@ -50,12 +50,12 @@ const Thumbnail = ({
                 min={0}
                 max={10}
                 value={voteAverage}
-                size="22px"
+                size="28px"
                 trackColor='#1A202C'
                 color="tomato"
                 thickness={7}
               >
-                <CircularProgressLabel fontSize='.59rem'>{voteAverage}</CircularProgressLabel>
+                <CircularProgressLabel fontSize='.63rem'>{voteAverage}</CircularProgressLabel>
               </CircularProgress>
             </div>
           ) : null}
