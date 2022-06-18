@@ -54,6 +54,7 @@ const Home = () => {
 
   if (loading) {
     return (
+      <Thumbnail>
       <Center h="100vh" color="white">
         <Spinner
           thickness="4px"
@@ -63,6 +64,7 @@ const Home = () => {
           size="xl"
         />
       </Center>
+      </Thumbnail>
     );
   }
 
@@ -71,7 +73,7 @@ const Home = () => {
       <section className="search-section">
         <SearchBar callback={searchMovies} />
       </section>
-      <Container as="main" maxW="1200px" pt="10rem">
+      <Container as="main" maxW="1400px" pt="10rem">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}

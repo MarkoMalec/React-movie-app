@@ -1,16 +1,9 @@
 .movie-header-poster {
-    max-width: 250px;
+    min-width: 300px;
 }
 
-.movie-header-poster {
-    /* max-width: 350px; */
-    /* width: 100%;
-    min-width: 260px; */
-}
 
 .movie-header-wrapper {
-    /* margin-top: 60px; */
-    /* padding-bottom: 80px; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -19,34 +12,33 @@
     display: flex;
     gap: 30px;
     margin-bottom: 60px;
-    flex-wrap: wrap;
+    @media (max-width: 700px) {
+        flex-wrap: wrap;
+    }
 }
 
 .movie-header-filter {
     background-color: rgba(0, 29, 110, .85);
-    /* margin-bottom:  */
 }
 
 .movie-header-overview {
-    max-width: 40%;
+    max-width: 50%;
     min-width: 200px;
-}
 
-.movie-header-overview h1 {
-    color: tomato;
+    h1 { 
+        color: tomato;
     font-size: 2rem;
     font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+        max-width: 100%;
+        
+    }
 }
 
 .movie-header-description {
     margin-top: 3rem;
     font-size: .85rem;
 
-}
-
-@media (max-width: 700px) {
-    .movie-header-overview {
-        max-width: 100%;
-        min-width: 200px;
-    }
 }

@@ -10,7 +10,7 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   const renderElements = () => {
     const GridElements = children.map((element, i) => {
       return (
-        <Box maxW="275px" key={i} h="100%">
+        <Box maxW="350px" key={i} h="100%">
           {element}
         </Box>
       );

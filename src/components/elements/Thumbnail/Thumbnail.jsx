@@ -4,7 +4,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
 } from '@chakra-ui/react';
-import './Thumbnail.css';
+import './Thumbnail.scss';
 
 const Thumbnail = ({
   clickable,

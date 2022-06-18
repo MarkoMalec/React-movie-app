@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <Flex as="header" position="fixed" top="0" zIndex='999' w="100%" bg="#141821">
       <Container
-        maxW="1200px"
+        maxW="1400px"
         display="flex"
         justifyContent="space-between"
         alignContent="center"

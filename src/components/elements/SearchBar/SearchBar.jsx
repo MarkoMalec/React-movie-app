@@ -21,7 +21,7 @@ const SearchBar = ({ callback }) => {
 
   return (
     <>
-      <Container maxW="1200px">
+      <Container maxW="1400px">
         <Input
           type="text"
           placeholder="Search for a movie"
