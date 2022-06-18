@@ -24,7 +24,8 @@ const Actor = ({ actor }) => {
         />
       </Link>
       <div className='actor-thumbnail-description'>
-        <p>{actor.name}</p>
+        <h3>{actor.name}</h3>
+        <p>as <span>{actor.character}</span></p>
       </div>
     </div>
   );

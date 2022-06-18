@@ -10,7 +10,14 @@
 }
 
 .actor-thumbnail-description {
+    padding: 5px;
+}
+
+.actor-thumbnail-description h3 {
     color: tomato;
-    font-size: 13px;
-    padding: 5px
+    font-size: 14px;
+}
+
+.actor-thumbnail-description p {
+    font-size: 11px
 }

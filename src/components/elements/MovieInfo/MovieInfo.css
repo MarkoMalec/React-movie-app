@@ -3,7 +3,9 @@
 }
 
 .movie-header-poster {
-    min-width: 250px;
+    /* max-width: 350px; */
+    /* width: 100%;
+    min-width: 260px; */
 }
 
 .movie-header-wrapper {
@@ -13,10 +15,21 @@
     background-position: center;
     background-size: cover;
 }
+.movie-header-flex-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
 
 .movie-header-filter {
     background-color: rgba(0, 29, 110, .85);
     /* margin-bottom:  */
+}
+
+.movie-header-overview {
+    max-width: 40%;
+    min-width: 200px;
 }
 
 .movie-header-overview h1 {
@@ -28,4 +41,12 @@
 .movie-header-description {
     margin-top: 3rem;
     font-size: .85rem;
+
+}
+
+@media (max-width: 700px) {
+    .movie-header-overview {
+        max-width: 100%;
+        min-width: 200px;
+    }
 }

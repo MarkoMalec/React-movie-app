@@ -1,6 +1,6 @@
 import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
-import { Container, Flex } from '@chakra-ui/react';
+import { Container, Flex, Wrap, Center } from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import './MovieInfo.css';
 
@@ -20,7 +20,8 @@ const MovieInfo = ({ movie, movieName }) => {
       >
         <div className="movie-header-filter">
           <Container maxW="1200px" pt={150}>
-            <Flex pb='5rem' gap={10}>
+            <Center>
+            <div className="movie-header-flex-container">
               <div className="movie-header-poster">
                 <Thumbnail
                   clickable={false}
@@ -39,7 +40,8 @@ const MovieInfo = ({ movie, movieName }) => {
                   {movie?.overview}
                 </div>
               </div>
-            </Flex>
+              </div>
+            </Center>
           </Container>
         </div>
       </div>
