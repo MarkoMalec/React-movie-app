@@ -2,8 +2,6 @@ import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import {
   Container,
-  Flex,
-  Wrap,
   Center,
   CircularProgress,
   CircularProgressLabel,
@@ -54,17 +52,27 @@ const MovieInfo = ({ movie, movieName }) => {
                       value={movie.vote_average}
                       size="50px"
                       trackColor="#1A202C"
-                      color="tomato"
+                      color={
+                        movie.vote_average >= 7.5
+                          ? 'green'
+                          : movie.vote_average >= 5
+                          ? 'yellow'
+                          : 'red'
+                      }
                       thickness={10}
-                      // bgColor=''
-                      borderRadius='50px'
+                      bgColor="rgba(0, 0, 0, .3)"
+                      borderRadius="50px"
                     >
-                      <CircularProgressLabel fontSize="1.1rem" pb={.5} color={movie.vote_average > 7 ? 'green' : 'yellow' ? movie?.vote_average < 5 : 'red'}>
+                      <CircularProgressLabel
+                        fontSize="1.1rem"
+                        pt={1.5}
+                        color="whiteAlpha.900"
+                      >
                         {movie.vote_average}
                       </CircularProgressLabel>
                     </CircularProgress>
-                    <p className='movie-header-description-overview'>
-                    {movie?.overview}
+                    <p className="movie-header-description-overview">
+                      {movie?.overview}
                     </p>
                   </div>
                 </div>

@@ -59,6 +59,8 @@ const Thumbnail = ({
                   ? 'yellow'
                   : 'red'
                   }
+                  bgColor='rgba(0, 0, 0, .2)'
+                  borderRadius="50px"
                 thickness={7}
               >
                 <CircularProgressLabel color='whiteAlpha.900' fontWeight="700" fontSize='.63rem'>{voteAverage}</CircularProgressLabel>

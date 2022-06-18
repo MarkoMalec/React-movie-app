@@ -2,45 +2,45 @@
     min-width: 300px;
 }
 
-
 .movie-header-wrapper {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
+
 .movie-header-flex-container {
     display: flex;
     gap: 30px;
     margin-bottom: 60px;
+
     @media (max-width: 700px) {
         flex-wrap: wrap;
     }
 }
 
 .movie-header-filter {
-    background-color: rgba(0, 29, 110, .85);
+    background-color: rgba(0, 29, 110, 0.85);
 }
 
 .movie-header-description-container {
+    font-family: 'muli', sans-serif;
     max-width: 50%;
     min-width: 200px;
 
-    h1 { 
+    h1 {
         color: tomato;
-    font-size: 2rem;
-    font-weight: 700;
+        font-size: 2.6rem;
+        font-weight: 900;
+        line-height: 3rem;
     }
 
     @media (max-width: 900px) {
         max-width: 100%;
-        
     }
 }
 
 .movie-header-description {
-    // margin-top: 3rem;
-    font-size: .85rem;
-
+    font-size: 0.85rem;
 }
 
 .movie-header-description-release {
