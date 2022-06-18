@@ -51,3 +51,23 @@
 .movie-header-description-overview {
     margin: 2rem 0;
 }
+
+.additional-link {
+    margin-right: 10px;
+    padding: 7px 9px;
+    border: 1px solid white;
+    border-radius: 7px;
+    transition: .2s ease-out;
+    font-size: 1rem;
+
+    &:hover {
+        border: 1px solid tomato;
+        background-color: #1A202C;
+    }
+}
+
+.subject-heading {
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    font-size: 1.3rem;
+}

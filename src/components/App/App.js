@@ -41,6 +41,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route element={<NotFound />} />
         </Switch>
+      <AppFooter />
       </Router>
       </AnimatePresence>
     </ChakraProvider>

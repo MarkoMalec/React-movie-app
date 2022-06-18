@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  CircularProgress,
-  CircularProgressLabel,
-} from '@chakra-ui/react';
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 import './Thumbnail.scss';
 
 const Thumbnail = ({
@@ -33,7 +30,7 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-              <h3 className='movie-thumbnail-title'>{movieName}</h3>
+              <h3 className="movie-thumbnail-title">{movieName}</h3>
             </Link>
           ) : (
             <h3>{movieName}</h3>
@@ -51,19 +48,25 @@ const Thumbnail = ({
                 max={10}
                 value={voteAverage}
                 size="28px"
-                trackColor='#1A202C'
+                trackColor="#1A202C"
                 color={
                   voteAverage >= 7.5
-                  ? 'green'
-                  : voteAverage >= 5
-                  ? 'yellow'
-                  : 'red'
-                  }
-                  bgColor='rgba(0, 0, 0, .2)'
-                  borderRadius="50px"
+                    ? 'green'
+                    : voteAverage >= 5
+                    ? 'yellow'
+                    : 'red'
+                }
+                bgColor="rgba(0, 0, 0, .2)"
+                borderRadius="50px"
                 thickness={7}
               >
-                <CircularProgressLabel color='whiteAlpha.900' fontWeight="700" fontSize='.63rem'>{voteAverage}</CircularProgressLabel>
+                <CircularProgressLabel
+                  color="whiteAlpha.900"
+                  fontWeight="700"
+                  fontSize=".63rem"
+                >
+                  {voteAverage}
+                </CircularProgressLabel>
               </CircularProgress>
             </div>
           ) : null}

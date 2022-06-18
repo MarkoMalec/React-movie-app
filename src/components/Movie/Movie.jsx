@@ -47,13 +47,12 @@ const Movie = () => {
               (member) => member.job === 'Screenplay'
             );
             setActors(creditsResult.cast);
-            setDirectors()
-            setWriters()
-            setLoading(false)
+            setDirectors(directors);
+            setWriters(writers);
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
-            console.log(movie);
+            // console.log(movie);
           }
         } catch(error) {
           console.log('error: ', error);
@@ -70,7 +69,7 @@ const Movie = () => {
             //     <h1>{movie.title}</h1>
             //   </div>
               <>
-                <MovieInfo movie={movie} />
+                <MovieInfo movie={movie} movieName={movie.title} directors={directors} writers={writers} videos={videos} loading={loading} />
             
               {actors ? 
                 <ThumbnailGrid header="Movie Cast">

@@ -1,86 +1,141 @@
 import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Center,
   CircularProgress,
   CircularProgressLabel,
+  Text,
 } from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import './MovieInfo.scss';
 
-const MovieInfo = ({ movie, movieName }) => {
+const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,
   };
 
   return (
     <>
-      <div
-        className="movie-header-wrapper"
-        style={
-          movie.backdrop_path
-            ? headerBackground
-            : { backgroundColor: '#141821' }
-        }
-      >
-        <div className="movie-header-filter">
-          <Container maxW="1100px" pt={150}>
-            <Center>
-              <div className="movie-header-flex-container">
-                <div className="movie-header-poster">
-                  <Thumbnail
-                    clickable={false}
-                    image={
-                      movie.poster_path ? (
-                        `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                      ) : (
-                        <p>No poster</p>
-                      )
-                    }
-                  />
-                </div>
-                <div className="movie-header-description-container">
-                  <h1>{movie?.title}</h1>
-                  <div className="movie-header-description">
-                    <p className="movie-header-description-release">
-                      {movie?.release_date}
-                    </p>
-                    <CircularProgress
-                      min={0}
-                      max={10}
-                      value={movie.vote_average}
-                      size="50px"
-                      trackColor="#1A202C"
-                      color={
-                        movie.vote_average >= 7.5
-                          ? 'green'
-                          : movie.vote_average >= 5
-                          ? 'yellow'
-                          : 'red'
+      {loading ? (
+        <p>WAIT</p>
+      ) : (
+        <div
+          className="movie-header-wrapper"
+          style={
+            movie.backdrop_path
+              ? headerBackground
+              : { backgroundColor: '#141821' }
+          }
+        >
+          <div className="movie-header-filter">
+            <Container maxW="1100px" pt={150}>
+              <Center>
+                <div className="movie-header-flex-container">
+                  <div className="movie-header-poster">
+                    <Thumbnail
+                      clickable={false}
+                      image={
+                        movie.poster_path ? (
+                          `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                        ) : (
+                          <p>No poster</p>
+                        )
                       }
-                      thickness={10}
-                      bgColor="rgba(0, 0, 0, .3)"
-                      borderRadius="50px"
-                    >
-                      <CircularProgressLabel
-                        fontSize="1.1rem"
-                        pt={1.5}
-                        color="whiteAlpha.900"
+                    />
+                  </div>
+                  <div className="movie-header-description-container">
+                    <h1>{movieName}</h1>
+                    <div className="movie-header-description">
+                      <p className="movie-header-description-release">
+                        {movie?.release_date}
+                      </p>
+                      <CircularProgress
+                        min={0}
+                        max={10}
+                        value={movie.vote_average}
+                        size="50px"
+                        trackColor="#1A202C"
+                        color={
+                          movie.vote_average >= 7.5
+                            ? 'green'
+                            : movie.vote_average >= 5
+                            ? 'yellow'
+                            : 'red'
+                        }
+                        thickness={10}
+                        bgColor="rgba(0, 0, 0, .3)"
+                        borderRadius="50px"
+                        animation={true}
                       >
-                        {movie.vote_average}
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                    <p className="movie-header-description-overview">
-                      {movie?.overview}
-                    </p>
+                        <CircularProgressLabel
+                          fontSize="1.1rem"
+                          pt={1.5}
+                          color="whiteAlpha.900"
+                        >
+                          {movie?.vote_average}
+                        </CircularProgressLabel>
+                      </CircularProgress>
+                      <p className="movie-header-description-overview">
+                        {movie?.overview}
+                      </p>
+                      {directors.length ? (
+                        <>
+                          {directors.length > 1 ? (
+                            <Text color="whiteAlpha.900">
+                              <h3 className="subject-heading">Directors</h3>
+                            </Text>
+                          ) : (
+                            <Text color="whiteAlpha.900">
+                              <h3 className="subject-heading">Director</h3>
+                            </Text>
+                          )}
+                          {directors.map((el, i) => {
+                            return (
+                              <Link
+                                to={{ pathname: `/director/${el.id}` }}
+                                key={i}
+                                className="additional-link"
+                              >
+                                {el.name}
+                              </Link>
+                            );
+                          })}
+                        </>
+                      ) : null}
+                      {writers.length ? (
+                        <>
+                          {writers.length > 1 ? (
+                            <Text color="whiteAlpha.900">
+                              <h3 className="subject-heading">Writers</h3>
+                            </Text>
+                          ) : (
+                            <Text color="whiteAlpha.900">
+                              <h3 className="subject-heading">Writer</h3>
+                            </Text>
+                          )}
+                          {writers.map((el, i) => {
+                            return (
+                              <Link
+                                to={{ pathname: `/writer/${el.id}` }}
+                                key={i}
+                                className="additional-link"
+                              >
+                                {el.name}
+                              </Link>
+                            );
+                          })}
+                        </>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Center>
-          </Container>
+              </Center>
+            </Container>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

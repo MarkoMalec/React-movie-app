@@ -21,20 +21,11 @@ const Home = () => {
     fetchItems(endpoint);
   }, []);
 
-  // const fetchItems = endpoint => {
-  //   fetch(endpoint)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setMovies(data.results);
-  //       setLoading(false);
-  //     })
-  //     .catch(err => console.log(err));
-  // };
   const fetchItems = async endpoint => {
     const result = await (await fetch(endpoint)).json();
     try {
-      setMovies(result.results);
       setLoading(false);
+      setMovies(result.results);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +45,6 @@ const Home = () => {
 
   if (loading) {
     return (
-      <Thumbnail>
       <Center h="100vh" color="white">
         <Spinner
           thickness="4px"
@@ -64,7 +54,6 @@ const Home = () => {
           size="xl"
         />
       </Center>
-      </Thumbnail>
     );
   }
 
@@ -77,6 +66,7 @@ const Home = () => {
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
+          loading={loading}
         >
           {movies?.map((element, i) => {
             return (
