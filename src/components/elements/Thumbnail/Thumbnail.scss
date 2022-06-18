@@ -6,22 +6,23 @@
   border-radius: 10px;
   background-color: #141821;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
     transition: 0.2s cubic-bezier(0, 0, 0, 1);
   }
     img {
-        width: auto;
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+
+      &:hover {
+        filter: saturate(1.5);
+      }
         @media (max-width: 700px) {
             width: 100%;
-            // max-width: 400px;
         }
     }
 
 }
 
-.movie-thumbnail-image {
-  border-radius: 10px 10px 0 0;
-}
 
 .movie-thumbnail-description {
   display: grid;
@@ -39,7 +40,8 @@
   grid-column-start: 1;
   grid-column-end: 3;
   color: tomato;
-  font-size-adjust: 0.6;
+  // font-size-adjust: 0.65;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.4px;
   font-family: var(--ff-w1);

@@ -3,6 +3,7 @@ import {
   SimpleGrid,
   Box,
   Center,
+  Spinner
 } from '@chakra-ui/react';
 import './ThumbnailGrid.css';
 
@@ -35,7 +36,7 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
             </h1>
           )}
         </>
-      ) : null}
+      ) : <Spinner />}
       <Center>
         <SimpleGrid columns={[1, 2, 4]} spacing="20px">
           {renderElements()}

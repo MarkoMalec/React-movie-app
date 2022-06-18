@@ -1,9 +1,10 @@
 import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
 import { Link } from 'react-router-dom';
+import { Text } from '@chakra-ui/react';
 import ActorMale from './male.svg';
 import ActorFemale from './female.svg';
-import './Actor.css';
+import './Actor.scss';
 
 const Actor = ({ actor }) => {
   const POSTER_SIZE = 'w342';
@@ -25,7 +26,7 @@ const Actor = ({ actor }) => {
       </Link>
       <div className='actor-thumbnail-description'>
         <h3>{actor.name}</h3>
-        <p>as <span>{actor.character}</span></p>
+        <Text color='whiteAlpha.900'>as <span>{actor.character}</span></Text>
       </div>
     </div>
   );

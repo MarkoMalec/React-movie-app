@@ -1,5 +1,5 @@
 .actor-thumbnail-block {
-    max-width: 150px;
+    max-width: 250px;
     background-color: #141821;
     border-radius: 6px;
 }
@@ -11,13 +11,12 @@
 
 .actor-thumbnail-description {
     padding: 5px;
-}
 
-.actor-thumbnail-description h3 {
-    color: tomato;
-    font-size: 14px;
-}
-
-.actor-thumbnail-description p {
-    font-size: 11px
+    h3 {
+        color: tomato;
+        font-size: 16px;
+    }
+    p {
+        font-size: 13px;
+    }
 }

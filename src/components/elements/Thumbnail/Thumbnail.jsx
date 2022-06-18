@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
+import { CircularProgress, CircularProgressLabel, Text } from '@chakra-ui/react';
 import './Thumbnail.scss';
 
 const Thumbnail = ({
@@ -10,13 +10,13 @@ const Thumbnail = ({
   image,
   releaseDate,
   originalTitle,
-  voteAverage,
+  voteAverage
 }) => {
   return (
     <div className="movie-thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
-          <img src={image} alt={movieName} className="movie-thumbnail-image" />
+          <img src={image} alt={movieName} />
         </Link>
       ) : (
         <img src={image} alt={movieName} />
@@ -24,7 +24,7 @@ const Thumbnail = ({
       {movieName ? (
         <div className="movie-thumbnail-description">
           <div className="movie-thumbnail-year">
-            {releaseDate ? releaseDate.slice(0, 4) : null}
+           <Text color='whiteAlpha.900'>{releaseDate ? releaseDate.slice(0, 4) : null}</Text>
           </div>
           {clickable ? (
             <Link

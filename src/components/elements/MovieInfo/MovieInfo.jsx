@@ -48,9 +48,9 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                   <div className="movie-header-description-container">
                     <h1>{movieName}</h1>
                     <div className="movie-header-description">
-                      <p className="movie-header-description-release">
+                      <Text color='whiteAlpha.900' className="movie-header-description-release">
                         {movie?.release_date}
-                      </p>
+                      </Text>
                       <CircularProgress
                         min={0}
                         max={10}
@@ -77,19 +77,15 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                           {movie?.vote_average}
                         </CircularProgressLabel>
                       </CircularProgress>
-                      <p className="movie-header-description-overview">
+                      <Text color='whiteAlpha.900' className="movie-header-description-overview">
                         {movie?.overview}
-                      </p>
+                      </Text>
                       {directors.length ? (
                         <>
                           {directors.length > 1 ? (
-                            <Text color="whiteAlpha.900">
-                              <h3 className="subject-heading">Directors</h3>
-                            </Text>
+                              <Text color='whiteAlpha.900' className="subject-heading">Directors</Text>
                           ) : (
-                            <Text color="whiteAlpha.900">
-                              <h3 className="subject-heading">Director</h3>
-                            </Text>
+                              <Text color='whiteAlpha.900' className="subject-heading">Director</Text>
                           )}
                           {directors.map((el, i) => {
                             return (
@@ -107,13 +103,9 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                       {writers.length ? (
                         <>
                           {writers.length > 1 ? (
-                            <Text color="whiteAlpha.900">
-                              <h3 className="subject-heading">Writers</h3>
-                            </Text>
+                              <Text color='whiteAlpha.900' className="subject-heading">Writers</Text>
                           ) : (
-                            <Text color="whiteAlpha.900">
-                              <h3 className="subject-heading">Writer</h3>
-                            </Text>
+                              <Text color='whiteAlpha.900' className="subject-heading">Writer</Text>
                           )}
                           {writers.map((el, i) => {
                             return (
