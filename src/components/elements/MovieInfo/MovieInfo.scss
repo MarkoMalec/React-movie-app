@@ -21,7 +21,7 @@
     background-color: rgba(0, 29, 110, .85);
 }
 
-.movie-header-overview {
+.movie-header-description-container {
     max-width: 50%;
     min-width: 200px;
 
@@ -38,7 +38,16 @@
 }
 
 .movie-header-description {
-    margin-top: 3rem;
+    // margin-top: 3rem;
     font-size: .85rem;
 
+}
+
+.movie-header-description-release {
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+}
+
+.movie-header-description-overview {
+    margin: 2rem 0;
 }

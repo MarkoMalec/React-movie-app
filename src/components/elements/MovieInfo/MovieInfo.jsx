@@ -1,6 +1,13 @@
 import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
-import { Container, Flex, Wrap, Center } from '@chakra-ui/react';
+import {
+  Container,
+  Flex,
+  Wrap,
+  Center,
+  CircularProgress,
+  CircularProgressLabel,
+} from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import './MovieInfo.scss';
 
@@ -22,26 +29,45 @@ const MovieInfo = ({ movie, movieName }) => {
         <div className="movie-header-filter">
           <Container maxW="1100px" pt={150}>
             <Center>
-            <div className="movie-header-flex-container">
-              <div className="movie-header-poster">
-                <Thumbnail
-                  clickable={false}
-                  image={
-                    movie.poster_path ? (
-                      `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                    ) : (
-                      <p>No poster</p>
-                    )
-                  }
-                />
-              </div>
-              <div className="movie-header-overview">
-                <h1>{movie?.title}</h1>
-                <div className="movie-header-description">
-                  <p className='movie-header-description-release'>{movie?.release_date}</p>
-                  {movie?.overview}
+              <div className="movie-header-flex-container">
+                <div className="movie-header-poster">
+                  <Thumbnail
+                    clickable={false}
+                    image={
+                      movie.poster_path ? (
+                        `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                      ) : (
+                        <p>No poster</p>
+                      )
+                    }
+                  />
                 </div>
-              </div>
+                <div className="movie-header-description-container">
+                  <h1>{movie?.title}</h1>
+                  <div className="movie-header-description">
+                    <p className="movie-header-description-release">
+                      {movie?.release_date}
+                    </p>
+                    <CircularProgress
+                      min={0}
+                      max={10}
+                      value={movie.vote_average}
+                      size="50px"
+                      trackColor="#1A202C"
+                      color="tomato"
+                      thickness={10}
+                      // bgColor=''
+                      borderRadius='50px'
+                    >
+                      <CircularProgressLabel fontSize="1.1rem" pb={.5} color={movie.vote_average > 7 ? 'green' : 'yellow' ? movie?.vote_average < 5 : 'red'}>
+                        {movie.vote_average}
+                      </CircularProgressLabel>
+                    </CircularProgress>
+                    <p className='movie-header-description-overview'>
+                    {movie?.overview}
+                    </p>
+                  </div>
+                </div>
               </div>
             </Center>
           </Container>
