@@ -40,12 +40,16 @@
   grid-column-end: 3;
   color: tomato;
   // font-size-adjust: 0.65;
-  font-size: 1.1rem;
+  // font-size: 1.1rem;
+  font-size: calc(5px + 1vmin);
   font-weight: 700;
   letter-spacing: 0.4px;
   font-family: var(--ff-w1);
   &:hover {
     color: aliceblue;
+  }
+  @media (max-width: 650px) {
+    font-size: calc(10px + 1vmin);
   }
 }
 
