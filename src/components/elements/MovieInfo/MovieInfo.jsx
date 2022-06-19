@@ -20,7 +20,9 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
   return (
     <>
       {loading ? (
-        <Spinner />
+        <Center>
+        <Spinner size='xl' thickness='5px' speed='.65s' color='tomato' mt={100}/>
+        </Center>
       ) : (
         <div
           className="movie-header-wrapper"
@@ -56,7 +58,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                         min={0}
                         max={10}
                         value={movie.vote_average}
-                        size="50px"
+                        size="53px"
                         trackColor="#1A202C"
                         color={
                           movie.vote_average >= 7.5
@@ -65,14 +67,14 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                             ? 'yellow'
                             : 'red'
                         }
-                        thickness={10}
+                        thickness={4}
                         bgColor="rgba(0, 0, 0, .3)"
                         borderRadius="50px"
                         animation={true}
                       >
                         <CircularProgressLabel
-                          fontSize="1.1rem"
-                          pt={1.5}
+                          fontSize="17px"
+                          pt='4px'
                           color="whiteAlpha.900"
                         >
                           {movie?.vote_average}
@@ -95,7 +97,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                                 key={i}
                                 className="additional-link"
                               >
-                                {el.name}
+                                <p>{el.name}</p>
                               </Link>
                             );
                           })}
@@ -115,7 +117,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                                 key={i}
                                 className="additional-link"
                               >
-                                {el.name}
+                               <p>{el.name}</p>
                               </Link>
                             );
                           })}
