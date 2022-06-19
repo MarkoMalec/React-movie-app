@@ -1,0 +1,22 @@
+.actor-thumbnail-block {
+    max-width: 250px;
+    background-color: #141821;
+    border-radius: 6px;
+}
+
+.actor-thumbnail-img {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.actor-thumbnail-description {
+    padding: 5px;
+
+    h3 {
+        color: tomato;
+        font-size: 16px;
+    }
+    p {
+        font-size: 13px;
+    }
+}

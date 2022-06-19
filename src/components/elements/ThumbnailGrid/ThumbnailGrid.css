@@ -1,0 +1,14 @@
+.movie-thumbnail-grid-wrap {
+    margin: 2rem 0;
+}
+
+.movie-thumbnail-grid-title {
+    font-size: 2rem;
+    font-family: 'muli', sans-serif;
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+
+.movie-thumbnail-grid-title-pre {
+    font-size: 1rem;
+}

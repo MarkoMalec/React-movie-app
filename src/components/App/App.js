@@ -7,8 +7,9 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
+  extendTheme
 } from '@chakra-ui/react';
+import theme from '../../theme';
 import { AnimatePresence } from 'framer-motion';
 import { Logo } from '../../Logo';
 import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route element={<NotFound />} />
         </Switch>
+      <AppFooter />
       </Router>
       </AnimatePresence>
     </ChakraProvider>

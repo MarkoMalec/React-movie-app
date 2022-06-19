@@ -1,10 +1,14 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { API_URL, API_KEY } from "../../fetch";
+import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../fetch";
 import { useState, useEffect } from "react";
+import { Spinner } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
+import Actor from "../elements/Actor/Actor";
+import MovieInfo from "../elements/MovieInfo/MovieInfo";
 import { motion } from "framer-motion";
+
+import './Movie.css';
 
 
 const Movie = () => {
@@ -21,15 +25,17 @@ const Movie = () => {
         const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
         setLoading(false);
         fetchItems(endpoint);
-        console.log(movieId);
-    }, [])
+        window.scrollTo({
+          top: -50,
+        });
+    }, [movieId])
 
     const fetchItems = async endpoint => {
-        // const movieId = useLocation();
         try {
           const result = await (await fetch(endpoint)).json();
           if (result.status_code) {
-            setLoading(false);
+            // setLoading(false);
+            return <Spinner />
           } else {
             setMovie(result);
             const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
@@ -42,14 +48,12 @@ const Movie = () => {
               (member) => member.job === 'Screenplay'
             );
             setActors(creditsResult.cast);
-            setDirectors()
-            setWriters()
-            setLoading(false)
-            
+            setDirectors(directors);
+            setWriters(writers);
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
-            
+            // console.log(movie);
           }
         } catch(error) {
           console.log('error: ', error);
@@ -58,14 +62,27 @@ const Movie = () => {
 
       return(
         <>
-        <motion.div className="movie" style={{ backgroundColor: 'blue', height: '100vw' }} transition={{ default: {duration: 1} }} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} exit={{ x: window.innerWidth }}>
+        <motion.div className="movie" style={{ backgroundColor: '', height: '100vw' }} transition={{ default: {duration: 0.1} }} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ x: window.innerWidth }}>
             {movie && videos ? 
-            <div>
-              <Heading color='tomato'>{movie.title}</Heading>
-            </div> 
-            : <div>nothiong</div>}
+              <>
+                <MovieInfo movie={movie} movieName={movie.title} directors={directors} writers={writers} videos={videos} loading={loading} />
+            
+              {actors ? 
+                <ThumbnailGrid header="Movie Cast">
+                  {actors.map((el, i) => {
+                    return <Actor key={i} actor={el} />
+                  })}
+                </ThumbnailGrid>
+                :
+                <p>No cast for this movie.</p>}
+              <div className="movie-content">
+              </div>
+            </>
+            : <div>nothing</div>}
+            
             </motion.div>
         </>
+        
       )
 }
 
