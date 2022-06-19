@@ -7,12 +7,16 @@ import {
   VStack,
   Code,
   Grid,
-  extendTheme
+  extendTheme,
 } from '@chakra-ui/react';
 import theme from '../../theme';
 import { AnimatePresence } from 'framer-motion';
 import { Logo } from '../../Logo';
-import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes as Switch,
+} from 'react-router-dom';
 import Header from '../elements/Header/Header';
 import Home from '../Home/Home';
 import Movie from '../Movie/Movie';
@@ -29,20 +33,28 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <AnimatePresence>
-      <Router basename=''>
-        <Header />
-        <Switch>
-        <Route path="/movie/:movieId" element={<Movie />} exact />
-          <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
-          <Route path="/director/:directorId" element={<BrowseByDirector />} exact />
-          <Route path="/writer/:writerId" element={<BrowseByWriter />} exact />
-          <Route path="/genre/:genreId" element={<BrowseByGenre />} exact />
-          <Route path="/year/:yearId" element={<BrowseByYear />} exact />
-          <Route path="/" element={<Home />} exact />
-          <Route element={<NotFound />} />
-        </Switch>
-      <AppFooter />
-      </Router>
+        <Router basename="">
+          <Header />
+          <Switch>
+            <Route path="/movie/:movieId" element={<Movie />} exact />
+            <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
+            <Route
+              path="/director/:directorId"
+              element={<BrowseByDirector />}
+              exact
+            />
+            <Route
+              path="/writer/:writerId"
+              element={<BrowseByWriter />}
+              exact
+            />
+            <Route path="/genre/:genreId" element={<BrowseByGenre />} exact />
+            <Route path="/year/:yearId" element={<BrowseByYear />} exact />
+            <Route path="/" element={<Home />} exact />
+            <Route element={<NotFound />} />
+          </Switch>
+          <AppFooter />
+        </Router>
       </AnimatePresence>
     </ChakraProvider>
   );

@@ -7,6 +7,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Text,
+  Spinner
 } from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import './MovieInfo.scss';
@@ -19,7 +20,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
   return (
     <>
       {loading ? (
-        <p>WAIT</p>
+        <Spinner />
       ) : (
         <div
           className="movie-header-wrapper"
