@@ -54,7 +54,7 @@ const BrowseByActor = () => {
         homepage={actor?.homepage}
       />
       <ThumbnailGrid
-        preHeader="Starring in Movies"
+        preHeader="Starring "
         header={actor?.name}
         loading={loading}
       >
