@@ -26,7 +26,7 @@ const Actor = ({ actor }) => {
       </Link>
       <div className='actor-thumbnail-description'>
         <h3>{actor.name}</h3>
-        <Text color='whiteAlpha.900'>as <span>{actor.character}</span></Text>
+        <Text color='whiteAlpha.900'><span>as </span>{actor.character}</Text>
       </div>
     </div>
   );

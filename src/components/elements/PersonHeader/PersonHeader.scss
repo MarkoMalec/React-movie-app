@@ -1,0 +1,38 @@
+.person-header {
+    background-color: #141821;
+    font-family: 'muli', sans-serif;
+    max-width: 300px;
+    img {
+        width: 100%;
+    }
+
+    .person-header-info {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+       
+        h3 {
+            color: tomato;
+            font-size: 1.2rem;
+        }
+        h4 {
+            margin-top: 1rem;
+            font-size: 0.67rem;
+            text-transform: uppercase;
+        }
+        p {
+            color: rgb(196, 196, 196)
+        }
+        .person-header-info-name {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            span {
+            font-size: .74rem;
+            }
+
+        }
+    }
+}
+

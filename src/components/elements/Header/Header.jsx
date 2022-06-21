@@ -15,6 +15,7 @@ const Header = () => {
         alignContent="center"
         pt="2"
         pb="2"
+        color='current'
       >
         <Link to={{ pathname: '/'}}>
         <div className="header-title">
