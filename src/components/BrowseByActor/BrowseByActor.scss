@@ -1,0 +1,10 @@
+.actor-page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    min-width: 300px;
+
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+    }
+}

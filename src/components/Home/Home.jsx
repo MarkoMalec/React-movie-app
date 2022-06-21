@@ -14,9 +14,10 @@ import './Home.css';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
+    setLoading(true);
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
     fetchItems(endpoint);
   }, []);
@@ -50,7 +51,7 @@ const Home = () => {
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"
-          color="blue.500"
+          color="tomato"
           size="xl"
         />
       </Center>

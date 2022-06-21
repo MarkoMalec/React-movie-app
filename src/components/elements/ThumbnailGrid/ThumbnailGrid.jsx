@@ -5,18 +5,18 @@ import {
   Center,
   Spinner
 } from '@chakra-ui/react';
-import './ThumbnailGrid.css';
+import './ThumbnailGrid.scss';
 
 const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   const renderElements = () => {
-    const GridElements = children.map((element, i) => {
+    const gridElements = children?.map((element, i) => {
       return (
         <Box maxW="350px" key={i} h="100%">
           {element}
         </Box>
       );
     });
-    return GridElements;
+    return gridElements;
   };
 
   return (
