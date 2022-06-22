@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Flex } from '@chakra-ui/react';
+import { Container, Flex, Box, Text } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 
 import './Header.scss';
 
 const Header = () => {
   return (
-    <Flex as="header" position="fixed" top="0" zIndex='999' w="100%" bg="#141821">
+    <Flex as="header" position="fixed" top="0" zIndex='999' w="100%" bg="primary.main">
       <Container
         maxW="1400px"
         display="flex"
@@ -18,10 +18,10 @@ const Header = () => {
         color='current'
       >
         <Link to={{ pathname: '/'}}>
-        <div className="header-title">
-          <span>MovieDB</span>
-          <p>Made in ReactJS with ChakraUI</p>
-        </div>
+        <Box className="header-title">
+          <Text color='brand.700' fontSize='s' fontWeight='bold'>MovieDB</Text>
+          <Text color='whiteAlpha.700'>Made in ReactJS with ChakraUI</Text>
+        </Box>
         </Link>
         <ColorModeSwitcher />
       </Container>

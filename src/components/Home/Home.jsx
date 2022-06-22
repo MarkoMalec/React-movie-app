@@ -16,7 +16,7 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     setLoading(true);
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
@@ -61,10 +61,8 @@ const Home = () => {
 
   return (
     <>
-      <section className="search-section">
-        <SearchBar callback={searchMovies} />
-      </section>
-      <Container as="main" maxW="1400px">
+      <SearchBar callback={searchMovies} />
+      <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
@@ -76,11 +74,9 @@ const Home = () => {
                 key={i}
                 clickable={true}
                 image={
-                  element.poster_path ? (
-                    `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
-                  ) : (
-                    NoPoster
-                  )
+                  element.poster_path
+                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
+                    : NoPoster
                 }
                 movieId={element.id}
                 movieName={element.title}

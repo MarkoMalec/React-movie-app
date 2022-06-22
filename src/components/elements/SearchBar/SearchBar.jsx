@@ -20,18 +20,18 @@ const SearchBar = ({ callback }) => {
   };
 
   return (
-    <>
-      <Container maxW="1400px">
+    <div className='search-section'>
+      <Container>
         <Input
           type="text"
           placeholder="Search for a movie"
           size="sm"
-          focusBorderColor="tomato"
+          focusBorderColor="brand.700"
           onChange={doSearch}
           value={value}
         />
       </Container>
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../fetch";
 import { useState, useEffect } from "react";
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
 import Actor from "../elements/Actor/Actor";
 import MovieInfo from "../elements/MovieInfo/MovieInfo";
@@ -52,7 +52,6 @@ const Movie = () => {
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
-            console.log(result.status_code);
           }
         } catch(error) {
           console.log('error: ', error);
@@ -65,20 +64,16 @@ const Movie = () => {
             {movie && videos ? 
               <>
                 <MovieInfo movie={movie} movieName={movie.title} directors={directors} writers={writers} videos={videos} loading={loading} />
-            
               {actors ? 
                 <ThumbnailGrid header="Movie Cast">
                   {actors.map((el, i) => {
-                    return <Actor key={i} actor={el} />
+                    return <Actor key={i} actor={el} loading={loading} />
                   })}
                 </ThumbnailGrid>
                 :
-                <p>No cast for this movie.</p>}
-              <div className="movie-content">
-              </div>
+                <Text as='h2' color='whiteAlpha.800'>No cast provided for this movie.</Text>}            
             </>
-            : null}
-            
+            : null}          
             </motion.div>
         </>
         

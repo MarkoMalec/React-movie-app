@@ -1,16 +1,11 @@
 @import url(//fonts.googleapis.com/css?family=Vibur);
 
 .header-title {
-  span {
-  color: tomato;
-  font-weight: 700;
-  }
-  p {
-    font-size: .8rem;
+  
 
     @media (max-width: 500px) {
       font-size: .75rem;
     }
-  }
+  
 }
 

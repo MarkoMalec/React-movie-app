@@ -3,7 +3,8 @@ import {
   SimpleGrid,
   Box,
   Center,
-  Spinner
+  Spinner,
+  Container
 } from '@chakra-ui/react';
 import './ThumbnailGrid.scss';
 

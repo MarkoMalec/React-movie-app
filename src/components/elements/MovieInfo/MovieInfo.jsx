@@ -41,7 +41,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
           }
         >
           <div className="movie-header-filter">
-            <Container maxW="1100px" pt={150}>
+            <Container pt={150}>
               <Center>
                 <div className="movie-header-flex-container">
                   <Thumbnail

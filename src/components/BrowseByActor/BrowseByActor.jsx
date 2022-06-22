@@ -42,7 +42,7 @@ const BrowseByActor = () => {
   };
 
   return (
-    <Container pt={120} maxW="1400px">
+    <Container pt={120}>
       <div className='actor-page-container'>
       <PersonHeader
         name={actor?.name}
