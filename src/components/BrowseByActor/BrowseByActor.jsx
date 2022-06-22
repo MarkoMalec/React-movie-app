@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { API_KEY, API_URL, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
 import { useLocation, useParams } from 'react-router-dom';
-import { Container } from '@chakra-ui/react';
+import { Container, Spinner } from '@chakra-ui/react';
 import PersonHeader from '../elements/PersonHeader/PersonHeader';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';

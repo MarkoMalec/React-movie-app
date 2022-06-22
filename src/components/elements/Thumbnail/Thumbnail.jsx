@@ -63,7 +63,7 @@ const Thumbnail = ({
                 <CircularProgressLabel
                   color="whiteAlpha.900"
                   fontWeight="700"
-                  fontSize=".63rem"
+                  fontSize=".65rem"
                 >
                   {voteAverage}
                 </CircularProgressLabel>

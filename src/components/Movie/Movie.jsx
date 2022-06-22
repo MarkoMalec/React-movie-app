@@ -17,13 +17,13 @@ const Movie = () => {
     const [directors, setDirectors] = useState([]);
     const [writers, setWriters] = useState([]);
     const [videos, setVideos] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const movieId = useLocation();
 
     useEffect(() => {
         const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
-        setLoading(false);
+        // setLoading(false);
         fetchItems(endpoint);
         window.scrollTo({
           top: -50,
@@ -34,8 +34,7 @@ const Movie = () => {
         try {
           const result = await (await fetch(endpoint)).json();
           if (result.status_code) {
-            // setLoading(false);
-            return <Spinner />
+            return <Spinner size='xl'/>
           } else {
             setMovie(result);
             const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
@@ -53,7 +52,7 @@ const Movie = () => {
             const videosResult = await (await fetch(videosEndpoint)).json();
             setVideos(videosResult.results);
             setLoading(false);
-            // console.log(movie);
+            console.log(result.status_code);
           }
         } catch(error) {
           console.log('error: ', error);
@@ -78,7 +77,7 @@ const Movie = () => {
               <div className="movie-content">
               </div>
             </>
-            : <div>nothing</div>}
+            : null}
             
             </motion.div>
         </>

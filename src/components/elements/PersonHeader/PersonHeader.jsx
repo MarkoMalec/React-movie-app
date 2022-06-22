@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import './PersonHeader.scss';
 
@@ -10,7 +10,7 @@ const PersonHeader = ({
   birthday,
   place_of_birth,
   deathday,
-  homepage,
+  homepage
 }) => {
   return (
     <div className="person-header">
@@ -21,7 +21,7 @@ const PersonHeader = ({
           {''}
           <span>{deathday ? birthday + ' - ' + deathday : birthday}</span>
         </div>
-        <h4>Place of birth:</h4> 
+        <h4>Place of birth</h4> 
             <p>{place_of_birth}</p>
         <div className='person-header-info-biography'>
             <h4>biography</h4>

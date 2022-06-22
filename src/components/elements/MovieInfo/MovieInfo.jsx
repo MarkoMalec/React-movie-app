@@ -7,7 +7,8 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Text,
-  Spinner
+  Box,
+  Spinner,
 } from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from './no_poster.png';
@@ -22,7 +23,13 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
     <>
       {loading ? (
         <Center>
-        <Spinner size='xl' thickness='5px' speed='.65s' color='tomato' mt={100}/>
+          <Spinner
+            size="xl"
+            thickness="5px"
+            speed=".65s"
+            color="tomato"
+            mt={100}
+          />
         </Center>
       ) : (
         <div
@@ -37,27 +44,44 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
             <Container maxW="1100px" pt={150}>
               <Center>
                 <div className="movie-header-flex-container">
-                    <Thumbnail
-                      clickable={false}
-                      image={
-                        movie.poster_path ? (
-                          `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                        ) : (
-                          NoPoster
-                        )
-                      }
-                    />
+                  <Thumbnail
+                    clickable={false}
+                    image={
+                      movie.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                        : NoPoster
+                    }
+                  />
                   <div className="movie-header-description-container">
                     <h1>{movieName}</h1>
                     <div className="movie-header-description">
-                      <Text color='whiteAlpha.900' className="movie-header-description-release">
+                      <Text
+                        color="whiteAlpha.900"
+                        className="movie-header-description-release"
+                      >
                         {movie?.release_date}
                       </Text>
+                      {movie.genres.length ? (
+                        <Box>
+                          {movie.genres.map((el, i) => {
+                            return (
+                              <Link
+                                to={{ pathname: `/genre/${el.id}` }}
+                                key={i}
+                                className="additional-link"
+                              >
+                                <p>{el.name}</p>
+                              </Link>
+                            );
+                          })}
+                        </Box>
+                      ) : null}
                       <CircularProgress
                         min={0}
                         max={10}
                         value={movie.vote_average}
                         size="53px"
+                        mt="1rem"
                         trackColor="#1A202C"
                         color={
                           movie.vote_average >= 7.5
@@ -73,21 +97,34 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                       >
                         <CircularProgressLabel
                           fontSize="17px"
-                          pt='4px'
+                          pt="4px"
                           color="whiteAlpha.900"
                         >
                           {movie?.vote_average}
                         </CircularProgressLabel>
                       </CircularProgress>
-                      <Text color='whiteAlpha.900' className="movie-header-description-overview">
+                      <Text
+                        color="whiteAlpha.900"
+                        className="movie-header-description-overview"
+                      >
                         {movie?.overview}
                       </Text>
                       {directors.length ? (
                         <>
                           {directors.length > 1 ? (
-                              <Text color='whiteAlpha.900' className="subject-heading">Directors</Text>
+                            <Text
+                              color="whiteAlpha.900"
+                              className="subject-heading"
+                            >
+                              Directors
+                            </Text>
                           ) : (
-                              <Text color='whiteAlpha.900' className="subject-heading">Director</Text>
+                            <Text
+                              color="whiteAlpha.900"
+                              className="subject-heading"
+                            >
+                              Director
+                            </Text>
                           )}
                           {directors.map((el, i) => {
                             return (
@@ -105,9 +142,19 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                       {writers.length ? (
                         <>
                           {writers.length > 1 ? (
-                              <Text color='whiteAlpha.900' className="subject-heading">Writers</Text>
+                            <Text
+                              color="whiteAlpha.900"
+                              className="subject-heading"
+                            >
+                              Writers
+                            </Text>
                           ) : (
-                              <Text color='whiteAlpha.900' className="subject-heading">Writer</Text>
+                            <Text
+                              color="whiteAlpha.900"
+                              className="subject-heading"
+                            >
+                              Writer
+                            </Text>
                           )}
                           {writers.map((el, i) => {
                             return (
@@ -116,7 +163,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                                 key={i}
                                 className="additional-link"
                               >
-                               <p>{el.name}</p>
+                                <p>{el.name}</p>
                               </Link>
                             );
                           })}
