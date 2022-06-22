@@ -10,6 +10,7 @@ import {
   Spinner
 } from '@chakra-ui/react';
 import Thumbnail from '../Thumbnail/Thumbnail';
+import NoPoster from './no_poster.png';
 import './MovieInfo.scss';
 
 const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
@@ -36,18 +37,16 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
             <Container maxW="1100px" pt={150}>
               <Center>
                 <div className="movie-header-flex-container">
-                  <div className="movie-header-poster">
                     <Thumbnail
                       clickable={false}
                       image={
                         movie.poster_path ? (
                           `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
                         ) : (
-                          <p>No poster</p>
+                          NoPoster
                         )
                       }
                     />
-                  </div>
                   <div className="movie-header-description-container">
                     <h1>{movieName}</h1>
                     <div className="movie-header-description">

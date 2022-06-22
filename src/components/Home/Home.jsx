@@ -9,7 +9,8 @@ import Thumbnail from '../elements/Thumbnail/Thumbnail';
 // import LoadingCircle from '../elements/LoadingCircle/LoadingCircle';
 import { useEffect } from 'react';
 import { ThemeContext } from '@emotion/react';
-import './Home.css';
+import NoPoster from './no_poster.png';
+import './Home.scss';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -63,7 +64,7 @@ const Home = () => {
       <section className="search-section">
         <SearchBar callback={searchMovies} />
       </section>
-      <Container as="main" maxW="1400px" pt="10rem">
+      <Container as="main" maxW="1400px">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
@@ -78,7 +79,7 @@ const Home = () => {
                   element.poster_path ? (
                     `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
                   ) : (
-                    <p>noposter</p>
+                    NoPoster
                   )
                 }
                 movieId={element.id}

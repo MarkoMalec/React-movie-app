@@ -27,7 +27,7 @@ import BrowseByGenre from '../BrowseByGenre/BrowseByGenre';
 import BrowseByYear from '../BrowseByYear/BrowseByYear';
 import NotFound from '../elements/NotFound/NotFound';
 import AppFooter from '../elements/AppFooter/AppFooter';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

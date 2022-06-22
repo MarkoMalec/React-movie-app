@@ -1,19 +1,34 @@
 .movie-header-poster {
     min-width: 300px;
+
 }
 
 .movie-header-wrapper {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    margin-top: -10rem;
+
+    .movie-thumbnail-block {
+        &:hover {
+            transform: none;
+        }
+        img {
+            filter: none;
+        }
+    }
 }
 
 .movie-header-flex-container {
     display: flex;
     gap: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 5.5rem;
+    .movie-thumbnail-block {
+        background-color: transparent;
+        min-width: 280px;
+    }
 
-    @media (max-width: 700px) {
+    @media (max-width: 640px) {
         flex-wrap: wrap;
     }
 }
@@ -28,10 +43,10 @@
     min-width: 200px;
 
     h1 {
-        color: tomato;
+        color: rgb(250, 84, 54);
         font-size: 2.6rem;
-        font-weight: 900;
-        line-height: 3rem;
+        font-weight: 600;
+        line-height: 2.6rem;
     }
 
     @media (max-width: 900px) {
@@ -79,3 +94,6 @@
     padding-top: 1rem;
     font-size: .70rem;
 }
+
+
+

@@ -5,6 +5,7 @@ import { Container } from '@chakra-ui/react';
 import PersonHeader from '../elements/PersonHeader/PersonHeader';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
+import NoPoster from './no_poster.png';
 import './BrowseByActor.scss';
 
 const BrowseByActor = () => {
@@ -66,7 +67,7 @@ const BrowseByActor = () => {
               image={
                 el?.poster_path
                   ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
-                  : null
+                  : NoPoster
               }
               movieId={el?.id}
               movieName={el?.title}

@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 20px;
     min-width: 300px;
+    margin-top: -150px;
 
     @media (max-width: 600px) {
         flex-wrap: wrap;

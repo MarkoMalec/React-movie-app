@@ -30,7 +30,7 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-              <h3 className="movie-thumbnail-title">{movieName}</h3>
+              <h3>{movieName}</h3>
             </Link>
           ) : (
             <h3>{movieName}</h3>
@@ -47,7 +47,7 @@ const Thumbnail = ({
                 min={0}
                 max={10}
                 value={voteAverage}
-                size="28px"
+                size="27px"
                 trackColor="#1A202C"
                 color={
                   voteAverage >= 7.5

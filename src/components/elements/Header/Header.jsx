@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Flex } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 
-import './Header.css';
+import './Header.scss';
 
 const Header = () => {
   return (
@@ -19,9 +19,7 @@ const Header = () => {
       >
         <Link to={{ pathname: '/'}}>
         <div className="header-title">
-          <p>
-            <span>MovieDB</span>
-          </p>
+          <span>MovieDB</span>
           <p>Made in ReactJS with ChakraUI</p>
         </div>
         </Link>

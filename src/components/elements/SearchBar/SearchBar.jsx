@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container, Input } from '@chakra-ui/react';
-import './SearchBar.css';
+import './SearchBar.scss';
 
 const SearchBar = ({ callback }) => {
   const [value, setValue] = useState('');
