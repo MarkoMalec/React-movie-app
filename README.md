@@ -1,6 +1,10 @@
+![alt-text](https://img2.torrenthr.org/images/2022/06/22/movie-app-cards.jpg)
+#
 ![alt text](https://img2.torrenthr.org/images/2022/06/19/ReactMovieDB.jpg)
 #
 ![alt text](https://img2.torrenthr.org/images/2022/06/20/movie-app-responsive.jpg)
+
+
 
 #
 # ReactJs Movie App
