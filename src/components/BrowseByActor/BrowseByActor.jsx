@@ -52,6 +52,8 @@ const BrowseByActor = () => {
         place_of_birth={actor?.place_of_birth}
         gender={actor?.gender}
         profile_path={actor?.profile_path}
+        imdb={actor?.imdb_id}
+        tmdb={actorId}
         homepage={actor?.homepage}
       />
       <ThumbnailGrid

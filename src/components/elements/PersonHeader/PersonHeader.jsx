@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as A, Flex, Text, Heading } from '@chakra-ui/react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import './PersonHeader.scss';
 
@@ -10,23 +11,44 @@ const PersonHeader = ({
   birthday,
   place_of_birth,
   deathday,
+  imdb,
+  tmdb,
   homepage
 }) => {
   return (
     <div className="person-header">
       <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${profile_path}`} />
       <div className="person-header-info">
-        <div className='person-header-info-name'>
+        <div className="person-header-info-name">
           <h3>{name}</h3>
           {''}
           <span>{deathday ? birthday + ' - ' + deathday : birthday}</span>
         </div>
-        <h4>Place of birth</h4> 
-            <p>{place_of_birth}</p>
-        <div className='person-header-info-biography'>
-            <h4>biography</h4>
-            <p>{biography ? biography : "No biography available for this actor."}</p>
+        <h4>Place of birth</h4>
+        {place_of_birth ? <p>{place_of_birth}</p> : <p>unknown</p>}
+        <div className="person-header-info-biography">
+          <h4>biography</h4>
+          <p>{biography ? biography : 'No biography available.'}</p>
         </div>
+        <h4>more information</h4>
+        <Flex color='brand.600'>
+        <A
+          className="additional-link"
+          href={`https://www.imdb.com/name/${imdb}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Text>IMDB</Text>
+        </A>
+        <A
+          className='additional-link'
+          href={`https://www.themoviedb.org/name/${tmdb}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Text>TMDB</Text>
+        </A>
+        </Flex>
       </div>
     </div>
   );
