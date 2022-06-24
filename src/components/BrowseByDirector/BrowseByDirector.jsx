@@ -18,7 +18,7 @@ const BrowseByDirector = () => {
     const personEndpoint = `${API_URL}person/${directorId}?api_key=${API_KEY}`;
     fetchItems(endpoint);
     fetchDirectors(personEndpoint);
-  }, []);
+  }, [directorId]);
 
   const fetchDirectors = async personEndpoint => {
     const personResult = await (await fetch(personEndpoint)).json();

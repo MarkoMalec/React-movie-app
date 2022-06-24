@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link as A, Flex, Text, Heading } from '@chakra-ui/react';
+import React from 'react';
+import { Link as A, Flex, Text } from '@chakra-ui/react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import Male from './male.svg';
 import Female from './female.svg';
@@ -19,7 +19,7 @@ const PersonHeader = ({
 }) => {
   return (
     <div className="person-header">
-      <img src={profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${profile_path}` : gender === 1 ? Female : Male} />
+      <img src={profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${profile_path}` : gender === 1 ? Female : Male} alt={name} />
       <div className="person-header-info">
         <div className="person-header-info-name">
           <h3>{name}</h3>

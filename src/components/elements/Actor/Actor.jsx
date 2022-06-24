@@ -1,7 +1,7 @@
 import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
 import { Link } from 'react-router-dom';
-import { Text, Container, Spinner } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import ActorMale from './male.svg';
 import ActorFemale from './female.svg';
 import './Actor.scss';
