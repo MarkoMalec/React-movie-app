@@ -43,7 +43,7 @@ const BrowseByActor = () => {
 
   return (
     <Container pt={120}>
-      <div className='actor-page-container'>
+      <div className='person-page-container'>
       <PersonHeader
         name={actor?.name}
         birthday={actor?.birthday}

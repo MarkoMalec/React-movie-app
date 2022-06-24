@@ -18,9 +18,9 @@ const Actor = ({ actor, loading }) => {
               src={
                 actor.profile_path
                   ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-                  : actor.gender === 1
-                  ? ActorFemale
-                  : ActorMale
+                  : actor.gender === 2
+                  ? ActorMale
+                  : ActorFemale
               }
               alt={actor.name}
               className="actor-thumbnail-img"
