@@ -16,7 +16,9 @@ const Thumbnail = ({
     <div className="movie-thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
+          <div className='thumbnail-img-wrap'>
           <img src={image} alt={movieName} />
+        </div>
         </Link>
       ) : (
         <img src={image} alt={movieName} />
