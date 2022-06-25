@@ -1,14 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../fetch';
+import { API_URL, API_KEY } from '../../fetch';
 import { useState, useEffect } from 'react';
 import { Container, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
 import { motion } from 'framer-motion';
-
-import './Movie.css';
 
 const Movie = () => {
   const [movie, setMovie] = useState(null);
@@ -22,40 +20,40 @@ const Movie = () => {
 
   useEffect(() => {
     const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
-    // setLoading(false);
+    const fetchItems = async endpoint => {
+      try {
+        const result = await (await fetch(endpoint)).json();
+        if (result.status_code) {
+          return <Spinner size="xl" />;
+        } else {
+          setMovie(result);
+          const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
+          const videosEndpoint = `${API_URL}${movieId.pathname}/videos?api_key=${API_KEY}`;
+          const creditsResult = await (await fetch(creditsEndpoint)).json();
+          const directors = creditsResult.crew.filter(
+            member => member.job === 'Director'
+          );
+          const writers = creditsResult.crew.filter(
+            member => member.job === 'Screenplay'
+          );
+          setActors(creditsResult.cast);
+          setDirectors(directors);
+          setWriters(writers);
+          const videosResult = await (await fetch(videosEndpoint)).json();
+          setVideos(videosResult.results);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log('error: ', error);
+      }
+    };
+    // setLoading(false
     fetchItems(endpoint);
     window.scrollTo({
       top: -50,
     });
   }, [movieId]);
 
-  const fetchItems = async endpoint => {
-    try {
-      const result = await (await fetch(endpoint)).json();
-      if (result.status_code) {
-        return <Spinner size="xl" />;
-      } else {
-        setMovie(result);
-        const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
-        const videosEndpoint = `${API_URL}${movieId.pathname}/videos?api_key=${API_KEY}`;
-        const creditsResult = await (await fetch(creditsEndpoint)).json();
-        const directors = creditsResult.crew.filter(
-          member => member.job === 'Director'
-        );
-        const writers = creditsResult.crew.filter(
-          member => member.job === 'Screenplay'
-        );
-        setActors(creditsResult.cast);
-        setDirectors(directors);
-        setWriters(writers);
-        const videosResult = await (await fetch(videosEndpoint)).json();
-        setVideos(videosResult.results);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log('error: ', error);
-    }
-  };
 
   return (
     <>

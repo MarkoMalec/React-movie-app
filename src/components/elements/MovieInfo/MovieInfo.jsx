@@ -100,7 +100,7 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                           pt="4px"
                           color="whiteAlpha.900"
                         >
-                          {movie?.vote_average}
+                          {movie.vote_average.toFixed(1)}
                         </CircularProgressLabel>
                       </CircularProgress>
                       <Text
