@@ -80,7 +80,7 @@ const BrowseByDirector = () => {
               movieName={el?.title}
               originalTitle={el?.original_title}
               releaseDate={el?.release_date}
-              voteAverage={el?.vote_average}
+              voteAverage={el?.vote_average.toFixed(1)}
             />
           );
         })}

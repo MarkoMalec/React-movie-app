@@ -6,9 +6,7 @@ import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 // import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
-// import LoadingCircle from '../elements/LoadingCircle/LoadingCircle';
 import { useEffect } from 'react';
-import { ThemeContext } from '@emotion/react';
 import NoPoster from './no_poster.png';
 import './Home.scss';
 
