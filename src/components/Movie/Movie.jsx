@@ -70,6 +70,7 @@ const Movie = () => {
             <MovieInfo
               movie={movie}
               movieName={movie.title}
+              releaseYear={movie.release_date.slice(0, 4)}
               directors={directors}
               writers={writers}
               videos={videos}

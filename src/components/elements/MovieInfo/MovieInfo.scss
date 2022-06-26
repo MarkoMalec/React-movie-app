@@ -69,7 +69,15 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.marginBottom {
+    padding-bottom: 2rem;
+}
+
 .additional-link {
+    .marginTopBot {
+        margin-top: .5rem;
+        margin-bottom: 1.5rem;
+    }
     p {
         display: inline-block;
         width: fit-content;
@@ -81,7 +89,6 @@
         transition: .2s ease-out;
         font-size: .90rem;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-
         &:hover {
             border: 1px solid tomato;
             background-color: #1A202C;

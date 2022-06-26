@@ -14,7 +14,7 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from './no_poster.png';
 import './MovieInfo.scss';
 
-const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
+const MovieInfo = ({ movie, movieName, releaseYear, directors, writers, loading }) => {
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,
   };
@@ -55,12 +55,12 @@ const MovieInfo = ({ movie, movieName, directors, writers, loading }) => {
                   <div className="movie-header-description-container">
                     <h1>{movieName}</h1>
                     <div className="movie-header-description">
-                      <Text
-                        color="whiteAlpha.900"
-                        className="movie-header-description-release"
+                      <Link
+                        to={{ pathname: `/year/${releaseYear}` }}
+                        className="additional-link"
                       >
-                        {movie?.release_date}
-                      </Text>
+                        <p className='marginTopBot'>{releaseYear}</p>
+                      </Link>
                       {movie.genres.length ? (
                         <Box>
                           {movie.genres.map((el, i) => {
