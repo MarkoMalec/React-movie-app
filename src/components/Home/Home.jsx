@@ -12,7 +12,7 @@ import './Home.scss';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
@@ -34,28 +34,22 @@ const Home = () => {
       .catch(error => console.log(error));
   }, []);
 
-  // const fetchItems = async endpoint => {
-  //   const result = await (await fetch(endpoint)).json();
-  //   try {
-  //     setLoading(false);
-  //     setMovies([...movies, ...result.results]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const searchMovies = searchTerm => {
     let endpoint = '';
     setSearchTerm(searchTerm);
     if (searchTerm === '') {
       endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
     } else {
+      setCurrentPage(1);
       endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
     }
     fetch(endpoint)
       .then(resolve => resolve.json())
-      .then(result => setMovies(result.results))
-      .catch((error) => console.log(error));
+      .then(result => {
+        setMovies(result.results);
+        setTotalPages(result.total_pages);
+      })
+      .catch(error => console.log(error));
   };
 
   const loadMoreItems = () => {
@@ -69,6 +63,7 @@ const Home = () => {
         currentPage + 1
       }`;
     }
+    setCurrentPage(prev => prev + 1);
     fetch(endpoint)
       .then(resolve => resolve.json())
       .then(result => setMovies([...movies, ...result.results]))
@@ -118,7 +113,7 @@ const Home = () => {
           })}
         </ThumbnailGrid>
         {currentPage < totalPages && !loading ? (
-          <LoadMoreButton onClick={loadMoreItems} text='Load more movies' /> 
+          <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
         ) : null}
       </Container>
     </>
