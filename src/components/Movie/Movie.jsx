@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { API_URL, API_KEY } from '../../fetch';
 import { useState, useEffect } from 'react';
-import { Container, Spinner, Text } from '@chakra-ui/react';
+import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
@@ -36,10 +36,11 @@ const Movie = () => {
           const writers = creditsResult.crew.filter(
             member => member.job === 'Screenplay'
           );
+          const videosResult = await (await fetch(videosEndpoint)).json();
+           
           setActors(creditsResult.cast);
           setDirectors(directors);
           setWriters(writers);
-          const videosResult = await (await fetch(videosEndpoint)).json();
           setVideos(videosResult.results);
           setLoading(false);
         }
@@ -47,13 +48,19 @@ const Movie = () => {
         console.log('error: ', error);
       }
     };
-    // setLoading(false
     fetchItems(endpoint);
     window.scrollTo({
       top: -50,
     });
   }, [movieId]);
 
+  if (loading) {
+    return (
+      <Center h="100vh">
+        <Spinner size="xl" color="brand.700" />
+      </Center>
+    );
+  }
 
   return (
     <>
@@ -71,6 +78,7 @@ const Movie = () => {
               movie={movie}
               movieName={movie.title}
               releaseYear={movie.release_date.slice(0, 4)}
+              runtime={movie.runtime}
               directors={directors}
               writers={writers}
               videos={videos}

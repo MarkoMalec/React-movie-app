@@ -3,9 +3,7 @@ import {
   ChakraProvider,
   extendTheme
 } from '@chakra-ui/react';
-import theme from '../../theme';
 import { AnimatePresence } from 'framer-motion';
-import { Logo } from '../../Logo';
 import {
   BrowserRouter as Router,
   Route,

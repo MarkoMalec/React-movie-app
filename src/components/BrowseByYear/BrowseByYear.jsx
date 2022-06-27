@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
-import { Container, Center } from '@chakra-ui/react';
+import { Container, Spinner, Flex } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
@@ -30,8 +30,8 @@ const BrowseByYear = () => {
   const fetchItems = async endpoint => {
     try {
       const result = await (await fetch(endpoint)).json();
-      setLoading(false);
       setMovies([...movies, ...result.results]);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -43,6 +43,7 @@ const BrowseByYear = () => {
     endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&primary_release_year=${yearId}&page=${
       currentPage + 1
     }`;
+    setCurrentPage(prev => prev + 1);
     fetchItems(endpoint);
   };
 
@@ -73,7 +74,9 @@ const BrowseByYear = () => {
             );
           })}
         </ThumbnailGrid>
-        {loading ? <p>Loading</p> : null}
+        <Flex justifyContent='center'>
+          {loading ? <Spinner size='xl' /> : null}
+        </Flex>
         {currentPage < totalPages && !loading ? (
           <LoadMoreButton onClick={loadMoreItems} text='Load more movies' />
         ) : null}

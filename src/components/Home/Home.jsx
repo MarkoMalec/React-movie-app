@@ -65,19 +65,20 @@ const Home = () => {
     }
     setCurrentPage(prev => prev + 1);
     fetch(endpoint)
-      .then(resolve => resolve.json())
-      .then(result => setMovies([...movies, ...result.results]))
-      .catch(error => console.log(error));
+    .then(resolve => resolve.json())
+    .then(result => setMovies([...movies, ...result.results]))
+    .catch(error => console.log(error));
+
+    // setLoading(false);
   };
 
   if (loading) {
     return (
-      <Center h="100vh" color="white">
+      <Center h="100vh">
         <Spinner
           thickness="4px"
           speed="0.65s"
-          emptyColor="gray.200"
-          color="tomato"
+          color="brand.700"
           size="xl"
         />
       </Center>
