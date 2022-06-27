@@ -16,7 +16,9 @@ const Thumbnail = ({
     <div className="movie-thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
+          <div className='thumbnail-img-wrap'>
           <img src={image} alt={movieName} />
+        </div>
         </Link>
       ) : (
         <img src={image} alt={movieName} />
@@ -30,7 +32,7 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-              <h3 className="movie-thumbnail-title">{movieName}</h3>
+              <h3>{movieName}</h3>
             </Link>
           ) : (
             <h3>{movieName}</h3>
@@ -47,7 +49,7 @@ const Thumbnail = ({
                 min={0}
                 max={10}
                 value={voteAverage}
-                size="28px"
+                size="27px"
                 trackColor="#1A202C"
                 color={
                   voteAverage >= 7.5
@@ -63,7 +65,7 @@ const Thumbnail = ({
                 <CircularProgressLabel
                   color="whiteAlpha.900"
                   fontWeight="700"
-                  fontSize=".63rem"
+                  fontSize=".65rem"
                 >
                   {voteAverage}
                 </CircularProgressLabel>

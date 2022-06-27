@@ -11,7 +11,7 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   const renderElements = () => {
     const gridElements = children?.map((element, i) => {
       return (
-        <Box maxW="350px" key={i} h="100%">
+        <Box maxW="350px" key={i} height='100%'>
           {element}
         </Box>
       );
@@ -36,9 +36,9 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
             </h1>
           )}
         </>
-      ) : <Spinner />}
+      ) : <Spinner size='xl' color='brand.700' />}
       <Center>
-        <SimpleGrid columns={[1, 2, 4]} spacing="20px">
+        <SimpleGrid columns={header === 'Cast' ? [2, 3, 4] : [1, 2, 3, 4]} spacing="20px">
           {renderElements()}
         </SimpleGrid>
       </Center>

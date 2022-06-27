@@ -5,76 +5,64 @@
 .movie-thumbnail-block {
   border-radius: 10px;
   background-color: #141821;
-  &:hover {
-    transform: scale(1.01);
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  
+  .thumbnail-img-wrap {
+    overflow: hidden;
     img {
       border-radius: 10px 10px 0 0;
       overflow: hidden;
-
+      transition: 0.2s ease-out;
       &:hover {
         filter: saturate(1.5);
+        transform: scale(1.1);
       }
         @media (max-width: 700px) {
             width: 100%;
         }
     }
+  }
 
 }
-
 
 .movie-thumbnail-description {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 20px 1fr;
-  font-size: 0.85rem;
-  padding-top: 5px;
-  padding-left: 6px;
-  padding-bottom: 5px;
-  bottom: 0;
-}
-.movie-thumbnail-title {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  color: tomato;
-  // font-size-adjust: 0.65;
-  // font-size: 1.1rem;
-  font-size: calc(5px + 1vmin);
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  font-family: var(--ff-w1);
-  &:hover {
-    color: aliceblue;
-  }
-  @media (max-width: 650px) {
-    font-size: calc(10px + 1vmin);
-  }
-}
+  padding: 2px 40px 8px 8px;
+  position: relative;
 
-.movie-thumbnail-og-title {
-  font-size: 0.59rem;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-.movie-thumbnail-year {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  font-size: 0.75rem;
-}
-.movie-average-score {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  align-self: flex-end;
-  margin-right: 5px;
-  font-size-adjust: 0.55;
-  font-optical-sizing: auto;
-  font-family: var(--var-ff-w1);
+  h3 {
+    font-weight: 600;
+    font-size: 1.10em;
+    line-height: 1.2;
+    color: tomato;
+    
+  }
+
+  a {
+    &:hover {
+      h3 {
+        color: #dedede;
+      }
+    }
+  }
+
+  .movie-thumbnail-year {
+    font-size: 11px;
+  }
+
+  .movie-thumbnail-og-title {
+    font-size: 11px;
+  }
+
+  .movie-average-score {
+    margin-right: 0;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
 }
 
 

@@ -1,17 +1,9 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  extendTheme,
+  extendTheme
 } from '@chakra-ui/react';
-import theme from '../../theme';
 import { AnimatePresence } from 'framer-motion';
-import { Logo } from '../../Logo';
 import {
   BrowserRouter as Router,
   Route,
@@ -27,9 +19,38 @@ import BrowseByGenre from '../BrowseByGenre/BrowseByGenre';
 import BrowseByYear from '../BrowseByYear/BrowseByYear';
 import NotFound from '../elements/NotFound/NotFound';
 import AppFooter from '../elements/AppFooter/AppFooter';
-import './App.css';
+import './App.scss';
+
 
 function App() {
+  const theme = extendTheme({
+    colors: {
+      brand: {
+        100: '#ff8162',
+        200: '#ff7759',
+        300: '#ff6d50',
+        main: '#ff6347',
+        500: '#f3593e',
+        600: '#e84f36',
+        700: '#dc442d'
+      },
+      primary: {
+        100: '#313b51',
+        200: '#272f41',
+        300: '#1e2431',
+        main: '#141821',
+        500: '#0a0c11',
+        600: '#010101'
+      }
+    },
+    components: {
+      Container: {
+        baseStyle: {
+          maxWidth: '1400px'
+        }
+      }
+    }
+  })
   return (
     <ChakraProvider theme={theme}>
       <AnimatePresence>

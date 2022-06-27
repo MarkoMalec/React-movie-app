@@ -1,9 +1,14 @@
-.actor-page-container {
+.person-page-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 20px;
     min-width: 300px;
-
+    margin-top: -150px;
+    .load-more-btn-wrap {
+        align-self: center;
+        justify-self: center;
+    }
     @media (max-width: 600px) {
         flex-wrap: wrap;
     }

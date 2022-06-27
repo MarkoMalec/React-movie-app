@@ -1,0 +1,30 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'muli', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+}
+
+html {
+    
+        body {
+            padding-top: calc(10rem);
+            min-height: calc(100vh - 3.25rem);
+        }
+    
+
+    ::-moz-selection {
+        background-color: tomato;
+        color: white;
+    }
+
+    ::selection {
+        background-color: tomato;
+        color: white;
+    }
+}

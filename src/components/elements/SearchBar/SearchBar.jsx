@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container, Input } from '@chakra-ui/react';
-import './SearchBar.css';
+import './SearchBar.scss';
 
 const SearchBar = ({ callback }) => {
   const [value, setValue] = useState('');
@@ -20,18 +20,18 @@ const SearchBar = ({ callback }) => {
   };
 
   return (
-    <>
-      <Container maxW="1400px">
+    <div className='search-section'>
+      <Container>
         <Input
           type="text"
           placeholder="Search for a movie"
           size="sm"
-          focusBorderColor="tomato"
+          focusBorderColor="brand.700"
           onChange={doSearch}
           value={value}
         />
       </Container>
-    </>
+    </div>
   );
 };
 

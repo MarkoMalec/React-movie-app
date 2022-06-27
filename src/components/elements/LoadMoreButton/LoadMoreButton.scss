@@ -1,0 +1,56 @@
+$cubic-bezier: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+@mixin transition() {
+    -webkit-transition: all $cubic-bezier;
+    transition: all $cubic-bezier;
+}
+
+.load-more-button-container {
+    padding: 22.5px 0;
+    text-align: center;
+    font-family: 'muli', sans-serif;
+    font-size: 1.15rem;
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 1rem;
+        background-color: #dc442d;
+        padding: 1rem 1rem .75rem 1rem;
+        border-radius: 8px;
+        max-width: 350px;
+        position: relative;
+
+        svg {
+            @include transition();
+            font-size: 1.5rem;
+
+            &:nth-child(1) {
+                opacity: 1;
+                transition: scale(1.1);
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+                position: absolute;
+                left: 15px;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            background-color: #f3593e;
+            svg {
+                &:nth-child(1) {
+                    opacity: 0;
+                    transform: scale(1.5);
+                }
+
+                &:nth-child(2) {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

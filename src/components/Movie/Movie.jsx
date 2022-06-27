@@ -1,89 +1,107 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../fetch";
-import { useState, useEffect } from "react";
-import { Spinner } from '@chakra-ui/react';
-import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid'
-import Actor from "../elements/Actor/Actor";
-import MovieInfo from "../elements/MovieInfo/MovieInfo";
-import { motion } from "framer-motion";
-
-import './Movie.css';
-
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { API_URL, API_KEY } from '../../fetch';
+import { useState, useEffect } from 'react';
+import { Container, Center, Spinner, Text } from '@chakra-ui/react';
+import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
+import Actor from '../elements/Actor/Actor';
+import MovieInfo from '../elements/MovieInfo/MovieInfo';
+import { motion } from 'framer-motion';
 
 const Movie = () => {
-    const [movie, setMovie] = useState(null);
-    const [actors, setActors] = useState(null);
-    const [directors, setDirectors] = useState([]);
-    const [writers, setWriters] = useState([]);
-    const [videos, setVideos] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [movie, setMovie] = useState(null);
+  const [actors, setActors] = useState(null);
+  const [directors, setDirectors] = useState([]);
+  const [writers, setWriters] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const movieId = useLocation();
+  const movieId = useLocation();
 
-    useEffect(() => {
-        const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
-        setLoading(false);
-        fetchItems(endpoint);
-        window.scrollTo({
-          top: -50,
-        });
-    }, [movieId])
-
+  useEffect(() => {
+    const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
     const fetchItems = async endpoint => {
-        try {
-          const result = await (await fetch(endpoint)).json();
-          if (result.status_code) {
-            // setLoading(false);
-            return <Spinner />
-          } else {
-            setMovie(result);
-            const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
-            const videosEndpoint = `${API_URL}${movieId.pathname}/videos?api_key=${API_KEY}`;
-            const creditsResult = await (await fetch(creditsEndpoint)).json();
-            const directors = creditsResult.crew.filter(
-              (member) => member.job === 'Director'
-            );
-            const writers = creditsResult.crew.filter(
-              (member) => member.job === 'Screenplay'
-            );
-            setActors(creditsResult.cast);
-            setDirectors(directors);
-            setWriters(writers);
-            const videosResult = await (await fetch(videosEndpoint)).json();
-            setVideos(videosResult.results);
-            setLoading(false);
-            // console.log(movie);
-          }
-        } catch(error) {
-          console.log('error: ', error);
+      try {
+        const result = await (await fetch(endpoint)).json();
+        if (result.status_code) {
+          return <Spinner size="xl" />;
+        } else {
+          setMovie(result);
+          const creditsEndpoint = `${API_URL}${movieId.pathname}/credits?api_key=${API_KEY}`;
+          const videosEndpoint = `${API_URL}${movieId.pathname}/videos?api_key=${API_KEY}`;
+          const creditsResult = await (await fetch(creditsEndpoint)).json();
+          const directors = creditsResult.crew.filter(
+            member => member.job === 'Director'
+          );
+          const writers = creditsResult.crew.filter(
+            member => member.job === 'Screenplay'
+          );
+          const videosResult = await (await fetch(videosEndpoint)).json();
+           
+          setActors(creditsResult.cast);
+          setDirectors(directors);
+          setWriters(writers);
+          setVideos(videosResult.results);
+          setLoading(false);
         }
+      } catch (error) {
+        console.log('error: ', error);
       }
+    };
+    fetchItems(endpoint);
+    window.scrollTo({
+      top: -50,
+    });
+  }, [movieId]);
 
-      return(
-        <>
-        <motion.div className="movie" style={{ backgroundColor: '', height: '100vw' }} transition={{ default: {duration: 0.1} }} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ x: window.innerWidth }}>
-            {movie && videos ? 
-              <>
-                <MovieInfo movie={movie} movieName={movie.title} directors={directors} writers={writers} videos={videos} loading={loading} />
-            
-              {actors ? 
-                <ThumbnailGrid header="Movie Cast">
+  if (loading) {
+    return (
+      <Center h="100vh">
+        <Spinner size="xl" color="brand.700" />
+      </Center>
+    );
+  }
+
+  return (
+    <>
+      <motion.div
+        className="movie"
+        style={{ backgroundColor: '', height: '100vw' }}
+        transition={{ default: { duration: 0.1 } }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        exit={{ x: window.innerWidth }}
+      >
+        {movie && videos ? (
+          <>
+            <MovieInfo
+              movie={movie}
+              movieName={movie.title}
+              releaseYear={movie.release_date.slice(0, 4)}
+              runtime={movie.runtime}
+              directors={directors}
+              writers={writers}
+              videos={videos}
+              loading={loading}
+            />
+            {actors ? (
+              <Container as="main">
+                <ThumbnailGrid header="Cast">
                   {actors.map((el, i) => {
-                    return <Actor key={i} actor={el} />
+                    return <Actor key={i} actor={el} loading={loading} />;
                   })}
                 </ThumbnailGrid>
-                :
-                <p>No cast for this movie.</p>}
-              <div className="movie-content">
-              </div>
-            </>
-            : <div>nothing</div>}
-            
-            </motion.div>
-        </>
-        
-      )
-}
+              </Container>
+            ) : (
+              <Text as="h2" color="whiteAlpha.800">
+                No cast provided for this movie.
+              </Text>
+            )}
+          </>
+        ) : null}
+      </motion.div>
+    </>
+  );
+};
 
 export default Movie;

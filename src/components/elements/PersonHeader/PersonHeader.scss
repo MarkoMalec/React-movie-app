@@ -4,9 +4,11 @@
     height: fit-content;
     max-width: 300px;
     width: 90%;
+    border-radius: 15px;
 
     img {
         width: 100%;
+        border-radius: 15px 15px 0 0;
     }
 
     .person-header-info {
@@ -22,9 +24,6 @@
             margin-top: 1rem;
             font-size: 0.67rem;
             text-transform: uppercase;
-        }
-        p {
-            color: rgb(196, 196, 196)
         }
         .person-header-info-name {
             display: flex;

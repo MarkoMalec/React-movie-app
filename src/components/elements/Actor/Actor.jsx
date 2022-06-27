@@ -6,28 +6,35 @@ import ActorMale from './male.svg';
 import ActorFemale from './female.svg';
 import './Actor.scss';
 
-const Actor = ({ actor }) => {
+const Actor = ({ actor, loading }) => {
   const POSTER_SIZE = 'w342';
 
   return (
     <div className="actor-thumbnail-block">
-      <Link to={{ pathname: `/actor/${actor.id}`, name: `${actor.name}` }}>
-        <img
-          src={
-            actor.profile_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-              : actor.gender === 1
-              ? ActorFemale
-              : ActorMale
-          }
-          alt={actor.name}
-          className='actor-thumbnail-img'
-        />
-      </Link>
-      <div className='actor-thumbnail-description'>
-        <h3>{actor.name}</h3>
-        <Text color='whiteAlpha.900'><span>as </span>{actor.character}</Text>
-      </div>
+      {loading ? null : (
+        <>
+          <Link to={{ pathname: `/actor/${actor.id}`, name: `${actor.name}` }}>
+            <img
+              src={
+                actor.profile_path
+                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+                  : actor.gender === 2
+                  ? ActorMale
+                  : ActorFemale
+              }
+              alt={actor.name}
+              className="actor-thumbnail-img"
+            />
+          </Link>
+          <div className="actor-thumbnail-description">
+            <h3>{actor.name}</h3>
+            <Text color="whiteAlpha.900">
+              <span>as </span>
+              {actor.character}
+            </Text>
+          </div>
+        </>
+      )}
     </div>
   );
 };
