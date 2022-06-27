@@ -30,8 +30,8 @@ const Home = () => {
         setTimeout(() => {
           setLoading(false);
         }, 500)
-      )
-      .catch(error => console.log(error));
+        )
+        .catch(error => console.log(error));
   }, []);
 
   const searchMovies = searchTerm => {
