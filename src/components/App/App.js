@@ -49,6 +49,10 @@ function App() {
           maxWidth: '1400px'
         }
       }
+    },
+    config: {
+      initialColorMode: 'dark',
+      useSystemColorMode: false,
     }
   })
   return (

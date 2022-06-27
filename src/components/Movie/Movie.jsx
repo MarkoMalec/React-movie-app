@@ -6,7 +6,7 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 const Movie = () => {
   const [movie, setMovie] = useState(null);
@@ -64,14 +64,14 @@ const Movie = () => {
 
   return (
     <>
-      <motion.div
+      {/* <motion.div
         className="movie"
-        style={{ backgroundColor: '', height: '100vw' }}
+        style={{ backgroundColor: '', height: '100vw', position: 'relative' }}
         transition={{ default: { duration: 0.1 } }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ x: window.innerWidth }}
-      >
+      > */}
         {movie && videos ? (
           <>
             <MovieInfo
@@ -99,7 +99,7 @@ const Movie = () => {
             )}
           </>
         ) : null}
-      </motion.div>
+      {/* </motion.div> */}
     </>
   );
 };
