@@ -102,7 +102,6 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         &:active {
             background-color: #1A202C;
             border: 1px solid #dc442d;
-            transition: $cubic-bezier;
             svg {
                 &:nth-child(1) {
                     opacity: 0;

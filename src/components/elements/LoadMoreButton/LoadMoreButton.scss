@@ -9,7 +9,7 @@ $cubic-bezier: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 22.5px 0;
     text-align: center;
     font-family: 'muli', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1rem;
 
     button {
         display: flex;
@@ -43,7 +43,6 @@ $cubic-bezier: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         &:active {
             background-color: #1A202C;
             border: 1px solid #dc442d;
-            transition: $cubic-bezier;
             svg {
                 &:nth-child(1) {
                     opacity: 0;
