@@ -56,6 +56,7 @@ function App() {
     }
   })
   return (
+    
     <ChakraProvider theme={theme}>
       <AnimatePresence>
         <Router basename="">

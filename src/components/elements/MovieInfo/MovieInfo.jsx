@@ -64,6 +64,7 @@ const MovieInfo = ({
           <Container pt={150}>
             <Center>
               <div className="movie-header-flex-container">
+                
                 <Thumbnail
                   clickable={false}
                   image={
