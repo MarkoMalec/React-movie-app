@@ -74,11 +74,11 @@ const BrowseByYear = () => {
             );
           })}
         </ThumbnailGrid>
-        <Flex justifyContent='center'>
-          {loading ? <Spinner size='xl' /> : null}
+        <Flex justifyContent="center">
+          {loading ? <Spinner size="xl" /> : null}
         </Flex>
         {currentPage < totalPages && !loading ? (
-          <LoadMoreButton onClick={loadMoreItems} text='Load more movies' />
+          <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
         ) : null}
       </Container>
     </>

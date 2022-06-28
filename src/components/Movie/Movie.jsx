@@ -37,7 +37,7 @@ const Movie = () => {
             member => member.job === 'Screenplay'
           );
           const videosResult = await (await fetch(videosEndpoint)).json();
-           
+
           setActors(creditsResult.cast);
           setDirectors(directors);
           setWriters(writers);
@@ -64,42 +64,33 @@ const Movie = () => {
 
   return (
     <>
-      {/* <motion.div
-        className="movie"
-        style={{ backgroundColor: '', height: '100vw', position: 'relative' }}
-        transition={{ default: { duration: 0.1 } }}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        exit={{ x: window.innerWidth }}
-      > */}
-        {movie && videos ? (
-          <>
-            <MovieInfo
-              movie={movie}
-              movieName={movie.title}
-              releaseYear={movie.release_date.slice(0, 4)}
-              runtime={movie.runtime}
-              directors={directors}
-              writers={writers}
-              videos={videos}
-              loading={loading}
-            />
-            {actors ? (
-              <Container as="main">
-                <ThumbnailGrid header="Cast">
-                  {actors.map((el, i) => {
-                    return <Actor key={i} actor={el} loading={loading} />;
-                  })}
-                </ThumbnailGrid>
-              </Container>
-            ) : (
-              <Text as="h2" color="whiteAlpha.800">
-                No cast provided for this movie.
-              </Text>
-            )}
-          </>
-        ) : null}
-      {/* </motion.div> */}
+      {movie && videos ? (
+        <>
+          <MovieInfo
+            movie={movie}
+            movieName={movie.title}
+            releaseYear={movie.release_date.slice(0, 4)}
+            runtime={movie.runtime}
+            directors={directors}
+            writers={writers}
+            videos={videos}
+            loading={loading}
+          />
+          {actors ? (
+            <Container as="main">
+              <ThumbnailGrid header="Cast">
+                {actors.map((el, i) => {
+                  return <Actor key={i} actor={el} loading={loading} />;
+                })}
+              </ThumbnailGrid>
+            </Container>
+          ) : (
+            <Text as="h2" color="whiteAlpha.800">
+              No cast provided for this movie.
+            </Text>
+          )}
+        </>
+      ) : null}
     </>
   );
 };

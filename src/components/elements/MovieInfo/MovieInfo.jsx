@@ -29,7 +29,7 @@ const MovieInfo = ({
   runtime,
   videos,
   directors,
-  writers
+  writers,
 }) => {
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,

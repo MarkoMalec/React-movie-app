@@ -12,28 +12,16 @@ import './Home.scss';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-    fetch(endpoint)
-      .then(resolve => resolve.json())
-      .then(result => {
-        setMovies(result.results);
-        setCurrentPage(result.page);
-        setTotalPages(result.total_pages);
-      })
-      .then(
-        setTimeout(() => {
-          setLoading(false);
-        }, 500)
-        )
-        .catch(error => console.log(error));
+    initialFetch(endpoint);
   }, []);
-
+  
   const searchMovies = searchTerm => {
     let endpoint = '';
     setSearchTerm(searchTerm);
@@ -43,15 +31,9 @@ const Home = () => {
       setCurrentPage(1);
       endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
     }
-    fetch(endpoint)
-      .then(resolve => resolve.json())
-      .then(result => {
-        setMovies(result.results);
-        setTotalPages(result.total_pages);
-      })
-      .catch(error => console.log(error));
+    searchFetch(endpoint);
   };
-
+  
   const loadMoreItems = () => {
     let endpoint = '';
     if (searchTerm === '') {
@@ -64,23 +46,50 @@ const Home = () => {
       }`;
     }
     setCurrentPage(prev => prev + 1);
+    loadMoreFetch(endpoint);
+  };
+  
+  ////////// fetches ///////////
+  
+  const initialFetch = endpoint => {
     fetch(endpoint)
     .then(resolve => resolve.json())
-    .then(result => setMovies([...movies, ...result.results]))
-    .catch(error => console.log(error));
-
-    // setLoading(false);
+    .then(result => {
+      setMovies(result.results);
+      setCurrentPage(result.page);
+      setTotalPages(result.total_pages);
+    })
+    .then(
+      setTimeout(() => {
+        setLoading(false)
+      }, 300)
+      )
+      .catch(error => console.log(error));
+    };
+    
+    const searchFetch = endpoint => {
+      fetch(endpoint)
+      .then(resolve => resolve.json())
+      .then(result => {
+        setMovies(result.results);
+        setTotalPages(result.total_pages);
+      })
+      .catch(error => console.log(error));
+    };
+    
+    const loadMoreFetch = endpoint => {
+      fetch(endpoint)
+      .then(resolve => resolve.json())
+      .then(result => {
+        setMovies([...movies, ...result.results])
+      })
+      .catch(error => console.log(error));
   };
 
   if (loading) {
     return (
       <Center h="100vh">
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          color="brand.700"
-          size="xl"
-        />
+        <Spinner thickness="4px" speed="0.65s" color="brand.700" size="xl" />
       </Center>
     );
   }

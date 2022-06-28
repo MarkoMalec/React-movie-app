@@ -110,8 +110,8 @@ const BrowseByActor = () => {
           })}
         </ThumbnailGrid>
       </div>
-      <Flex justifyContent='center'>
-        {loading ? <Spinner size='xl' color='brand.700' /> : null}
+      <Flex justifyContent="center">
+        {loading ? <Spinner size="xl" color="brand.700" /> : null}
       </Flex>
       {currentPage < totalPages && !loading ? (
         <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
