@@ -21,6 +21,7 @@ $cubic-bezier: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         border-radius: 8px;
         max-width: 350px;
         position: relative;
+        border: 1px solid transparent;
 
         svg {
             @include transition();
@@ -39,8 +40,10 @@ $cubic-bezier: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         &:hover,
-        &:focus {
-            background-color: #f3593e;
+        &:active {
+            background-color: #1A202C;
+            border: 1px solid #dc442d;
+            transition: $cubic-bezier;
             svg {
                 &:nth-child(1) {
                     opacity: 0;
