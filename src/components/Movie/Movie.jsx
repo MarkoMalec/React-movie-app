@@ -77,7 +77,7 @@ const Movie = () => {
             loading={loading}
           />
           {actors ? (
-            <Container as="cast-section">
+            <Container as="main">
               <ThumbnailGrid header="Cast">
                 {actors.map((el, i) => {
                   return <Actor key={i} actor={el} loading={loading} />;
