@@ -2,17 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CircularProgress, CircularProgressLabel, Text } from '@chakra-ui/react';
 import './Thumbnail.scss';
+import { useEffect } from 'react';
 
 const Thumbnail = ({
+  tvShow,
   clickable,
-  movieId,
-  movieName,
   image,
+  movieId,
   releaseDate,
+  movieName,
   originalTitle,
-  voteAverage
+  showName,
+  voteAverage,
+  showId,
+  showReleaseDate
 }) => {
+
   return (
+    <>
+    {/* If tvShow prop is false; throw movie thumbnail */}
+    {!tvShow ? (
     <div className="movie-thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
@@ -75,7 +84,75 @@ const Thumbnail = ({
         </div>
       ) : null}
     </div>
+    ) 
+    // if tvShow prop is true; throw Shwo thumbnail
+    : (
+        <div className="movie-thumbnail-block">
+      {clickable ? (
+        <Link to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}>
+          <div className='thumbnail-img-wrap'>
+          <img src={image} alt={showName} />
+        </div>
+        </Link>
+      ) : (
+        <img src={image} alt={showName} />
+      )}
+      {showName ? (
+        <div className="movie-thumbnail-description">
+          <div className="movie-thumbnail-year">
+           <Text color='whiteAlpha.900'>{showReleaseDate ? showReleaseDate.slice(0, 4) : null}</Text>
+          </div>
+          {clickable ? (
+            <Link
+              to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}
+            >
+              <h3>{showName}</h3>
+            </Link>
+          ) : (
+            <h3>{showName}</h3>
+          )}
+          {originalTitle === showName ? null : (
+            <div className="movie-thumbnail-og-title">
+              {' '}
+              Original Title: {originalTitle}
+            </div>
+          )}
+          {voteAverage ? (
+            <div className="movie-average-score">
+              <CircularProgress
+                min={0}
+                max={10}
+                value={voteAverage}
+                size="27px"
+                trackColor="#1A202C"
+                color={
+                  voteAverage >= 7.5
+                    ? 'green'
+                    : voteAverage >= 5
+                    ? 'yellow'
+                    : 'red'
+                }
+                bgColor="rgba(0, 0, 0, .2)"
+                borderRadius="50px"
+                thickness={7}
+              >
+                <CircularProgressLabel
+                  color="whiteAlpha.900"
+                  fontWeight="700"
+                  fontSize=".65rem"
+                >
+                  {voteAverage}
+                </CircularProgressLabel>
+              </CircularProgress>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+    )}
+    </>
   );
+        
 };
 
 export default Thumbnail;
