@@ -20,20 +20,17 @@ import {
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from './no_poster.png';
-import './MovieInfo.scss';
+import './ShowInfo.scss';
 
-const MovieInfo = ({
-  movie,
-  movieName,
-  releaseYear,
-  runtime,
-  videos,
-  directors,
-  writers,
+const ShowInfo = ({
+  show,
+  showName,
+  showSeasonsAmount,
+  airDate,
+  videos
 }) => {
-  
   const headerBackground = {
-    backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,
+    backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${show.backdrop_path}")`,
   };
 
   var videoArray = [];
@@ -56,7 +53,7 @@ const MovieInfo = ({
       <div
         className="movie-header-wrapper"
         style={
-          movie.backdrop_path
+          show.backdrop_path
             ? headerBackground
             : { backgroundColor: '#141821' }
         }
@@ -69,28 +66,26 @@ const MovieInfo = ({
                 <Thumbnail
                   clickable={false}
                   image={
-                    movie.poster_path
-                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                    show.poster_path
+                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`
                       : NoPoster
                   }
                 />
                 <div className="movie-header-description-container">
-                  <h1>{movieName}</h1>
+                  <h1>{showName}</h1>
                   <div className="movie-header-description">
                     <Link
-                      to={{ pathname: `/year/${releaseYear}` }}
+                      to={{ pathname: `/year/${airDate}` }}
                       className="additional-link"
                     >
-                      <p className="marginTopBot">{releaseYear}</p>
+                      <p className="marginTopBot">{airDate}</p>
                     </Link>
-                    {runtime ? (
-                    <span>{`${Math.floor(runtime / 60)}h ${
-                      runtime % 60
-                    }min`}</span>
-                    ) : null}
-                    {movie.genres.length ? (
+                    
+                    
+                    <span>{showSeasonsAmount} Seasons</span>
+                    {show.genres.length ? (
                       <Box>
-                        {movie.genres.map((el, i) => {
+                        {show.genres.map((el, i) => {
                           return (
                             <Link
                               to={{ pathname: `/genre/${el.id}` }}
@@ -106,14 +101,14 @@ const MovieInfo = ({
                     <CircularProgress
                       min={0}
                       max={10}
-                      value={movie.vote_average}
+                      value={show.vote_average}
                       size="53px"
                       mt="1rem"
                       trackColor="#1A202C"
                       color={
-                        movie.vote_average >= 7.5
+                        show.vote_average >= 7.5
                           ? 'green'
-                          : movie.vote_average >= 5
+                          : show.vote_average >= 5
                           ? 'yellow'
                           : 'red'
                       }
@@ -127,7 +122,7 @@ const MovieInfo = ({
                         pt="4px"
                         color="whiteAlpha.900"
                       >
-                        {movie.vote_average.toFixed(1)}
+                        {show.vote_average.toFixed(1)}
                       </CircularProgressLabel>
                     </CircularProgress>
                     <button onClick={onOpen}>
@@ -143,12 +138,12 @@ const MovieInfo = ({
                     >
                       <ModalOverlay />
                       <ModalContent>
-                        <ModalHeader fontSize=".8rem">{movieName}</ModalHeader>
+                        <ModalHeader fontSize=".8rem">{showName}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
                           <div className="video-container">
                             <iframe
-                              title={movieName}
+                              title={showName}
                               id="videoIframe"
                               src={linkKey}
                               frameBorder="0"
@@ -163,68 +158,8 @@ const MovieInfo = ({
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"
                     >
-                      {movie?.overview}
+                      {show?.overview}
                     </Text>
-                    {directors.length ? (
-                      <>
-                        {directors.length > 1 ? (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Directors
-                          </Text>
-                        ) : (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Director
-                          </Text>
-                        )}
-                        {directors.map((el, i) => {
-                          return (
-                            <Link
-                              to={{ pathname: `/director/${el.id}` }}
-                              key={i}
-                              className="additional-link"
-                            >
-                              <p>{el.name}</p>
-                            </Link>
-                          );
-                        })}
-                      </>
-                    ) : null}
-                    {writers.length ? (
-                      <>
-                        {writers.length > 1 ? (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Writers
-                          </Text>
-                        ) : (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Writer
-                          </Text>
-                        )}
-                        {writers.map((el, i) => {
-                          return (
-                            <Link
-                              to={{ pathname: `/writer/${el.id}` }}
-                              key={i}
-                              className="additional-link"
-                            >
-                              <p>{el.name}</p>
-                            </Link>
-                          );
-                        })}
-                      </>
-                    ) : null}
                   </div>
                 </div>
               </div>
@@ -236,4 +171,4 @@ const MovieInfo = ({
   );
 };
 
-export default MovieInfo;
+export default ShowInfo;

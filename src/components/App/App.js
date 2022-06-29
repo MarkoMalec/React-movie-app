@@ -11,7 +11,9 @@ import {
 } from 'react-router-dom';
 import Header from '../elements/Header/Header';
 import Home from '../Home/Home';
+import TvHome from '../TvHome/TvHome';
 import Movie from '../Movie/Movie';
+import Tv from '../Show/Show';
 import BrowseByActor from '../BrowseByActor/BrowseByActor';
 import BrowseByDirector from '../BrowseByDirector/BrowseByDirector';
 import BrowseByWriter from '../BrowseByWriter/BrowseByWriter';
@@ -63,6 +65,7 @@ function App() {
           <Header />
           <Switch>
             <Route path="/movie/:movieId" element={<Movie />} exact />
+            <Route path="/tv/:showId" element={<Tv />} exact />
             <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
             <Route
               path="/director/:directorId"
@@ -77,6 +80,7 @@ function App() {
             <Route path="/genre/:genreId" element={<BrowseByGenre />} exact />
             <Route path="/year/:yearId" element={<BrowseByYear />} exact />
             <Route path="/" element={<Home />} exact />
+            <Route path= "/:shows" element={<TvHome />} exact />
             <Route element={<NotFound />} />
           </Switch>
           <AppFooter />

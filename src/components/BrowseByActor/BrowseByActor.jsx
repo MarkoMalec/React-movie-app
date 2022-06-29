@@ -11,7 +11,8 @@ import './BrowseByActor.scss';
 
 const BrowseByActor = () => {
   const [actor, setActor] = useState(null);
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [shows, setShows] = useState([])
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -19,16 +20,32 @@ const BrowseByActor = () => {
 
   useEffect(() => {
     const personEndpoint = `${API_URL}person/${actorId}?api_key=${API_KEY}`;
-    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&with_cast=${actorId}&language=en-US&&sort_by=release_date.desc&page=1`;
-    fetch(endpoint)
-      .then(resolve => resolve.json())
-      .then(res => {
-        setMovies(res.results);
-        setCurrentPage(res.page);
-        setTotalPages(res.total_pages);
-        setLoading(false);
-      })
-      .catch(error => console.log(error));
+    const movieEndpoint = `${API_URL}discover/movie?api_key=${API_KEY}&with_cast=${actorId}&language=en-US&&sort_by=release_date.desc&page=1`;
+    // const showEndpoint = `${API_URL}discover/tv?api_key=${API_KEY}&with_cast=${actorId}&language=en-US&&sort_by=release_date.desc&page=1`;
+    // Promise.all([
+    //   fetch(movieEndpoint)
+    //     .then(resolve => resolve.json())
+    //     .then(res => {
+    //       setMovies(res.results);
+    //       setCurrentPage(res.page);
+    //       setTotalPages(res.total_pages);
+    //       setLoading(false);
+    //     }).catch(error => console.log(error)),
+    //     fetch(showEndpoint)
+    //       .then(resolve => resolve.json())
+    //       .then(res => {
+    //         setShows(res.results);
+    //       })
+    // ]).then(console.log(movies))
+    fetch(movieEndpoint)
+    .then(resolve => resolve.json())
+    .then(res => {
+      setMovies(res.results);
+      setCurrentPage(res.page);
+      setTotalPages(res.total_pages);
+      setLoading(false);
+    })
+    .catch(error => console.log(error));
     fetchActor(personEndpoint);
   }, [actorId]);
 
@@ -110,9 +127,6 @@ const BrowseByActor = () => {
           })}
         </ThumbnailGrid>
       </div>
-      <Flex justifyContent="center">
-        {loading ? <Spinner size="xl" color="brand.700" /> : null}
-      </Flex>
       {currentPage < totalPages && !loading ? (
         <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
       ) : null}

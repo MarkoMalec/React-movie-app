@@ -33,7 +33,7 @@ const Home = () => {
     }
     searchFetch(endpoint);
   };
-  
+
   const loadMoreItems = () => {
     let endpoint = '';
     if (searchTerm === '') {
@@ -48,7 +48,7 @@ const Home = () => {
     setCurrentPage(prev => prev + 1);
     loadMoreFetch(endpoint);
   };
-  
+
   ////////// fetches ///////////
   
   const initialFetch = endpoint => {
@@ -118,6 +118,7 @@ const Home = () => {
                 originalTitle={element.original_title}
                 releaseDate={element.release_date}
                 voteAverage={element.vote_average}
+                tvShow={false}
               />
             );
           })}

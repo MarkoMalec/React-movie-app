@@ -17,11 +17,14 @@ const Header = () => {
         pb="2"
         color='current'
       >
-        <Link to={{ pathname: '/'}}>
+        <Link to={{ pathname: '/' }}>
         <Box className="header-title">
           <Text color='brand.700' fontSize='s' fontWeight='bold'>MovieDB</Text>
           <Text color='whiteAlpha.700'>Made in ReactJS with ChakraUI</Text>
         </Box>
+        </Link>
+        <Link to={{ pathname: 'TvHome' }}>
+          <Box className='tv-button'><Text>TV Shows</Text></Box>
         </Link>
         <ColorModeSwitcher />
       </Container>
