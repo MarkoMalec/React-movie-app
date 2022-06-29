@@ -5,7 +5,6 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
     transition: all $cubic-bezier;
 }
 
-
 .movie-header-poster {
     min-width: 300px;
 }
@@ -14,10 +13,12 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.4);
     margin-top: -10rem;
     margin-bottom: 3rem;
 
     .movie-thumbnail-block {
+        box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.9);
         &:hover {
             transform: none;
         }
@@ -33,6 +34,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
 
 .movie-header-flex-container {
     display: flex;
+    justify-content: center;
     gap: 30px;
     margin-bottom: 5.5rem;
     .movie-thumbnail-block {
@@ -77,10 +79,10 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         align-items: center;
         gap: 1.1rem;
         background-color: #dc442d;
-        padding: .9rem 1rem .75rem 1rem;
-        border-radius: 8px;
-        // max-width: 350px;
-
+        box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
+        padding: .80rem 1.45rem .65rem 1.3rem;
+        border-radius: 6px;
+        border: 1px solid transparent;
         svg {
             @include transition();
             font-size: 1.5rem;
@@ -92,13 +94,14 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
             &:nth-child(2) {
                 opacity: 0;
                 position: absolute;
-                left: 19px;
+                left: 24px;
             }
         }
 
         &:hover,
-        &:focus {
-            background-color: #f3593e;
+        &:active {
+            background-color: #1A202C;
+            border: 1px solid #dc442d;
             svg {
                 &:nth-child(1) {
                     opacity: 0;

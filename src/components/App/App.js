@@ -49,9 +49,14 @@ function App() {
           maxWidth: '1400px'
         }
       }
+    },
+    config: {
+      initialColorMode: 'dark',
+      useSystemColorMode: false,
     }
   })
   return (
+    
     <ChakraProvider theme={theme}>
       <AnimatePresence>
         <Router basename="">

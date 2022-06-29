@@ -5,16 +5,19 @@
 .movie-thumbnail-block {
   border-radius: 10px;
   background-color: #141821;
+  box-shadow: 0px 1px 9px #000000;
+  border-radius: 5px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  max-width: 400px;
   
   .thumbnail-img-wrap {
     overflow: hidden;
     img {
-      border-radius: 10px 10px 0 0;
+      // border-radius: 6px 6px 0 0;
       overflow: hidden;
       transition: 0.2s ease-out;
       &:hover {

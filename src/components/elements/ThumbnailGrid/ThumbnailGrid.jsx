@@ -38,7 +38,7 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
         </>
       ) : <Spinner size='xl' color='brand.700' />}
       <Center>
-        <SimpleGrid columns={header === 'Cast' ? [2, 3, 4] : [1, 2, 3, 4]} spacing="20px">
+        <SimpleGrid columns={header === 'Cast' ? [2, 3, 4] : [1, 2, 3, 4]} spacingX="20px" spacingY='30px'>
           {renderElements()}
         </SimpleGrid>
       </Center>

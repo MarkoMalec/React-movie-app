@@ -24,7 +24,6 @@ const BrowseByDirector = () => {
     const personResult = await (await fetch(personEndpoint)).json();
     try {
       setDirector(personResult);
-    //   console.log(personResult);
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +37,6 @@ const BrowseByDirector = () => {
       );
       setMovies(directedMovies);
       setLoading(false);
-    //   console.log(directedMovies);
     } catch (error) {
       console.error(error);
     }
@@ -46,48 +44,50 @@ const BrowseByDirector = () => {
 
   return (
     <>
-    <Container pt={120}>
-    {loading ? <Spinner color='brand.main' size='xl' /> : 
-    <div className="person-page-container">
-      <PersonHeader
-        name={director?.name}
-        birthday={director?.birthday}
-        deathday={director?.deathday}
-        biography={director?.biography}
-        place_of_birth={director?.place_of_birth}
-        gender={director?.gender}
-        profile_path={director?.profile_path}
-        imdb={director?.imdb_id}
-        tmdb={directorId}
-        homepage={director?.homepage}
-      />
-      <ThumbnailGrid
-        preHeader="Movies directed by "
-        header={director?.name}
-        loading={loading}
-      >
-        {movies?.map((el, i) => {
-          return (
-            <Thumbnail
-              key={i}
-              clickable={true}
-              image={
-                el?.poster_path
-                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
-                  : NoPoster
-              }
-              movieId={el?.id}
-              movieName={el?.title}
-              originalTitle={el?.original_title}
-              releaseDate={el?.release_date}
-              voteAverage={el?.vote_average.toFixed(1)}
+      <Container pt={120}>
+        {loading ? (
+          <Spinner color="brand.main" size="xl" />
+        ) : (
+          <div className="person-page-container">
+            <PersonHeader
+              name={director?.name}
+              birthday={director?.birthday}
+              deathday={director?.deathday}
+              biography={director?.biography}
+              place_of_birth={director?.place_of_birth}
+              gender={director?.gender}
+              profile_path={director?.profile_path}
+              imdb={director?.imdb_id}
+              tmdb={directorId}
+              homepage={director?.homepage}
             />
-          );
-        })}
-      </ThumbnailGrid>
-    </div>
-  }
-  </Container>
+            <ThumbnailGrid
+              preHeader="Movies directed by "
+              header={director?.name}
+              loading={loading}
+            >
+              {movies?.map((el, i) => {
+                return (
+                  <Thumbnail
+                    key={i}
+                    clickable={true}
+                    image={
+                      el?.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
+                        : NoPoster
+                    }
+                    movieId={el?.id}
+                    movieName={el?.title}
+                    originalTitle={el?.original_title}
+                    releaseDate={el?.release_date}
+                    voteAverage={el?.vote_average.toFixed(1)}
+                  />
+                );
+              })}
+            </ThumbnailGrid>
+          </div>
+        )}
+      </Container>
     </>
   );
 };
