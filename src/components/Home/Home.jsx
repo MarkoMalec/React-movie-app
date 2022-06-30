@@ -96,7 +96,7 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar callback={searchMovies} />
+      <SearchBar placeholder='Search for a movie' callback={searchMovies} />
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}

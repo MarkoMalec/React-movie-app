@@ -30,7 +30,7 @@ const Actor = ({ actor, loading }) => {
             <h3>{actor.name}</h3>
             <Text color="whiteAlpha.900">
               <span>as </span>
-              {actor.character}
+              {actor.character ? `${actor.character}` : ' Unknown'}
             </Text>
           </div>
         </>

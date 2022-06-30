@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { API_KEY, API_URL, POSTER_SIZE, IMAGE_BASE_URL } from '../../fetch';
 import { useLocation, useParams } from 'react-router-dom';
 import { Container } from '@chakra-ui/react';
+import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
+import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import NoPoster from './no_poster.png';
 
 const TvHome = () => {
@@ -19,24 +21,73 @@ const TvHome = () => {
     initialFetch(endpoint);
   }, []);
 
+  const searchShows = searchTerm => {
+    let endpoint = '';
+    setSearchTerm(searchTerm);
+    if (searchTerm === '') {
+      endpoint = `${API_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    } else {
+      setCurrentPage(1);
+      endpoint = `${API_URL}search/tv?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+    }
+    searchFetch(endpoint);
+  };
+
+  const loadMoreItems = () => {
+    let endpoint = '';
+    if (searchTerm === '') {
+      endpoint = `${API_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=${
+        currentPage + 1
+      }`;
+    } else {
+      endpoint = `${API_URL}search/tv?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${
+        currentPage + 1
+      }`;
+    }
+    setCurrentPage(prev => prev + 1);
+    loadMoreFetch(endpoint);
+  };
+
+  ////// FETCHES ////////
+
   const initialFetch = endpoint => {
+    fetch(endpoint)
+      .then(resolve => resolve.json())
+      .then(result => {
+        setShows(result.results);
+        setCurrentPage(result.page);
+        setTotalPages(result.total_pages);
+      })
+      .then(
+        setTimeout(() => {
+          setLoading(false);
+        }, 300)
+      )
+      .catch(error => console.log(error));
+  };
+
+  const searchFetch = endpoint => {
     fetch(endpoint)
     .then(resolve => resolve.json())
     .then(result => {
       setShows(result.results);
-      setCurrentPage(result.page);
       setTotalPages(result.total_pages);
     })
-    .then(
-      setTimeout(() => {
-        setLoading(false)
-      }, 300)
-      )
-      .catch(error => console.log(error));
-    };
+    .catch(error => console.log(error));
+  };
+  
+  const loadMoreFetch = endpoint => {
+    fetch(endpoint)
+    .then(resolve => resolve.json())
+    .then(result => {
+      setShows([...shows, ...result.results])
+    })
+    .catch(error => console.log(error));
+};
 
   return (
     <>
+      <SearchBar placeholder="Search for a TV show" callback={searchShows} />
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
@@ -63,7 +114,10 @@ const TvHome = () => {
             );
           })}
         </ThumbnailGrid>
-        </Container>
+        {currentPage < totalPages && !loading ? (
+          <LoadMoreButton onClick={loadMoreItems} text="Load more shows" />
+        ) : null}
+      </Container>
     </>
   );
 };

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Container, Input } from '@chakra-ui/react';
 import './SearchBar.scss';
 
-const SearchBar = ({ callback }) => {
+const SearchBar = ({ callback, placeholder }) => {
   const [value, setValue] = useState('');
   var timeout = null;
 
@@ -24,7 +24,7 @@ const SearchBar = ({ callback }) => {
       <Container>
         <Input
           type="text"
-          placeholder="Search for a movie"
+          placeholder={placeholder}
           size="sm"
           focusBorderColor="brand.700"
           onChange={doSearch}
