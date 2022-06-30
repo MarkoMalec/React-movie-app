@@ -1,6 +1,6 @@
 import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   Container,
   Center,
@@ -16,8 +16,10 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
+import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from './no_poster.png';
 import './ShowInfo.scss';
@@ -26,9 +28,11 @@ const ShowInfo = ({
   show,
   showName,
   showSeasonsAmount,
+  showSeasons,
   airDate,
-  videos
+  videos,
 }) => {
+  const { showId } = useParams();
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${show.backdrop_path}")`,
   };
@@ -53,16 +57,13 @@ const ShowInfo = ({
       <div
         className="movie-header-wrapper"
         style={
-          show.backdrop_path
-            ? headerBackground
-            : { backgroundColor: '#141821' }
+          show.backdrop_path ? headerBackground : { backgroundColor: '#141821' }
         }
       >
         <div className="movie-header-filter">
           <Container pt={150}>
             <Center>
               <div className="movie-header-flex-container">
-                
                 <Thumbnail
                   clickable={false}
                   image={
@@ -80,8 +81,7 @@ const ShowInfo = ({
                     >
                       <p className="marginTopBot">{airDate}</p>
                     </Link>
-                    
-                    
+
                     <span>{showSeasonsAmount} Seasons</span>
                     {show.genres.length ? (
                       <Box>
@@ -154,12 +154,39 @@ const ShowInfo = ({
                         <ModalFooter />
                       </ModalContent>
                     </Modal>
+                    <h3>overview</h3>
                     <Text
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"
                     >
                       {show?.overview}
                     </Text>
+                    <h3>Season Showcase</h3>
+                    <SimpleGrid
+                      className="show-seasons-container"
+                      columns={[2, 4]}
+                      gap="1rem"
+                    >
+                      {showSeasons.slice(0, 4).map((season, i) => (
+                        <Link key={season.id} to={{ pathname: `season/${i}` }}>
+                          <div>
+                            <img
+                              src={
+                                season.poster_path
+                                  ? `${IMAGE_BASE_URL}w154${season.poster_path}`
+                                  : NoPoster
+                              }
+                            />
+                            <p>{season.name}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </SimpleGrid>
+                    {showSeasons.length > 4 ? (
+                      <Link to={{ pathname: `/tv/${showId}/seasons` }}>
+                        <LoadMoreButton text={`See all ${showSeasons.length} seasons`} />
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               </div>

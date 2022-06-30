@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CircularProgress, CircularProgressLabel, Text } from '@chakra-ui/react';
 import './Thumbnail.scss';
-import { useEffect } from 'react';
 
 const Thumbnail = ({
   tvShow,

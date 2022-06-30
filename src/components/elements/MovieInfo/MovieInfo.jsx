@@ -159,6 +159,7 @@ const MovieInfo = ({
                         <ModalFooter />
                       </ModalContent>
                     </Modal>
+                    <h3>overview</h3>
                     <Text
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"

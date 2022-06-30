@@ -6,9 +6,8 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import ShowInfo from '../elements/ShowInfo/ShowInfo';
-// import { motion } from 'framer-motion';
 
-const Tv = () => {
+const Show = () => {
   const [show, setShow] = useState(null);
   const [actors, setActors] = useState(null);
   const [directors, setDirectors] = useState([]);
@@ -71,6 +70,7 @@ const Tv = () => {
             showName={show.name}
             airDate={show.first_air_date.slice(0, 4)}
             showSeasonsAmount={show.number_of_seasons}
+            showSeasons={show.seasons}
             directors={directors}
             videos={videos}
             loading={loading}
@@ -85,7 +85,7 @@ const Tv = () => {
             </Container>
           ) : (
             <Text as="h2" color="whiteAlpha.800">
-              No cast provided for this movie.
+              No cast provided for this title.
             </Text>
           )}
         </>
@@ -94,4 +94,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export default Show;

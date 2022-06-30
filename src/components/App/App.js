@@ -13,7 +13,9 @@ import Header from '../elements/Header/Header';
 import Home from '../Home/Home';
 import TvHome from '../TvHome/TvHome';
 import Movie from '../Movie/Movie';
-import Tv from '../Show/Show';
+import Show from '../Show/Show';
+import Season from '../elements/Season/Season';
+import SeasonsList from '../elements/SeasonsList/SeasonsList';
 import BrowseByActor from '../BrowseByActor/BrowseByActor';
 import BrowseByDirector from '../BrowseByDirector/BrowseByDirector';
 import BrowseByWriter from '../BrowseByWriter/BrowseByWriter';
@@ -65,7 +67,9 @@ function App() {
           <Header />
           <Switch>
             <Route path="/movie/:movieId" element={<Movie />} exact />
-            <Route path="/tv/:showId" element={<Tv />} exact />
+            <Route path="/tv/:showId" element={<Show />} exact />
+            <Route path="/tv/:showId/season/:seasonId" element={<Season />} exact />
+            <Route path="/tv/:showId/seasons" element={<SeasonsList />} exact />
             <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
             <Route
               path="/director/:directorId"
