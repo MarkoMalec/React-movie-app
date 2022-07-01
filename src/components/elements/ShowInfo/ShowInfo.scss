@@ -4,6 +4,8 @@
     scroll-behavior: smooth;
     
     .seasons-showcase {
+        scrollbar-color: tomato rgba(0, 0, 0, .2);
+        scrollbar-width: 5px;
         display: flex;
         gap: 15px;
         flex: 1;
