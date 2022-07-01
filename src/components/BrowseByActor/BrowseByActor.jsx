@@ -1,14 +1,10 @@
 import { React, useState, useEffect } from 'react';
-import { API_KEY, API_URL, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
+import { API_KEY, API_URL } from '../../fetch';
 import { useParams } from 'react-router-dom';
-import { Container, Center, Flex, Spinner } from '@chakra-ui/react';
+import { Container, Center, Spinner } from '@chakra-ui/react';
 import PersonHeader from '../elements/PersonHeader/PersonHeader';
-import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
-import Thumbnail from '../elements/Thumbnail/Thumbnail';
-import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import BrowseByActorMovies from './BrowseByActorMovies';
 import BrowseByActorTV from './BrowseByActorTV';
-import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './BrowseByActor.scss';
 
 const BrowseByActor = () => {

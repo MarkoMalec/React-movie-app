@@ -13,7 +13,7 @@ const Season = () => {
   useEffect(() => {
     let endpoint = `${API_URL}tv/${showId}/season/${seasonId}?api_key=${API_KEY}&language=en-US`;
     fetchSeason(endpoint);
-  }, [seasonId]);
+  }, [showId, seasonId]);
 
   const fetchSeason = endpoint => {
     fetch(endpoint)

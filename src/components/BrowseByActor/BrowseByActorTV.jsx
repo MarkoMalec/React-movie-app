@@ -13,9 +13,8 @@ const BrowseByActorTV = ({ person }) => {
 
   useEffect(() => {
     const tvCreditsEndpoint = `${API_URL}person/${actorId}/tv_credits?api_key=${API_KEY}&language=en-US`;
-
     fetchTvCredits(tvCreditsEndpoint);
-  }, []);
+  }, [actorId]);
 
   const fetchTvCredits = endpoint => {
     fetch(endpoint)
@@ -23,7 +22,7 @@ const BrowseByActorTV = ({ person }) => {
       .then(result => {
         console.log(result);
         setShows(result.cast);
-        // setLoading(false);
+        setLoading(false);
       });
   };
 

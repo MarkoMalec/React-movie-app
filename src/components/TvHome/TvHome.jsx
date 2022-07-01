@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { API_KEY, API_URL, POSTER_SIZE, IMAGE_BASE_URL } from '../../fetch';
-import { useLocation, useParams } from 'react-router-dom';
 import { Container } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
