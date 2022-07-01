@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
-import NoPoster from './no_poster.png';
+import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './MovieInfo.scss';
 
 const MovieInfo = ({

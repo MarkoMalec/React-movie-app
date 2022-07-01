@@ -20,15 +20,26 @@
     width: fit-content;
     margin-bottom: 1rem;
     border: 1px solid #dc442d;
-    border-radius: 50px;
+    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:focus {
+        outline: none !important;
+    }
 
     li {
         padding: .5rem 2.5rem;
-        transition: .25s linear;     
+        transition: .40s linear;
     }
-
+    
     li.active {
         background-color: tomato;
     }
@@ -36,5 +47,6 @@
     @media (max-width: 990px) {
         margin-inline: auto;
         margin-bottom: 2rem;
+        margin-top: 1rem;
     }
 }

@@ -21,7 +21,7 @@ const Thumbnail = ({
     <>
     {/* If tvShow prop is false; throw movie thumbnail */}
     {!tvShow ? (
-    <div className="movie-thumbnail-block">
+    <div className="thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}>
           <div className='thumbnail-img-wrap'>
@@ -32,8 +32,8 @@ const Thumbnail = ({
         <img src={image} alt={movieName} />
       )}
       {movieName ? (
-        <div className="movie-thumbnail-description">
-          <div className="movie-thumbnail-year">
+        <div className="thumbnail-description">
+          <div className="thumbnail-year">
            <Text color='whiteAlpha.900'>{releaseDate ? releaseDate.slice(0, 4) : null}</Text>
           </div>
           {clickable ? (
@@ -46,13 +46,13 @@ const Thumbnail = ({
             <h3>{movieName}</h3>
           )}
           {originalTitle === movieName ? null : (
-            <div className="movie-thumbnail-og-title">
+            <div className="thumbnail-og-title">
               {' '}
               Original Title: {originalTitle}
             </div>
           )}
           {voteAverage ? (
-            <div className="movie-average-score">
+            <div className="average-score">
               <CircularProgress
                 min={0}
                 max={10}
@@ -84,9 +84,9 @@ const Thumbnail = ({
       ) : null}
     </div>
     ) 
-    // if tvShow prop is true; throw Shwo thumbnail
+    // if tvShow prop is true; throw Show thumbnail
     : (
-        <div className="movie-thumbnail-block">
+        <div className="thumbnail-block">
       {clickable ? (
         <Link to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}>
           <div className='thumbnail-img-wrap'>
@@ -97,8 +97,8 @@ const Thumbnail = ({
         <img src={image} alt={showName} />
       )}
       {showName ? (
-        <div className="movie-thumbnail-description">
-          <div className="movie-thumbnail-year">
+        <div className="thumbnail-description">
+          <div className="thumbnail-year">
            <Text color='whiteAlpha.900'>{showReleaseDate ? showReleaseDate.slice(0, 4) : null}</Text>
           </div>
           {clickable ? (
@@ -111,13 +111,13 @@ const Thumbnail = ({
             <h3>{showName}</h3>
           )}
           {originalTitle === showName ? null : (
-            <div className="movie-thumbnail-og-title">
+            <div className="thumbnail-og-title">
               {' '}
               Original Title: {originalTitle}
             </div>
           )}
           {voteAverage ? (
-            <div className="movie-average-score">
+            <div className="average-score">
               <CircularProgress
                 min={0}
                 max={10}

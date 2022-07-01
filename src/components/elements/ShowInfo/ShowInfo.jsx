@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
-import NoPoster from './no_poster.png';
+import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import 'swiper/css/bundle';
 import './ShowInfo.scss';
 
@@ -177,6 +177,7 @@ const ShowInfo = ({
                                     ? `${IMAGE_BASE_URL}w780${season.poster_path}`
                                     : NoPoster
                                 }
+                                alt={season.name}
                               />
                               <p>{season.name}</p>
                             </div>

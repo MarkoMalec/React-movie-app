@@ -7,7 +7,7 @@ import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
-import NoPoster from './no_poster.png';
+import NoPoster from '../../assets/NoPoster/no_poster.png';
 
 const TvHome = () => {
   const [shows, setShows] = useState();
