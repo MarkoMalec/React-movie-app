@@ -12,42 +12,38 @@ import './BrowseByActor.scss';
 const BrowseByActor = () => {
   const [actor, setActor] = useState(null);
   const [movies, setMovies] = useState([]);
-  const [shows, setShows] = useState([])
+  const [shows, setShows] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [activeTab, setActiveTab] = useState('Movies');
   const [loading, setLoading] = useState(true);
   const { actorId } = useParams();
 
   useEffect(() => {
     const personEndpoint = `${API_URL}person/${actorId}?api_key=${API_KEY}`;
     const movieEndpoint = `${API_URL}discover/movie?api_key=${API_KEY}&with_cast=${actorId}&language=en-US&&sort_by=release_date.desc&page=1`;
-    // const showEndpoint = `${API_URL}discover/tv?api_key=${API_KEY}&with_cast=${actorId}&language=en-US&&sort_by=release_date.desc&page=1`;
-    // Promise.all([
-    //   fetch(movieEndpoint)
-    //     .then(resolve => resolve.json())
-    //     .then(res => {
-    //       setMovies(res.results);
-    //       setCurrentPage(res.page);
-    //       setTotalPages(res.total_pages);
-    //       setLoading(false);
-    //     }).catch(error => console.log(error)),
-    //     fetch(showEndpoint)
-    //       .then(resolve => resolve.json())
-    //       .then(res => {
-    //         setShows(res.results);
-    //       })
-    // ]).then(console.log(movies))
+    const tvCreditsEndpoint = `${API_URL}person/${actorId}/tv_credits?api_key=${API_KEY}&language=en-US`;
     fetch(movieEndpoint)
-    .then(resolve => resolve.json())
-    .then(res => {
-      setMovies(res.results);
-      setCurrentPage(res.page);
-      setTotalPages(res.total_pages);
-      setLoading(false);
-    })
-    .catch(error => console.log(error));
+      .then(resolve => resolve.json())
+      .then(res => {
+        setMovies(res.results);
+        setCurrentPage(res.page);
+        setTotalPages(res.total_pages);
+        setLoading(false);
+      })
+      .catch(error => console.log(error));
     fetchActor(personEndpoint);
+    fetchTvCredits(tvCreditsEndpoint);
   }, [actorId]);
+
+  const fetchTvCredits = endpoint => {
+    fetch(endpoint)
+      .then(resolve => resolve.json())
+      .then(result => {
+        console.log(result);
+        setShows(result.cast);
+      });
+  };
 
   const fetchActor = async personEndpoint => {
     try {
@@ -79,6 +75,14 @@ const BrowseByActor = () => {
     fetchItems(endpoint);
   };
 
+  // Tab switching
+  const handleMoviesTab = () => {
+    setActiveTab('Movies');
+  };
+  const handleShowsTab = () => {
+    setActiveTab('Shows');
+  };
+
   if (loading) {
     return (
       <Center h="100vh">
@@ -102,30 +106,64 @@ const BrowseByActor = () => {
           tmdb={actorId}
           homepage={actor?.homepage}
         />
-        <ThumbnailGrid
-          preHeader="Starring "
-          header={actor?.name}
-          loading={loading}
-        >
-          {movies?.map((el, i) => {
-            return (
-              <Thumbnail
-                key={i}
-                clickable={true}
-                image={
-                  el?.poster_path
-                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
-                    : NoPoster
-                }
-                movieId={el?.id}
-                movieName={el?.title}
-                originalTitle={el?.original_title}
-                releaseDate={el?.release_date}
-                voteAverage={el?.vote_average}
-              />
-            );
-          })}
-        </ThumbnailGrid>
+        <div className='person-page-credits'>
+        <ul className="tabs-navigation">
+          <li onClick={handleMoviesTab} className={activeTab === 'Movies' ? 'active' : ''}>Movies</li>
+          <li onClick={handleShowsTab} className={activeTab === 'Shows' ? 'active' : ''}>TV Shows</li>
+        </ul>
+        <div className="tabs-outlet">
+          {activeTab === 'Movies' ? (
+            <ThumbnailGrid
+              preHeader="Movies featuring "
+              header={actor?.name}
+              loading={loading}
+            >
+              {movies?.map((el, i) => {
+                return (
+                  <Thumbnail
+                    key={i}
+                    clickable={true}
+                    image={
+                      el?.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
+                        : NoPoster
+                    }
+                    movieId={el?.id}
+                    movieName={el?.title}
+                    originalTitle={el?.original_title}
+                    releaseDate={el?.release_date}
+                    voteAverage={el?.vote_average}
+                  />
+                );
+              })}
+            </ThumbnailGrid>
+          ) : (
+            <ThumbnailGrid
+              preHeader="TV Shows featuring "
+              header={actor?.name}
+              loading={loading}
+            >
+              {shows?.map((el, i) => {
+                return (
+                  <Thumbnail
+                    key={el.id}
+                    clickable={true}
+                    tvShow={true}
+                    image={
+                      el?.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`
+                        : NoPoster
+                    }
+                    movieId={el?.id}
+                    movieName={el?.name}
+                    showId={el?.id}
+                  />
+                );
+              })}
+            </ThumbnailGrid>
+          )}
+        </div>
+        </div>
       </div>
       {currentPage < totalPages && !loading ? (
         <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />

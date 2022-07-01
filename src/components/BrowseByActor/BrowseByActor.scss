@@ -13,3 +13,28 @@
         flex-wrap: wrap;
     }
 }
+
+.tabs-navigation {
+    list-style: none;
+    display: flex;
+    width: fit-content;
+    margin-bottom: 1rem;
+    border: 1px solid #dc442d;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+
+    li {
+        padding: .5rem 2.5rem;
+        transition: .25s linear;     
+    }
+
+    li.active {
+        background-color: tomato;
+    }
+
+    @media (max-width: 990px) {
+        margin-inline: auto;
+        margin-bottom: 2rem;
+    }
+}
