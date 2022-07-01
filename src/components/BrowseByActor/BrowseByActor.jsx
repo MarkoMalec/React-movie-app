@@ -165,7 +165,7 @@ const BrowseByActor = () => {
         </div>
         </div>
       </div>
-      {currentPage < totalPages && !loading ? (
+      {currentPage < totalPages && activeTab === 'Movies' && !loading ? (
         <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
       ) : null}
     </Container>
