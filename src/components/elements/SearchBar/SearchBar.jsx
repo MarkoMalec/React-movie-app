@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { Container, Input } from '@chakra-ui/react';
+import { Container, Flex, Input } from '@chakra-ui/react';
+import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import './SearchBar.scss';
 
 const SearchBar = ({ callback, placeholder }) => {
@@ -22,6 +23,7 @@ const SearchBar = ({ callback, placeholder }) => {
   return (
     <div className='search-section'>
       <Container>
+        <Flex>
         <Input
           type="text"
           placeholder={placeholder}
@@ -30,6 +32,8 @@ const SearchBar = ({ callback, placeholder }) => {
           onChange={doSearch}
           value={value}
         />
+        <ColorModeSwitcher />
+        </Flex>
       </Container>
     </div>
   );

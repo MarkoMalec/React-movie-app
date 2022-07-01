@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { API_KEY, API_URL, POSTER_SIZE, IMAGE_BASE_URL } from '../../fetch';
-import { Container } from '@chakra-ui/react';
+import { Container, Center, Spinner } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
@@ -83,6 +83,14 @@ const TvHome = () => {
     })
     .catch(error => console.log(error));
 };
+
+if (loading) {
+  return (
+    <Center h="100vh">
+      <Spinner thickness="4px" speed="0.65s" color="brand.700" size="xl" />
+    </Center>
+  );
+}
 
   return (
     <>
