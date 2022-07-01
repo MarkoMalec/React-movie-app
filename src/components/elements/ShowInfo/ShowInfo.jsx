@@ -22,6 +22,8 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import 'swiper/css/bundle';
 import './ShowInfo.scss';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const ShowInfo = ({
   show,
@@ -48,6 +50,27 @@ const ShowInfo = ({
         'https://www.youtube.com/embed/' + videoArray[0] + '?&autoplay=1';
     }
   }
+
+  const carousel = useRef(null);
+  function debouncer(func, timeout) {
+    var timeoutID,
+      timeout = timeout || 1000;
+    return function () {
+      var scope = this,
+        args = arguments;
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(function () {
+        func.apply(scope, Array.prototype.slice.call(args));
+      }, timeout);
+    };
+  }
+
+  const handleScroll = () => {
+    carousel.current.addEventListener('wheel', evt => {
+      evt.preventDefault();
+      carousel.current.scrollLeft += evt.deltaY;
+    });
+  };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -164,7 +187,11 @@ const ShowInfo = ({
                     </Text>
                     <h3>Season Showcase</h3>
                     <div className="seasons-carousel">
-                      <div className="seasons-showcase">
+                      <div
+                        ref={carousel}
+                        onWheel={debouncer(handleScroll)}
+                        className="seasons-showcase"
+                      >
                         {showSeasons.map((season, i) => (
                           <Link
                             key={season.id}
