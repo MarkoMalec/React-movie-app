@@ -11,7 +11,7 @@ const SeasonInfo = ({
   seasonName,
   airDate,
   overview,
-  seasonEpisodes
+  seasonEpisodes,
 }) => {
   return (
     <>
@@ -35,7 +35,11 @@ const SeasonInfo = ({
                 <span>{seasonEpisodes.length}</span>
               </div>
               <h3>overview</h3>
-              <p>{overview}</p>
+              <p>
+                {overview
+                  ? `${overview}`
+                  : 'The show has not provided any description for this season :('}
+              </p>
             </div>
           </Flex>
         </Container>

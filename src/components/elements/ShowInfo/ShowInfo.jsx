@@ -16,6 +16,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Spinner,
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
@@ -73,6 +74,11 @@ const ShowInfo = ({
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  if (!show) {
+    return <Spinner size="xl" color="tomato" />;
+  }
+
   return (
     <>
       <div
@@ -183,7 +189,9 @@ const ShowInfo = ({
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"
                     >
-                      {show?.overview}
+                      {show.overview
+                        ? `${show.overview}`
+                        : 'No description provided for this show :('}
                     </Text>
                     <h3>Season Showcase</h3>
                     <div className="seasons-carousel">
