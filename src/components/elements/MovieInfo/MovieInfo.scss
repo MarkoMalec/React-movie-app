@@ -17,11 +17,21 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
     margin-top: -10rem;
     margin-bottom: 3rem;
 
+    h3 {
+        margin-top: 2.5rem;
+        margin-bottom: .55rem;
+        text-transform: uppercase;
+        font-family: 'muli', sans-serif;
+        font-size: 1rem;
+    }
+
     .movie-thumbnail-block {
         box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.9);
+
         &:hover {
             transform: none;
         }
+
         img {
             filter: none;
         }
@@ -37,6 +47,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
     justify-content: center;
     gap: 30px;
     margin-bottom: 5.5rem;
+
     .movie-thumbnail-block {
         background-color: transparent;
         min-width: 280px;
@@ -70,6 +81,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
 
 .movie-header-description {
     font-size: 0.85rem;
+
     button {
         display: inline-flex;
         position: relative;
@@ -83,6 +95,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         padding: .80rem 1.45rem .65rem 1.3rem;
         border-radius: 6px;
         border: 1px solid transparent;
+
         svg {
             @include transition();
             font-size: 1.5rem;
@@ -102,6 +115,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         &:active {
             background-color: #1A202C;
             border: 1px solid #dc442d;
+
             svg {
                 &:nth-child(1) {
                     opacity: 0;
@@ -122,7 +136,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-header-description-overview {
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
     font-size: 1rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -136,6 +150,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         margin-top: .5rem;
         margin-bottom: 1.5rem;
     }
+
     p {
         display: inline-block;
         width: fit-content;
@@ -147,6 +162,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         transition: .2s ease-out;
         font-size: .90rem;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+
         &:hover {
             border: 1px solid tomato;
             background-color: #1A202C;
@@ -169,6 +185,3 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
         border-radius: 10px;
     }
 }
-
-
-

@@ -17,8 +17,10 @@
     "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "sass": "^1.52.3",
     "sass-loader": "^12.6.0",
+    "swiper": "^8.2.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link as A, Flex, Text } from '@chakra-ui/react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
-import Male from './male.svg';
-import Female from './female.svg';
+import Male from '../../../assets/NoActor/male.svg';
+import Female from '../../../assets/NoActor/female.svg';
 import './PersonHeader.scss';
 
 const PersonHeader = ({

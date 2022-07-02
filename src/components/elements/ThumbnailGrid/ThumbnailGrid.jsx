@@ -20,15 +20,15 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   };
 
   return (
-    <div className="movie-thumbnail-grid-wrap">
+    <div className="thumbnail-grid-wrap">
       {header && !loading ? (
         <>
           {header === 'Cast' ? (
-            <h3 className="movie-thumbnail-grid-title">Cast</h3>
+            <h3 className="thumbnail-grid-title">Cast</h3>
           ) : (
-            <h1 className="movie-thumbnail-grid-title">
+            <h1 className="thumbnail-grid-title">
               {preHeader ? (
-                <span className="movie-thumbnail-grid-title-pre">
+                <span className="thumbnail-grid-title-pre">
                   {preHeader}
                 </span>
               ) : null}

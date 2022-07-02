@@ -20,20 +20,21 @@ import {
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
-import './MovieInfo.scss';
+import 'swiper/css/bundle';
+import './ShowInfo.scss';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
-const MovieInfo = ({
-  movie,
-  movieName,
-  releaseYear,
-  runtime,
+const ShowInfo = ({
+  show,
+  showName,
+  showSeasonsAmount,
+  showSeasons,
+  airDate,
   videos,
-  directors,
-  writers,
 }) => {
-  
   const headerBackground = {
-    backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,
+    backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${show.backdrop_path}")`,
   };
 
   var videoArray = [];
@@ -50,47 +51,65 @@ const MovieInfo = ({
     }
   }
 
+  const carousel = useRef(null);
+  function debouncer(func, timeout) {
+    var timeoutID,
+      timeout = timeout || 1000;
+    return function () {
+      var scope = this,
+        args = arguments;
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(function () {
+        func.apply(scope, Array.prototype.slice.call(args));
+      }, timeout);
+    };
+  }
+
+  const handleScroll = () => {
+    carousel.current.addEventListener('wheel', evt => {
+      evt.preventDefault();
+      carousel.current.scrollLeft += evt.deltaY;
+    });
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <div
         className="movie-header-wrapper"
         style={
-          movie.backdrop_path
-            ? headerBackground
-            : { backgroundColor: '#141821' }
+          show.backdrop_path ? headerBackground : { backgroundColor: '#141821' }
         }
       >
         <div className="movie-header-filter">
           <Container pt={150}>
             <Center>
               <div className="movie-header-flex-container">
-                
                 <Thumbnail
                   clickable={false}
                   image={
-                    movie.poster_path
-                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                    show.poster_path
+                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`
                       : NoPoster
                   }
                 />
                 <div className="movie-header-description-container">
-                  <h1>{movieName}</h1>
+                  <h1>{showName}</h1>
                   <div className="movie-header-description">
                     <Link
-                      to={{ pathname: `/year/${releaseYear}` }}
+                      to={{ pathname: `/year/${airDate}` }}
                       className="additional-link"
                     >
-                      <p className="marginTopBot">{releaseYear}</p>
+                      <p className="marginTopBot">{airDate}</p>
                     </Link>
-                    {runtime ? (
-                    <span>{`${Math.floor(runtime / 60)}h ${
-                      runtime % 60
-                    }min`}</span>
-                    ) : null}
-                    {movie.genres.length ? (
+
+                    <span>
+                      {showSeasonsAmount}{' '}
+                      {showSeasonsAmount > 1 ? 'Seasons' : 'season'}
+                    </span>
+                    {show.genres.length ? (
                       <Box>
-                        {movie.genres.map((el, i) => {
+                        {show.genres.map((el, i) => {
                           return (
                             <Link
                               to={{ pathname: `/genre/${el.id}` }}
@@ -106,14 +125,14 @@ const MovieInfo = ({
                     <CircularProgress
                       min={0}
                       max={10}
-                      value={movie.vote_average}
+                      value={show.vote_average}
                       size="53px"
                       mt="1rem"
                       trackColor="#1A202C"
                       color={
-                        movie.vote_average >= 7.5
+                        show.vote_average >= 7.5
                           ? 'green'
-                          : movie.vote_average >= 5
+                          : show.vote_average >= 5
                           ? 'yellow'
                           : 'red'
                       }
@@ -127,7 +146,7 @@ const MovieInfo = ({
                         pt="4px"
                         color="whiteAlpha.900"
                       >
-                        {movie.vote_average.toFixed(1)}
+                        {show.vote_average.toFixed(1)}
                       </CircularProgressLabel>
                     </CircularProgress>
                     <button onClick={onOpen}>
@@ -143,12 +162,12 @@ const MovieInfo = ({
                     >
                       <ModalOverlay />
                       <ModalContent>
-                        <ModalHeader fontSize=".8rem">{movieName}</ModalHeader>
+                        <ModalHeader fontSize=".8rem">{showName}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
                           <div className="video-container">
                             <iframe
-                              title={movieName}
+                              title={showName}
                               id="videoIframe"
                               src={linkKey}
                               frameBorder="0"
@@ -164,68 +183,35 @@ const MovieInfo = ({
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"
                     >
-                      {movie?.overview}
+                      {show?.overview}
                     </Text>
-                    {directors.length ? (
-                      <>
-                        {directors.length > 1 ? (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
+                    <h3>Season Showcase</h3>
+                    <div className="seasons-carousel">
+                      <div
+                        ref={carousel}
+                        onWheel={debouncer(handleScroll)}
+                        className="seasons-showcase"
+                      >
+                        {showSeasons.map((season, i) => (
+                          <Link
+                            key={season.id}
+                            to={{ pathname: `season/${i}` }}
                           >
-                            Directors
-                          </Text>
-                        ) : (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Director
-                          </Text>
-                        )}
-                        {directors.map((el, i) => {
-                          return (
-                            <Link
-                              to={{ pathname: `/director/${el.id}` }}
-                              key={i}
-                              className="additional-link"
-                            >
-                              <p>{el.name}</p>
-                            </Link>
-                          );
-                        })}
-                      </>
-                    ) : null}
-                    {writers.length ? (
-                      <>
-                        {writers.length > 1 ? (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Writers
-                          </Text>
-                        ) : (
-                          <Text
-                            color="whiteAlpha.900"
-                            className="subject-heading"
-                          >
-                            Writer
-                          </Text>
-                        )}
-                        {writers.map((el, i) => {
-                          return (
-                            <Link
-                              to={{ pathname: `/writer/${el.id}` }}
-                              key={i}
-                              className="additional-link"
-                            >
-                              <p>{el.name}</p>
-                            </Link>
-                          );
-                        })}
-                      </>
-                    ) : null}
+                            <div className="seasons-showcase-item">
+                              <img
+                                src={
+                                  season.poster_path
+                                    ? `${IMAGE_BASE_URL}w780${season.poster_path}`
+                                    : NoPoster
+                                }
+                                alt={season.name}
+                              />
+                              <p>{season.name}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -237,4 +223,4 @@ const MovieInfo = ({
   );
 };
 
-export default MovieInfo;
+export default ShowInfo;

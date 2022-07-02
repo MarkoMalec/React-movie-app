@@ -5,7 +5,7 @@ import Thumbnail from "../elements/Thumbnail/Thumbnail";
 import ThumbnailGrid from "../elements/ThumbnailGrid/ThumbnailGrid";
 import { Container, Flex, Spinner } from "@chakra-ui/react";
 import LoadMoreButton from "../elements/LoadMoreButton/LoadMoreButton";
-import NoPoster from './no_poster.png';
+import NoPoster from '../../assets/NoPoster/no_poster.png';
 
 const BrowseByGenre = () => {
   const [movies, setMovies] = useState([]);

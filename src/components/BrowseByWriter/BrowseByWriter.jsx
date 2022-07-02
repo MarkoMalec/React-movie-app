@@ -5,7 +5,7 @@ import { Container, Spinner } from '@chakra-ui/react';
 import PersonHeader from '../elements/PersonHeader/PersonHeader';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
-import NoPoster from './no_poster.png';
+import NoPoster from '../../assets/NoPoster/no_poster.png';
 
 const BrowseByWriter = () => {
   const [writer, setWriter] = useState(null);

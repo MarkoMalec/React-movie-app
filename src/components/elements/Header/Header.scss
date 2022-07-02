@@ -9,3 +9,14 @@
   
 }
 
+.header-navigation {
+  list-style: none;
+  align-self: center;
+  display: flex;
+  gap: 1.3rem;
+  li:last-child {
+    border-left: 2px solid tomato;
+    padding-left: 1.3rem;
+  }
+}
+

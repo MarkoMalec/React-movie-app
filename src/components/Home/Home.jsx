@@ -7,7 +7,7 @@ import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import { useEffect } from 'react';
-import NoPoster from './no_poster.png';
+import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './Home.scss';
 
 const Home = () => {
@@ -33,7 +33,7 @@ const Home = () => {
     }
     searchFetch(endpoint);
   };
-  
+
   const loadMoreItems = () => {
     let endpoint = '';
     if (searchTerm === '') {
@@ -48,7 +48,7 @@ const Home = () => {
     setCurrentPage(prev => prev + 1);
     loadMoreFetch(endpoint);
   };
-  
+
   ////////// fetches ///////////
   
   const initialFetch = endpoint => {
@@ -96,7 +96,7 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar callback={searchMovies} />
+      <SearchBar placeholder='Search for a movie' callback={searchMovies} />
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
@@ -118,6 +118,7 @@ const Home = () => {
                 originalTitle={element.original_title}
                 releaseDate={element.release_date}
                 voteAverage={element.vote_average}
+                tvShow={false}
               />
             );
           })}

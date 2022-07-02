@@ -2,8 +2,8 @@ import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import { Text } from '@chakra-ui/react';
-import ActorMale from './male.svg';
-import ActorFemale from './female.svg';
+import ActorMale from '../../../assets/NoActor/male.svg';
+import ActorFemale from '../../../assets/NoActor/female.svg';
 import './Actor.scss';
 
 const Actor = ({ actor, loading }) => {
@@ -30,7 +30,7 @@ const Actor = ({ actor, loading }) => {
             <h3>{actor.name}</h3>
             <Text color="whiteAlpha.900">
               <span>as </span>
-              {actor.character}
+              {actor.character ? `${actor.character}` : ' Unknown'}
             </Text>
           </div>
         </>
