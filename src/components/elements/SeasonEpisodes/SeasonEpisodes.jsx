@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import { Container, CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
@@ -6,6 +6,7 @@ import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SeasonEpisodes.scss';
 
 const SeasonEpisodes = ({ seasonEpisodes }) => {
+    const [currentDate, setCurrentDate] = useState(new Date().toLocaleDateString())
   return (
     <>
       <Container as="main" mt="2.5rem" className="episode-list">
@@ -14,9 +15,12 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
           <div key={episode.id} className="episode-wrapper">
             <div className="episode-box">
               <div className="episode-img-wrapper">
-                <img
-                  src={`${IMAGE_BASE_URL}${POSTER_SIZE}${episode.still_path}`}
-                />
+                {episode.still_path ? (
+                    <img
+                      src={`${IMAGE_BASE_URL}${POSTER_SIZE}${episode.still_path}`}
+                      alt={episode.name}
+                    />
+                ) : null}
               </div>
               <div className="episode-info">
                 <h3>
@@ -31,7 +35,7 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
                         </CircularProgressLabel>
                     </CircularProgress>
                 </div>
-                <p>{episode.overview ? `${episode.overview}` : 'The show has not provided any episode description :('}</p>
+                <p>{episode.overview ? `${episode.overview}` : 'The show has not provided any episode description.. yet'}</p>
               </div>
             </div>
             <h4>Guest stars</h4>
