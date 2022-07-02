@@ -14,11 +14,20 @@
         font-family: 'muli', sans-serif;
         text-transform: uppercase;
     }
+    h1 {
+        font-family: 'muli', sans-serif;
+        font-size: 2rem;
+        align-self: center;
+    }
     
 .episode-box {
     display: flex;
     gap: 2.5rem;
     margin-top: 2rem;
+
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+    }
 
     .episode-img-wrapper {
         width: 100%;
@@ -58,8 +67,9 @@
         display: flex;
         gap: 10px;
         flex: 1;
-        height: 130px;
+        height: 175px;
         overflow-x: scroll;
+        text-align: center;
 
         &::-webkit-scrollbar {
             height: 8px;
