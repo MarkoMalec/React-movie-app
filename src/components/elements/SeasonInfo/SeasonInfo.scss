@@ -1,0 +1,58 @@
+.wrapperW100 {
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: -7rem;
+
+  .season-info-container {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    img {
+      width: 100%;
+      max-width: 420px;
+    }
+  }
+  .season-info-details {
+    div:first-of-type {
+      width: 100%;
+      max-width: 550px;
+
+      h2 {
+        color: tomato;
+        font-family: 'muli', sans-serif;
+        font-size: 2rem;
+      }
+      h3 {
+        color: white;
+        font-family: 'muli', sans-serif;
+        margin-top: 3.5rem;
+        margin-bottom: -0.2rem;
+        text-transform: uppercase;
+
+        @media (max-width: 770px) {
+          margin-top: 2rem;
+        }
+      }
+      .season-data {
+        margin-top: 3rem;
+        h4 {
+          margin-bottom: -0.3rem;
+        }
+        span {
+          color: rgb(129, 129, 129);
+        }
+        @media (max-width: 770px) {
+          margin-top: 1.5rem;
+        }
+      }
+      p {
+        color: rgb(177, 177, 177);
+      }
+    }
+
+    @media (max-width: 770px) {
+      flex-wrap: wrap;
+      img {
+        margin-inline: auto;
+      }
+    }
+  }
+}

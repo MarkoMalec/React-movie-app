@@ -18,9 +18,10 @@ const Header = () => {
       as="header"
       position="fixed"
       top="0"
-      zIndex="999"
+      zIndex="950"
       w="100%"
       bg="primary.main"
+      style={{ boxShadow: '1px 1px 20px #000' }}
     >
       <Container
         maxW="1400px"

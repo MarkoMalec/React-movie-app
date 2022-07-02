@@ -1,0 +1,99 @@
+
+.episode-wrapper {
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 5px;
+    padding: 1rem;
+}
+.episode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    h4 {
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+        font-family: 'muli', sans-serif;
+        text-transform: uppercase;
+    }
+    
+.episode-box {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+
+    .episode-img-wrapper {
+        width: 100%;
+        max-width: 400px;
+
+        img {
+            width: 100%;
+            transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .episode-info {
+        h3 {
+            color: tomato;
+            font-family: 'muli', sans-serif;
+            font-size: 1.5rem;
+            span {
+                color: grey;
+            }
+        }
+    }
+}
+
+
+.person-carousel {
+    overflow-x: hidden;
+    max-width: calc(100vw);
+    scroll-behavior: smooth;
+
+    .person-showcase {
+        scrollbar-color: tomato rgba(0, 0, 0, .2);
+        scrollbar-width: 5px;
+        display: flex;
+        gap: 10px;
+        flex: 1;
+        height: 130px;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            height: 8px;
+            width: 50px;
+            background-color: rgba(0, 0, 0, .3);
+            border-radius: 20px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: tomato;
+            border-radius: 10px;
+        }
+
+        .persons-showcase-item {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 92px;
+            justify-content: flex-start;
+            align-items: center;
+            height: 92px;
+            overflow: hidden;
+            border-radius: 100px;
+            
+            img {
+                max-width: 92px;
+                background-color: #141821;
+                box-shadow: 1px 1px 10px rgba(0, 0, 0, .9);
+            }
+        }
+    }
+
+    @media (max-width: 640px) {
+        max-width: 95vw;
+    }
+}
+}

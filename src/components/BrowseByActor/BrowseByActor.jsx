@@ -15,7 +15,6 @@ const BrowseByActor = () => {
 
   useEffect(() => {
     const personEndpoint = `${API_URL}person/${actorId}?api_key=${API_KEY}`;
-
     fetchActor(personEndpoint);
   }, [actorId]);
 
