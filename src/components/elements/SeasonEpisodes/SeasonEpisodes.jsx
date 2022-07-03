@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import { Container, CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
@@ -6,7 +6,6 @@ import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SeasonEpisodes.scss';
 
 const SeasonEpisodes = ({ seasonEpisodes }) => {
-    const [currentDate, setCurrentDate] = useState(new Date().toLocaleDateString())
   return (
     <>
       <Container as="main" mt="2.5rem" className="episode-list">
@@ -25,9 +24,9 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
               <div className="episode-info">
                 <h3>
                   <span>{episode.episode_number}. </span>
-                  {episode.name}
+                  {episode.name ? `${episode.name}` : 'Episode'}
                 </h3>
-                <span>{episode.runtime}min</span>
+                <span>{episode.runtime ? `${episode.runtime}min` : null}</span>
                 <div className='episode-vote-average'>
                     <CircularProgress value={episode.vote_average} max={10} trackColor="primary.200" size='35px' color='tomato'>
                         <CircularProgressLabel fontSize='14px'>
@@ -39,6 +38,7 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
               </div>
             </div>
             <h4>Guest stars</h4>
+            {episode.guest_stars ? (
             <div key={i} className="person-carousel">
               <div className="person-showcase">
                 {episode.guest_stars.map(person => (
@@ -61,6 +61,7 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
                 ))}
               </div>
             </div>
+            ) : null}
           </div>
         ))}
       </Container>

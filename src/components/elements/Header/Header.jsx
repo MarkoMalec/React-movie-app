@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Flex, Box, Text } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
@@ -6,13 +6,7 @@ import './Header.scss';
 
 const Header = () => {
   const location = useLocation();
-  function loc() {
-    console.log(location.pathname);
-  }
-
-  useEffect(() => {
-    loc();
-  }, [location]);
+  
   return (
     <Flex
       as="header"

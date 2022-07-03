@@ -1,7 +1,6 @@
 import React from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
-import { Container, Flex, Box, Text } from '@chakra-ui/react';
-import NoPoster from '../../../assets/NoPoster/no_poster.png';
+import { Container, Flex } from '@chakra-ui/react';
 import './SeasonInfo.scss';
 
 const SeasonInfo = ({
