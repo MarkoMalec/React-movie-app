@@ -6,6 +6,7 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
+import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 // import { motion } from 'framer-motion';
 
 const Movie = () => {
@@ -76,19 +77,20 @@ const Movie = () => {
             videos={videos}
             loading={loading}
           />
-          {actors ? (
-            <Container as="main">
+          <Container as="main">
+            {actors ? (
               <ThumbnailGrid header="Cast">
                 {actors.map((el, i) => {
                   return <Actor key={i} actor={el} loading={loading} />;
                 })}
               </ThumbnailGrid>
-            </Container>
-          ) : (
-            <Text as="h2" color="whiteAlpha.800">
-              No cast provided for this movie.
-            </Text>
-          )}
+            ) : (
+              <Text as="h2" color="whiteAlpha.800">
+                No cast provided for this movie.
+              </Text>
+            )}
+            <SimilarScreenplay />
+          </Container>
         </>
       ) : null}
     </>

@@ -211,7 +211,7 @@ const ShowInfo = ({
                     </Text>
                     {creators ? (
                       <>
-                        <h3>{creators.length > 1 ? 'creators' : 'creator'}</h3>
+                        <Text color="whiteAlpha.900" className="subject-heading">{creators.length > 1 ? 'creators' : 'creator'}</Text>
                         <Box>
                           {creators.map((el, i) => {
                             return (
@@ -229,7 +229,7 @@ const ShowInfo = ({
                     ) : null}
                     {producers ? (
                       <>
-                        <h3>producers</h3>
+                        <Text color="whiteAlpha.900" className="subject-heading">{producers.length > 1 ? 'producers' : 'producer'}</Text>
                         <Box>
                           {producers.map((el, i) => {
                             return (

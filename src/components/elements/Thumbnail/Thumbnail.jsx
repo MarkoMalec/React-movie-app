@@ -55,7 +55,7 @@ const Thumbnail = ({
               ) : (
                 <h3>{movieName}</h3>
               )}
-              {originalTitle === movieName ? null : (
+              {!originalTitle || originalTitle === movieName ? null : (
                 <div className="thumbnail-og-title">
                   {' '}
                   Original Title: {originalTitle}

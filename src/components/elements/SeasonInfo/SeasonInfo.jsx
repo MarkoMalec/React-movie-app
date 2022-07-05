@@ -1,11 +1,10 @@
 import React from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
 import { Container, Flex } from '@chakra-ui/react';
+import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SeasonInfo.scss';
 
 const SeasonInfo = ({
-  seasonId,
-  season,
   posterPath,
   seasonName,
   airDate,
@@ -22,7 +21,7 @@ const SeasonInfo = ({
             className="season-info-details"
           >
             <img
-              src={`${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}`}
+              src={posterPath ? `${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}` : NoPoster}
               alt={seasonName}
             />
             <div>

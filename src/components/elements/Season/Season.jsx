@@ -22,7 +22,6 @@ const Season = () => {
       .then(resolve => resolve.json())
       .then(result => {
         setSeason(result);
-        console.dirxml(result);
       })
       .catch(error => console.log(error));
   };

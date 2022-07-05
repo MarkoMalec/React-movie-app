@@ -6,6 +6,9 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import ShowInfo from '../elements/ShowInfo/ShowInfo';
+import ShowInfoMore from '../elements/ShowInfoMore/ShowInfoMore';
+import './Show.scss';
+import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 
 const Show = () => {
   const [show, setShow] = useState(null);
@@ -72,19 +75,33 @@ const Show = () => {
             videos={videos}
             loading={loading}
           />
+            <Container className='screenplay-MoreInfo-area' as="main">
           {actors ? (
-            <Container as="main">
+            <>
               <ThumbnailGrid header="Cast">
                 {actors.map((el, i) => {
                   return <Actor key={i} actor={el} loading={loading} />;
                 })}
               </ThumbnailGrid>
-            </Container>
-          ) : (
-            <Text as="h2" color="whiteAlpha.800">
+              <ShowInfoMore 
+                showName={show.name}
+                originalName={show.original_name}
+                voteCount={show.vote_count}
+                lastEpisode={show.last_episode_to_air}
+                nextEpisode={show.next_episode_to_air}
+                productionCompanies={show.production_companies}
+                productionCountries={show.production_countries}
+              />
+              </>
+              ) : (
+                <Text as="h2" color="whiteAlpha.800">
               No cast provided for this title.
             </Text>
           )}
+          </Container>
+          <Container as='main'>
+            <SimilarScreenplay />
+          </Container>
         </>
       ) : null}
     </>
