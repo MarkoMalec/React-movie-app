@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
+import { API_URL, API_KEY } from '../../../fetch';
 import { Spinner, Center } from '@chakra-ui/react';
 import SeasonInfo from '../SeasonInfo/SeasonInfo';
 import SeasonEpisodes from '../SeasonEpisodes/SeasonEpisodes';
@@ -22,7 +22,6 @@ const Season = () => {
       .then(resolve => resolve.json())
       .then(result => {
         setSeason(result);
-        console.dirxml(result);
       })
       .catch(error => console.log(error));
   };

@@ -1,109 +1,133 @@
-
 .episode-wrapper {
-    border: 1px solid rgba(255, 255, 255, .1);
+    // border: 1px solid rgba(255, 255, 255, .1);
     border-radius: 5px;
-    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 9px;
+    background: #1A202C;
+    box-shadow: 14px 14px 28px #161b25,
+        -14px -14px 28px #1e2533;
+        overflow: hidden;
 }
+
 .episode-list {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 1.5rem;
+
     h4 {
         margin-top: 1rem;
         margin-bottom: .5rem;
+        margin-left: 1rem;
         font-family: 'muli', sans-serif;
         text-transform: uppercase;
     }
+
     h1 {
         font-family: 'muli', sans-serif;
         font-size: 2rem;
         align-self: center;
     }
-    
-.episode-box {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 2rem;
 
-    @media (max-width: 600px) {
-        flex-wrap: wrap;
-    }
-
-    .episode-img-wrapper {
-        width: 100%;
-        max-width: 400px;
-
-        img {
-            width: 100%;
-            transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .episode-info {
-        h3 {
-            color: tomato;
-            font-family: 'muli', sans-serif;
-            font-size: 1.5rem;
-            span {
-                color: grey;
-            }
-        }
-    }
-}
-
-
-.person-carousel {
-    overflow-x: hidden;
-    max-width: calc(100vw);
-    scroll-behavior: smooth;
-
-    .person-showcase {
-        scrollbar-color: tomato rgba(0, 0, 0, .2);
-        scrollbar-width: 5px;
+    .episode-box {
         display: flex;
-        gap: 10px;
-        flex: 1;
-        height: 175px;
-        overflow-x: scroll;
-        text-align: center;
+        gap: 2.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+        padding-right: 3rem;
+        padding-left: 2rem;
+        background-color: #141821;
 
-        &::-webkit-scrollbar {
-            height: 8px;
-            width: 50px;
-            background-color: rgba(0, 0, 0, .3);
-            border-radius: 20px;
+        @media (max-width: 600px) {
+            flex-wrap: wrap;
+            padding-right: 2rem;
         }
 
-        &::-webkit-scrollbar-thumb {
-            background-color: tomato;
-            border-radius: 10px;
-        }
+        .episode-img-wrapper {
+            width: 100%;
+            max-width: 400px;
+            margin-inline: auto;
 
-        .persons-showcase-item {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-width: 92px;
-            justify-content: flex-start;
-            align-items: center;
-            height: 92px;
-            overflow: hidden;
-            border-radius: 100px;
-            
             img {
-                max-width: 92px;
-                background-color: #141821;
-                box-shadow: 1px 1px 10px rgba(0, 0, 0, .9);
+                width: 100%;
+                transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .episode-info {
+            h3 {
+                color: tomato;
+                font-family: 'muli', sans-serif;
+                font-size: 1.5rem;
+
+                span {
+                    color: grey;
+                }
+            }
+
+            .episode-vote-average {
+                margin-top: .8rem;
+                margin-bottom: .8rem;
             }
         }
     }
 
-    @media (max-width: 640px) {
-        max-width: 95vw;
+
+    .person-carousel {
+        overflow-x: hidden;
+        max-width: calc(100vw);
+        scroll-behavior: smooth;
+        margin: .5rem;
+
+        .person-showcase {
+            scrollbar-color: tomato rgba(0, 0, 0, .2);
+            scrollbar-width: 5px;
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            height: 175px;
+            font-size: .75rem;
+            text-align: center;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                height: 8px;
+                width: 50px;
+                background-color: rgba(0, 0, 0, .3);
+                border-radius: 20px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: tomato;
+                border-radius: 10px;
+            }
+
+            .persons-showcase-item {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-width: 92px;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: hidden;
+                
+
+                img {
+                    max-width: 92px;
+                    background-color: #141821;
+                    clip-path: circle();
+                }
+                p {
+                    margin-top: -1rem;
+                }
+            }
+        }
+
+        @media (max-width: 640px) {
+            max-width: 95vw;
+        }
     }
-}
 }

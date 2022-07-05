@@ -1,17 +1,15 @@
 import React from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
-import { Container, Flex, Box, Text } from '@chakra-ui/react';
+import { Container, Flex } from '@chakra-ui/react';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SeasonInfo.scss';
 
 const SeasonInfo = ({
-  seasonId,
-  season,
   posterPath,
   seasonName,
   airDate,
   overview,
-  seasonEpisodes
+  seasonEpisodes,
 }) => {
   return (
     <>
@@ -23,7 +21,7 @@ const SeasonInfo = ({
             className="season-info-details"
           >
             <img
-              src={`${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}`}
+              src={posterPath ? `${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}` : NoPoster}
               alt={seasonName}
             />
             <div>
@@ -35,7 +33,11 @@ const SeasonInfo = ({
                 <span>{seasonEpisodes.length}</span>
               </div>
               <h3>overview</h3>
-              <p>{overview}</p>
+              <p>
+                {overview
+                  ? `${overview}`
+                  : 'The show has not provided any description for this season :('}
+              </p>
             </div>
           </Flex>
         </Container>

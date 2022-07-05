@@ -16,18 +16,21 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Spinner,
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import 'swiper/css/bundle';
 import './ShowInfo.scss';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 
 const ShowInfo = ({
   show,
   showName,
+  networks,
+  creators,
+  producers,
   showSeasonsAmount,
   showSeasons,
   airDate,
@@ -73,6 +76,11 @@ const ShowInfo = ({
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  if (!show) {
+    return <Spinner size="xl" color="tomato" />;
+  }
+
   return (
     <>
       <div
@@ -85,14 +93,28 @@ const ShowInfo = ({
           <Container pt={150}>
             <Center>
               <div className="movie-header-flex-container">
-                <Thumbnail
-                  clickable={false}
-                  image={
-                    show.poster_path
-                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`
-                      : NoPoster
-                  }
-                />
+                <div className="show-thumbnail-wrapper">
+                  <Thumbnail
+                    clickable={false}
+                    image={
+                      show.poster_path
+                        ? `${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`
+                        : NoPoster
+                    }
+                  />
+                  {networks ? (
+                    <div className="network-banner">
+                      {networks.map(el => (
+                        <div key={el.id}>
+                          <img
+                            src={`${IMAGE_BASE_URL}w500/${el.logo_path}`}
+                            alt={el.name}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
                 <div className="movie-header-description-container">
                   <h1>{showName}</h1>
                   <div className="movie-header-description">
@@ -183,8 +205,46 @@ const ShowInfo = ({
                       color="whiteAlpha.900"
                       className="movie-header-description-overview"
                     >
-                      {show?.overview}
+                      {show.overview
+                        ? `${show.overview}`
+                        : 'No description provided for this show :('}
                     </Text>
+                    {creators ? (
+                      <>
+                        <Text color="whiteAlpha.900" className="subject-heading">{creators.length > 1 ? 'creators' : 'creator'}</Text>
+                        <Box>
+                          {creators.map((el, i) => {
+                            return (
+                              <Link
+                                to={{ pathname: `/director/${el.id}` }}
+                                key={i}
+                                className="additional-link"
+                              >
+                                <p>{el.name}</p>
+                              </Link>
+                            );
+                          })}
+                        </Box>
+                      </>
+                    ) : null}
+                    {producers ? (
+                      <>
+                        <Text color="whiteAlpha.900" className="subject-heading">{producers.length > 1 ? 'producers' : 'producer'}</Text>
+                        <Box>
+                          {producers.map((el, i) => {
+                            return (
+                              <Link
+                                to={{ pathname: `/person/${el.id}` }}
+                                key={i}
+                                className="additional-link"
+                              >
+                                <p>{el.name}</p>
+                              </Link>
+                            );
+                          })}
+                        </Box>
+                      </>
+                    ) : null}
                     <h3>Season Showcase</h3>
                     <div className="seasons-carousel">
                       <div
@@ -192,10 +252,10 @@ const ShowInfo = ({
                         onWheel={debouncer(handleScroll)}
                         className="seasons-showcase"
                       >
-                        {showSeasons.map((season, i) => (
+                        {showSeasons.map(season => (
                           <Link
                             key={season.id}
-                            to={{ pathname: `season/${i}` }}
+                            to={{ pathname: `season/${season.season_number}` }}
                           >
                             <div className="seasons-showcase-item">
                               <img

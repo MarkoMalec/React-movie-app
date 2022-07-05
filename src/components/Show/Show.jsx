@@ -6,12 +6,14 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import ShowInfo from '../elements/ShowInfo/ShowInfo';
+import ShowInfoMore from '../elements/ShowInfoMore/ShowInfoMore';
+import './Show.scss';
+import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 
 const Show = () => {
   const [show, setShow] = useState(null);
   const [actors, setActors] = useState(null);
-  const [directors, setDirectors] = useState([]);
-  const [writers, setWriters] = useState([]);
+  const [producers, setProducers] = useState(null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,19 +31,15 @@ const Show = () => {
           const creditsEndpoint = `${API_URL}${showId.pathname}/credits?api_key=${API_KEY}`;
           const videosEndpoint = `${API_URL}${showId.pathname}/videos?api_key=${API_KEY}`;
           const creditsResult = await (await fetch(creditsEndpoint)).json();
-          const directors = creditsResult.crew.filter(
-            member => member.job === 'Director'
-          );
-          const writers = creditsResult.crew.filter(
-            member => member.job === 'Screenplay'
+          const producers = creditsResult.crew.filter(
+            member => member.job === 'Executive Producer'
           );
           const videosResult = await (await fetch(videosEndpoint)).json();
-
           setActors(creditsResult.cast);
-          setDirectors(directors);
-          setWriters(writers);
+          setProducers(producers);
           setVideos(videosResult.results);
           setLoading(false);
+          console.log(result);
         }
       } catch (error) {
         console.log('error: ', error);
@@ -69,25 +67,41 @@ const Show = () => {
             show={show}
             showName={show.name}
             airDate={show.first_air_date.slice(0, 4)}
+            networks={show.networks}
             showSeasonsAmount={show.number_of_seasons}
             showSeasons={show.seasons}
-            directors={directors}
+            creators={show.created_by}
+            producers={producers}
             videos={videos}
             loading={loading}
           />
+            <Container className='screenplay-MoreInfo-area' as="main">
           {actors ? (
-            <Container as="main">
+            <>
               <ThumbnailGrid header="Cast">
                 {actors.map((el, i) => {
                   return <Actor key={i} actor={el} loading={loading} />;
                 })}
               </ThumbnailGrid>
-            </Container>
-          ) : (
-            <Text as="h2" color="whiteAlpha.800">
+              <ShowInfoMore 
+                showName={show.name}
+                originalName={show.original_name}
+                voteCount={show.vote_count}
+                lastEpisode={show.last_episode_to_air}
+                nextEpisode={show.next_episode_to_air}
+                productionCompanies={show.production_companies}
+                productionCountries={show.production_countries}
+              />
+              </>
+              ) : (
+                <Text as="h2" color="whiteAlpha.800">
               No cast provided for this title.
             </Text>
           )}
+          </Container>
+          <Container as='main'>
+            <SimilarScreenplay />
+          </Container>
         </>
       ) : null}
     </>
