@@ -53,7 +53,7 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
                     ? `${episode.overview}`
                     : 'The show has not provided any episode description.. yet'}
                 </p>
-                {episode.crew ? (
+                {episode.crew.length ? (
                   <>
                     <Text color="whiteAlpha.900" className="subject-heading">
                       {episode.crew.filter(member => member.job === 'Writer')
@@ -80,30 +80,32 @@ const SeasonEpisodes = ({ seasonEpisodes }) => {
                 ) : null}
               </div>
             </div>
-            <h4>Guest stars</h4>
-            {episode.guest_stars ? (
-              <div key={i} className="person-carousel">
-                <div className="person-showcase">
-                  {episode.guest_stars.map(person => (
-                    <Link
-                      key={person.id}
-                      to={{ pathname: `/actor/${person.id}` }}
-                    >
-                      <div className="persons-showcase-item" key={person.id}>
-                        <img
-                          src={
-                            person.profile_path
-                              ? `${IMAGE_BASE_URL}w92${person.profile_path}`
-                              : NoPoster
-                          }
-                          alt={person.name}
-                        />
-                        <p>{person.name}</p>
-                      </div>
-                    </Link>
-                  ))}
+            {episode.guest_stars.length > 0 ? (
+              <>
+                <h4>Guest stars</h4>
+                <div key={i} className="person-carousel">
+                  <div className="person-showcase">
+                    {episode.guest_stars.map(person => (
+                      <Link
+                        key={person.id}
+                        to={{ pathname: `/actor/${person.id}` }}
+                      >
+                        <div className="persons-showcase-item" key={person.id}>
+                          <img
+                            src={
+                              person.profile_path
+                                ? `${IMAGE_BASE_URL}w92${person.profile_path}`
+                                : NoPoster
+                            }
+                            alt={person.name}
+                          />
+                          <p>{person.name}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </>
             ) : null}
           </div>
         ))}
