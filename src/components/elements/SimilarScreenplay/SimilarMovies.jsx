@@ -21,8 +21,10 @@ const SimilarMovies = () => {
   }, [currentLocation.pathname]);
 
   return (
-      <Box mt='5rem'>
-        <Text fontSize='xl' mb='1rem'>Similar Movies</Text>
+    <Box mt="5rem">
+      <Text fontSize="xl" mb="1rem">
+        Similar Movies
+      </Text>
       <div className="similar-screenplay-carousel">
         <div className="similar-screenplay-showcase">
           {similarMovies?.map(el => (
@@ -43,7 +45,7 @@ const SimilarMovies = () => {
           ))}
         </div>
       </div>
-      </Box>
+    </Box>
   );
 };
 

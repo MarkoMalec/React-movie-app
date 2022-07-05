@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_KEY, API_URL, POSTER_SIZE, IMAGE_BASE_URL } from '../../fetch';
 import { Container, Center, Spinner } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';

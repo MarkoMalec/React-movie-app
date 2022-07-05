@@ -20,7 +20,7 @@ import {
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
-import './MovieInfo.scss';
+import '../../../styles/shared/screenplayInfo.scss';
 
 const MovieInfo = ({
   movie,
@@ -54,17 +54,17 @@ const MovieInfo = ({
   return (
     <>
       <div
-        className="movie-header-wrapper"
+        className="screenplay-header-wrapper"
         style={
           movie.backdrop_path
             ? headerBackground
             : { backgroundColor: '#141821' }
         }
       >
-        <div className="movie-header-filter">
+        <div className="screenplay-header-filter">
           <Container pt={150}>
             <Center>
-              <div className="movie-header-flex-container">
+              <div className="screenplay-header-flex-container">
                 
                 <Thumbnail
                   clickable={false}
@@ -74,9 +74,9 @@ const MovieInfo = ({
                       : NoPoster
                   }
                 />
-                <div className="movie-header-description-container">
+                <div className="screenplay-header-description-container">
                   <h1>{movieName}</h1>
-                  <div className="movie-header-description">
+                  <div className="screenplay-header-description">
                     <Link
                       to={{ pathname: `/year/${releaseYear}` }}
                       className="additional-link"
@@ -162,7 +162,7 @@ const MovieInfo = ({
                     <h3>overview</h3>
                     <Text
                       color="whiteAlpha.900"
-                      className="movie-header-description-overview"
+                      className="screenplay-header-description-overview"
                     >
                       {movie?.overview}
                     </Text>

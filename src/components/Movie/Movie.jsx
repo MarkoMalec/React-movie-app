@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { API_URL, API_KEY } from '../../fetch';
-import { useState, useEffect } from 'react';
 import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
-// import { motion } from 'framer-motion';
 
 const Movie = () => {
   const [movie, setMovie] = useState(null);

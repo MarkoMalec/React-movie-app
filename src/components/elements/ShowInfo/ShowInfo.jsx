@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import {
@@ -21,9 +21,8 @@ import {
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
-import 'swiper/css/bundle';
+import '../../../styles/shared/screenplayInfo.scss';
 import './ShowInfo.scss';
-import { useRef } from 'react';
 
 const ShowInfo = ({
   show,
@@ -55,9 +54,9 @@ const ShowInfo = ({
   }
 
   const carousel = useRef(null);
-  function debouncer(func, timeout) {
+  function debouncer(func, timeoutd) {
     var timeoutID,
-      timeout = timeout || 1000;
+      timeout = timeoutd || 1000;
     return function () {
       var scope = this,
         args = arguments;
@@ -84,15 +83,15 @@ const ShowInfo = ({
   return (
     <>
       <div
-        className="movie-header-wrapper"
+        className="screenplay-header-wrapper"
         style={
           show.backdrop_path ? headerBackground : { backgroundColor: '#141821' }
         }
       >
-        <div className="movie-header-filter">
+        <div className="screenplay-header-filter">
           <Container pt={150}>
             <Center>
-              <div className="movie-header-flex-container">
+              <div className="screenplay-header-flex-container">
                 <div className="show-thumbnail-wrapper">
                   <Thumbnail
                     clickable={false}
@@ -115,9 +114,9 @@ const ShowInfo = ({
                     </div>
                   ) : null}
                 </div>
-                <div className="movie-header-description-container">
+                <div className="screenplay-header-description-container">
                   <h1>{showName}</h1>
-                  <div className="movie-header-description">
+                  <div className="screenplay-header-description">
                     <Link
                       to={{ pathname: `/year/${airDate}` }}
                       className="additional-link"
@@ -203,7 +202,7 @@ const ShowInfo = ({
                     <h3>overview</h3>
                     <Text
                       color="whiteAlpha.900"
-                      className="movie-header-description-overview"
+                      className="screenplay-header-description-overview"
                     >
                       {show.overview
                         ? `${show.overview}`
