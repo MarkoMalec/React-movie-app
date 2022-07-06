@@ -96,6 +96,8 @@ const Movie = () => {
                   productionCompanies={movie.production_companies.slice(0, 1)}
                   productionCountries={movie.production_countries}
                   spokenLanguages={movie.spoken_languages}
+                  imdb={movie.imdb_id}
+                  homepage={movie.homepage}
                 />
               </>
             ) : (

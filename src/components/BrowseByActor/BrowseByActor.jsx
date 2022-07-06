@@ -35,7 +35,7 @@ const BrowseByActor = () => {
     setActiveTab('Shows');
   };
 
-  if (loading) {
+  if (loading && !actor) {
     return (
       <Center h="100vh">
         <Spinner size="xl" color="brand.700" />
@@ -47,16 +47,16 @@ const BrowseByActor = () => {
     <Container pt={120}>
       <div className="person-page-container">
         <PersonHeader
-          name={actor?.name}
-          birthday={actor?.birthday}
-          deathday={actor?.deathday}
-          biography={actor?.biography}
-          place_of_birth={actor?.place_of_birth}
-          gender={actor?.gender}
-          profile_path={actor?.profile_path}
-          imdb={actor?.imdb_id}
+          name={actor.name}
+          birthday={actor.birthday}
+          deathday={actor.deathday}
+          biography={actor.biography}
+          place_of_birth={actor.place_of_birth}
+          gender={actor.gender}
+          profile_path={actor.profile_path}
+          imdb={actor.imdb_id}
           tmdb={actorId}
-          homepage={actor?.homepage}
+          homepage={actor.homepage}
         />
         <div className="person-page-credits">
           <ul className="tabs-navigation">

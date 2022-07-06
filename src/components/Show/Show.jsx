@@ -91,6 +91,7 @@ const Show = () => {
                   nextEpisode={show.next_episode_to_air}
                   productionCompanies={show.production_companies}
                   productionCountries={show.production_countries}
+                  homepage={show.homepage}
                 />
               </>
             ) : (

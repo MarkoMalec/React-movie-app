@@ -1,6 +1,7 @@
 import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
-import { Text } from '@chakra-ui/react';
+import { Link as A } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import './MovieInfoMore.scss';
 
 const MovieInfoMore = ({
@@ -11,6 +12,8 @@ const MovieInfoMore = ({
   productionCompanies,
   productionCountries,
   spokenLanguages,
+  imdb,
+  homepage,
 }) => {
   return (
     <>
@@ -69,9 +72,32 @@ const MovieInfoMore = ({
                   : 'Spoken Language'}
               </Text>
               {spokenLanguages.map(el => (
-                <p>{el.name}</p>
+                <p key={el.iso_639_1}>{el.name}</p>
               ))}
             </>
+          ) : null}
+          <Text color="whiteAlpha.900" className="subject-heading">
+            Other links
+          </Text>
+          {imdb || homepage ? (
+            <Flex color="brand.600">
+              <A
+                className="additional-link"
+                href={`https://www.imdb.com/name/${imdb}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Text>IMDB</Text>
+              </A>
+              <A
+                className="additional-link"
+                href={`${homepage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Text>Homepage</Text>
+              </A>
+            </Flex>
           ) : null}
         </div>
       </div>

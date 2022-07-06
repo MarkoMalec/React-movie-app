@@ -1,6 +1,6 @@
 import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
-import { Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './ShowInfoMore.scss';
 
@@ -12,6 +12,7 @@ const ShowInfoMore = ({
   nextEpisode,
   productionCompanies,
   productionCountries,
+  homepage,
 }) => {
   return (
     <>
@@ -84,6 +85,25 @@ const ShowInfoMore = ({
           ) : (
             'Unknown'
           )}
+
+          {homepage ? (
+            <>
+              <Text color="whiteAlpha.900" className="subject-heading">
+                Other links
+              </Text>
+
+              <Flex color="brand.600">
+                <a
+                  className="additional-link"
+                  href={`${homepage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Text>Homepage</Text>
+                </a>
+              </Flex>
+            </>
+          ) : null}
         </div>
       </div>
     </>
