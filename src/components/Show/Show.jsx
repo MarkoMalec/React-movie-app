@@ -75,31 +75,31 @@ const Show = () => {
             videos={videos}
             loading={loading}
           />
-            <Container className='screenplay-MoreInfo-area' as="main">
-          {actors ? (
-            <>
-              <ThumbnailGrid header="Cast">
-                {actors.map((el, i) => {
-                  return <Actor key={i} actor={el} loading={loading} />;
-                })}
-              </ThumbnailGrid>
-              <ShowInfoMore 
-                showName={show.name}
-                originalName={show.original_name}
-                voteCount={show.vote_count}
-                lastEpisode={show.last_episode_to_air}
-                nextEpisode={show.next_episode_to_air}
-                productionCompanies={show.production_companies}
-                productionCountries={show.production_countries}
-              />
+          <Container className="screenplay-MoreInfo-area" as="main">
+            {actors ? (
+              <>
+                <ThumbnailGrid header="Cast">
+                  {actors.map((el, i) => {
+                    return <Actor key={i} actor={el} loading={loading} />;
+                  })}
+                </ThumbnailGrid>
+                <ShowInfoMore
+                  showName={show.name}
+                  originalName={show.original_name}
+                  voteCount={show.vote_count}
+                  lastEpisode={show.last_episode_to_air}
+                  nextEpisode={show.next_episode_to_air}
+                  productionCompanies={show.production_companies}
+                  productionCountries={show.production_countries}
+                />
               </>
-              ) : (
-                <Text as="h2" color="whiteAlpha.800">
-              No cast provided for this title.
-            </Text>
-          )}
+            ) : (
+              <Text as="h2" color="whiteAlpha.800">
+                No cast provided for this title.
+              </Text>
+            )}
           </Container>
-          <Container as='main'>
+          <Container as="main">
             <SimilarScreenplay />
           </Container>
         </>

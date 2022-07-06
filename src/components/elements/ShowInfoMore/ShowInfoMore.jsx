@@ -26,16 +26,30 @@ const ShowInfoMore = ({
             User votes
           </Text>
           <p>{voteCount ? voteCount : 'Nobody has voted yet'}</p>
+          {nextEpisode ? (
+            <>
+              <Text color="whiteAlpha.900" className="subject-heading">
+                Next episode
+              </Text>
+              <p>
+                Season {nextEpisode.season_number} Episode{' '}
+                {nextEpisode.episode_number}
+              </p>
+              <p>{nextEpisode.air_date}</p>
+            </>
+          ) : null}
           <Text color="whiteAlpha.900" className="subject-heading">
             Last aired episode
           </Text>
           {lastEpisode ? (
             <>
-            <p>Season {lastEpisode.season_number} Episode {lastEpisode.episode_number}</p>
-            <p>{lastEpisode.air_date}</p>
-            
+              <p>
+                Season {lastEpisode.season_number} Episode{' '}
+                {lastEpisode.episode_number}
+              </p>
+              <p>{lastEpisode.air_date}</p>
             </>
-            ) : null}
+          ) : null}
           <Text color="whiteAlpha.900" className="subject-heading">
             Production studios
           </Text>

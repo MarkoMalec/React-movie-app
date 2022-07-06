@@ -5,6 +5,7 @@ import { Container, Center, Spinner, Text } from '@chakra-ui/react';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
+import MovieInfoMore from '../elements/MovieInfoMore/MovieInfoMore';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 
 const Movie = () => {
@@ -42,6 +43,7 @@ const Movie = () => {
           setWriters(writers);
           setVideos(videosResult.results);
           setLoading(false);
+          console.log(result);
         }
       } catch (error) {
         console.log('error: ', error);
@@ -75,18 +77,34 @@ const Movie = () => {
             videos={videos}
             loading={loading}
           />
-          <Container as="main">
+          <Container className="screenplay-MoreInfo-area" as="main">
             {actors ? (
-              <ThumbnailGrid header="Cast">
-                {actors.map((el, i) => {
-                  return <Actor key={i} actor={el} loading={loading} />;
-                })}
-              </ThumbnailGrid>
+              <>
+                <ThumbnailGrid header="Cast">
+                  {actors.map((el, i) => {
+                    return <Actor key={i} actor={el} loading={loading} />;
+                  })}
+                </ThumbnailGrid>
+                <MovieInfoMore
+                  movieName={movie.title}
+                  originalTitle={movie.original_title}
+                  revenue={movie.revenue.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}
+                  voteCount={movie.vote_count}
+                  productionCompanies={movie.production_companies.slice(0, 1)}
+                  productionCountries={movie.production_countries}
+                  spokenLanguages={movie.spoken_languages}
+                />
+              </>
             ) : (
               <Text as="h2" color="whiteAlpha.800">
                 No cast provided for this movie.
               </Text>
             )}
+          </Container>
+          <Container as="main">
             <SimilarScreenplay />
           </Container>
         </>
