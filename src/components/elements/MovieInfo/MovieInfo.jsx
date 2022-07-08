@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../../context/GlobalState';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import {
@@ -17,7 +18,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { FiPlayCircle, FiPlay } from 'react-icons/fi';
+import { FiPlayCircle, FiPlay, FiPlus, FiPlusCircle } from 'react-icons/fi';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import '../../../styles/shared/screenplayInfo.scss';
@@ -31,7 +32,11 @@ const MovieInfo = ({
   directors,
   writers,
 }) => {
-  
+  const { addItemToWatchlist, watchlist } = useContext(GlobalContext);
+  let storedMovie = watchlist.find(i => i.id === movie.id);
+
+  const watchlistDisabled = storedMovie ? true : false;
+
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}")`,
   };
@@ -65,7 +70,6 @@ const MovieInfo = ({
           <Container pt={150}>
             <Center>
               <div className="screenplay-header-flex-container">
-                
                 <Thumbnail
                   clickable={false}
                   image={
@@ -84,9 +88,9 @@ const MovieInfo = ({
                       <p className="marginTopBot">{releaseYear}</p>
                     </Link>
                     {runtime ? (
-                    <span>{`${Math.floor(runtime / 60)}h ${
-                      runtime % 60
-                    }min`}</span>
+                      <span>{`${Math.floor(runtime / 60)}h ${
+                        runtime % 60
+                      }min`}</span>
                     ) : null}
                     {movie.genres.length ? (
                       <Box>
@@ -226,6 +230,22 @@ const MovieInfo = ({
                         })}
                       </>
                     ) : null}
+                    <button
+                      style={
+                        !watchlistDisabled
+                          ? {}
+                          : {
+                              pointerEvents: 'none',
+                              backgroundColor: '#696969',
+                            }
+                      }
+                      disabled={watchlistDisabled}
+                      onClick={() => addItemToWatchlist(movie)}
+                    >
+                      <FiPlusCircle />
+                      <FiPlus />
+                      Add to watchlist
+                    </button>
                   </div>
                 </div>
               </div>

@@ -9,9 +9,11 @@ import {
   Route,
   Routes as Switch,
 } from 'react-router-dom';
+import { GlobalProvider } from '../../context/GlobalState';
 import Header from '../elements/Header/Header';
 import Home from '../Home/Home';
 import TvHome from '../TvHome/TvHome';
+import WatchList from '../WatchList/WatchList';
 import Movie from '../Movie/Movie';
 import Show from '../Show/Show';
 import Season from '../elements/Season/Season';
@@ -59,7 +61,7 @@ function App() {
     }
   })
   return (
-    
+    <GlobalProvider>
     <ChakraProvider theme={theme}>
       <AnimatePresence>
         <Router basename="">
@@ -83,12 +85,14 @@ function App() {
             <Route path="/year/:yearId" element={<BrowseByYear />} exact />
             <Route path="/" element={<Home />} exact />
             <Route path= "/:shows" element={<TvHome />} exact />
+            <Route path="/watchlist" element={<WatchList />} exact />
             <Route element={<NotFound />} />
           </Switch>
           <AppFooter />
         </Router>
       </AnimatePresence>
     </ChakraProvider>
+    </GlobalProvider>
   );
 }
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Container, Flex, Box, Text } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import './Header.scss';
-
 const Header = () => {
   const location = useLocation();
   
@@ -42,6 +41,9 @@ const Header = () => {
           </li>
           <li>
             <Link to={{ pathname: 'TvHome' }}>TV Shows</Link>
+          </li>
+          <li>
+            <Link to={{ pathname: 'watchlist' }}>Watchlist</Link>
           </li>
         </ul>
       </Container>

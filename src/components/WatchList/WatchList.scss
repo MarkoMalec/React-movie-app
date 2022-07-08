@@ -1,0 +1,29 @@
+.watchlist-thumbnail-wrapper {
+    position: relative;
+
+
+    .watchlist-controlls {
+        width: fit-content;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        gap: 1em;
+        list-style: none;
+        font-size: 1.9rem;
+        z-index: 500;
+
+        li {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, .7);
+            border-bottom-left-radius: 10px;
+            cursor: pointer;
+            transition: .10s ease-in-out;
+
+            &:hover {
+                color: tomato;
+            }
+        }
+
+    }
+}
