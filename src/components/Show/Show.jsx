@@ -39,7 +39,6 @@ const Show = () => {
           setProducers(producers);
           setVideos(videosResult.results);
           setLoading(false);
-          console.log(result);
         }
       } catch (error) {
         console.log('error: ', error);

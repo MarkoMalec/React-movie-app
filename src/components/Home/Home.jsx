@@ -36,16 +36,6 @@ const Home = () => {
     initialFetch(endpoint);
   }, []);
 
-  useEffect(() => {
-    if (movies.length) {
-      const scrollPosition = sessionStorage.getItem('ScrollPosition');
-      if (scrollPosition) {
-        window.scrollTo(0, parseInt(scrollPosition, 1));
-        sessionStorage.removeItem('ScrollPosition');
-      }
-    }
-  }, [movies]);
-
   const searchMovies = searchTerm => {
     let endpoint = '';
     setSearchTerm(searchTerm);
@@ -188,9 +178,6 @@ const Home = () => {
                   releaseDate={element.release_date}
                   voteAverage={element.vote_average}
                   tvShow={false}
-                  handleClick={() =>
-                    sessionStorage.setItem('scrollPosition', window.pageYOffset)
-                  }
                 />
               </div>
             );

@@ -39,19 +39,15 @@ const MovieInfoMore = ({
           <Text color="whiteAlpha.900" className="subject-heading">
             Production companies
           </Text>
-          {productionCompanies ? (
-            <>
-              {productionCompanies.map(el => (
+          {productionCompanies
+            ? productionCompanies.map(el => (
                 <img
                   key={el.id}
                   src={`${IMAGE_BASE_URL}w154/${el.logo_path}`}
                   alt={el.name}
                 />
-              ))}
-            </>
-          ) : (
-            'Unknown'
-          )}
+              ))
+            : 'Unknown'}
           {productionCountries ? (
             <>
               <Text color="whiteAlpha.900" className="subject-heading">

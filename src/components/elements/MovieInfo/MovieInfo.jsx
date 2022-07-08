@@ -97,8 +97,8 @@ const MovieInfo = ({
                         {movie.genres.map((el, i) => {
                           return (
                             <Link
-                              to={{ pathname: `/genre/${el.id}` }}
                               key={i}
+                              to={{ pathname: `/genre/${el.id}` }}
                               className="additional-link"
                             >
                               <p>{el.name}</p>
@@ -190,8 +190,8 @@ const MovieInfo = ({
                         {directors.map((el, i) => {
                           return (
                             <Link
-                              to={{ pathname: `/director/${el.id}` }}
                               key={i}
+                              to={{ pathname: `/director/${el.id}` }}
                               className="additional-link"
                             >
                               <p>{el.name}</p>
@@ -220,8 +220,8 @@ const MovieInfo = ({
                         {writers.map((el, i) => {
                           return (
                             <Link
-                              to={{ pathname: `/writer/${el.id}` }}
                               key={i}
+                              to={{ pathname: `/writer/${el.id}` }}
                               className="additional-link"
                             >
                               <p>{el.name}</p>

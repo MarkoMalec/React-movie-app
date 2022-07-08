@@ -19,7 +19,6 @@ const Thumbnail = ({
   voteAverage,
   showId,
   showReleaseDate,
-  handleClick
 }) => {
   return (
     <>
@@ -29,7 +28,6 @@ const Thumbnail = ({
           {clickable ? (
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
-              onClick={handleClick}
             >
               <div className="thumbnail-img-wrap">
                 <img src={image} alt={movieName} />

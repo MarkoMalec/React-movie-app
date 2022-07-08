@@ -16,7 +16,6 @@ const SimilarMovies = () => {
       .then(resolve => resolve.json())
       .then(result => {
         setSimilarMovies(result.results);
-        console.log(result.results);
       });
   }, [currentLocation.pathname]);
 

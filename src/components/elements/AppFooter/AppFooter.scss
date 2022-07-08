@@ -16,9 +16,10 @@
     h3 {
       margin-top: 1rem;
       a {
-        // font-family: 'muli', sans-serif;
-        font-size: 1.1rem;
+        display: inline-block;
+        font-size: 1.5rem;
         color: tomato;
+        margin-left: .5rem;
       }
       &:last-of-type {
         text-align: center;

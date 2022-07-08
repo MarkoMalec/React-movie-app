@@ -7,6 +7,7 @@ import Actor from '../elements/Actor/Actor';
 import MovieInfo from '../elements/MovieInfo/MovieInfo';
 import MovieInfoMore from '../elements/MovieInfoMore/MovieInfoMore';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
+import UserReviews from '../elements/UserReviews/UserReviews';
 
 const Movie = () => {
   const [movie, setMovie] = useState(null);
@@ -43,7 +44,6 @@ const Movie = () => {
           setWriters(writers);
           setVideos(videosResult.results);
           setLoading(false);
-          console.log(result);
         }
       } catch (error) {
         console.log('error: ', error);
@@ -106,11 +106,12 @@ const Movie = () => {
               </Text>
             )}
           </Container>
-          <Container as="main">
-            <SimilarScreenplay />
-          </Container>
         </>
       ) : null}
+      <UserReviews />
+      <Container as="main">
+        <SimilarScreenplay />
+      </Container>
     </>
   );
 };
