@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
-import { Container, Spinner, Center } from '@chakra-ui/react';
-import { ImEyePlus, ImEyeBlocked } from 'react-icons/im';
+import {
+  Container,
+  Spinner,
+  Center,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalOverlay,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { ImEyePlus, ImEyeBlocked, ImCheckmark } from 'react-icons/im';
 import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
@@ -19,6 +28,8 @@ const Home = () => {
 
   const { addItemToWatchlist, watchlist } = useContext(GlobalContext);
   const { removeItemFromWatchList } = useContext(GlobalContext);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
@@ -61,7 +72,12 @@ const Home = () => {
     setCurrentPage(prev => prev + 1);
     loadMoreFetch(endpoint);
   };
-  
+
+  const modalTimeout = () => {
+    setTimeout(() => {
+      onClose();
+    }, 2000);
+  };
 
   ////////// fetches ///////////
 
@@ -125,8 +141,33 @@ const Home = () => {
               <div key={i} className="watchlist-thumbnail-wrapper">
                 <ul className="watchlist-controlls">
                   {!watchlistDisabled ? (
-                    <li onClick={() => {addItemToWatchlist(element)}}>
+                    <li
+                      onClick={() => {
+                        addItemToWatchlist(element);
+                        onOpen();
+                        modalTimeout();
+                      }}
+                    >
                       <ImEyePlus />
+                      <Modal
+                        blockScrollOnMount={false}
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        motionPreset="slideInBottom"
+                        size="xs"
+                      >
+                        <ModalOverlay bg="none" />
+                        <ModalContent top="-3.5rem" boxShadow="none">
+                          <ModalBody>
+                            <p className="watchlist-modal-text-added">
+                              <span>
+                                <ImCheckmark />
+                              </span>
+                              Added to watchlist!
+                            </p>
+                          </ModalBody>
+                        </ModalContent>
+                      </Modal>
                     </li>
                   ) : (
                     <li onClick={() => removeItemFromWatchList(element.id)}>
@@ -135,7 +176,6 @@ const Home = () => {
                   )}
                 </ul>
                 <Thumbnail
-                  // key={i}
                   clickable={true}
                   image={
                     element.poster_path

@@ -13,31 +13,35 @@ const WatchList = () => {
   const { removeItemFromWatchList } = useContext(GlobalContext);
   return (
     <Container as="main">
-      <ThumbnailGrid preHeader={null} header={'Watchlist'} loading={false}>
-        {watchlist.map(movie => (
-          <div key={movie.id} className="watchlist-thumbnail-wrapper">
-            <ul className="watchlist-controlls">
-              <li onClick={() => removeItemFromWatchList(movie.id)}>
-                <ImEyeBlocked />
-              </li>
-            </ul>
-            <Thumbnail
-              clickable={true}
-              movieId={movie.id}
-              image={
-                movie.poster_path
-                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                  : NoPoster
-              }
-              movieName={movie.title}
-              originalTitle={movie.original_title}
-              releaseDate={movie.release_date}
-              voteAverage={movie.vote_average}
-              tvShow={false}
-            />
-          </div>
-        ))}
-      </ThumbnailGrid>
+      {watchlist.length ? (
+        <ThumbnailGrid preHeader={null} header={'Watchlist'} loading={false}>
+          {watchlist.map(movie => (
+            <div key={movie.id} className="watchlist-thumbnail-wrapper">
+              <ul className="watchlist-controlls">
+                <li onClick={() => removeItemFromWatchList(movie.id)}>
+                  <ImEyeBlocked />
+                </li>
+              </ul>
+              <Thumbnail
+                clickable={true}
+                movieId={movie.id}
+                image={
+                  movie.poster_path
+                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                    : NoPoster
+                }
+                movieName={movie.title}
+                originalTitle={movie.original_title}
+                releaseDate={movie.release_date}
+                voteAverage={movie.vote_average}
+                tvShow={false}
+              />
+            </div>
+          ))}
+        </ThumbnailGrid>
+      ) : (
+        `You have no movies on watchlist, go add some!`
+      )}
     </Container>
   );
 };
