@@ -122,7 +122,7 @@ const Home = () => {
             const watchlistDisabled = storedMovie ? true : false;
 
             return (
-              <div className="watchlist-thumbnail-wrapper">
+              <div key={i} className="watchlist-thumbnail-wrapper">
                 <ul className="watchlist-controlls">
                   {!watchlistDisabled ? (
                     <li onClick={() => {addItemToWatchlist(element)}}>
@@ -135,7 +135,7 @@ const Home = () => {
                   )}
                 </ul>
                 <Thumbnail
-                  key={i}
+                  // key={i}
                   clickable={true}
                   image={
                     element.poster_path
