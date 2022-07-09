@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Flex, Box, Text } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import './Header.scss';
+
 const Header = () => {
   const location = useLocation();
 
