@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  extendTheme
-} from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import {
   BrowserRouter as Router,
@@ -37,7 +34,7 @@ function App() {
         main: '#ff6347',
         500: '#f3593e',
         600: '#e84f36',
-        700: '#dc442d'
+        700: '#dc442d',
       },
       primary: {
         100: '#313b51',
@@ -45,53 +42,57 @@ function App() {
         300: '#1e2431',
         main: '#141821',
         500: '#0a0c11',
-        600: '#010101'
-      }
+        600: '#010101',
+      },
     },
     components: {
       Container: {
         baseStyle: {
-          maxWidth: '1400px'
-        }
-      }
+          maxWidth: '1400px',
+        },
+      },
     },
     config: {
       initialColorMode: 'dark',
       useSystemColorMode: false,
-    }
-  })
+    },
+  });
   return (
     <GlobalProvider>
-    <ChakraProvider theme={theme}>
-      <AnimatePresence>
-        <Router basename="">
-          <Header />
-          <Switch>
-            <Route path="/movie/:movieId" element={<Movie />} exact />
-            <Route path="/tv/:showId" element={<Show />} exact />
-            <Route path="/tv/:showId/season/:seasonId" element={<Season />} exact />
-            <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
-            <Route
-              path="/director/:directorId"
-              element={<BrowseByDirector />}
-              exact
-            />
-            <Route
-              path="/writer/:writerId"
-              element={<BrowseByWriter />}
-              exact
-            />
-            <Route path="/genre/:genreId" element={<BrowseByGenre />} exact />
-            <Route path="/year/:yearId" element={<BrowseByYear />} exact />
-            <Route path="/" element={<Home />} exact />
-            <Route path= "/:shows" element={<TvHome />} exact />
-            <Route path="/watchlist" element={<WatchList />} exact />
-            <Route element={<NotFound />} />
-          </Switch>
-          <AppFooter />
-        </Router>
-      </AnimatePresence>
-    </ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <AnimatePresence>
+          <Router basename="">
+            <Header />
+            <Switch>
+              <Route path="/movie/:movieId" element={<Movie />} exact />
+              <Route path="/tv/:showId" element={<Show />} exact />
+              <Route
+                path="/tv/:showId/season/:seasonId"
+                element={<Season />}
+                exact
+              />
+              <Route path="/actor/:actorId" element={<BrowseByActor />} exact />
+              <Route
+                path="/director/:directorId"
+                element={<BrowseByDirector />}
+                exact
+              />
+              <Route
+                path="/writer/:writerId"
+                element={<BrowseByWriter />}
+                exact
+              />
+              <Route path="/genre/:genreId" element={<BrowseByGenre />} exact />
+              <Route path="/year/:yearId" element={<BrowseByYear />} exact />
+              <Route path="/" element={<Home />} exact />
+              <Route path="/:shows" element={<TvHome />} exact />
+              <Route path="/watchlist" element={<WatchList />} exact />
+              <Route element={<NotFound />} />
+            </Switch>
+            <AppFooter />
+          </Router>
+        </AnimatePresence>
+      </ChakraProvider>
     </GlobalProvider>
   );
 }

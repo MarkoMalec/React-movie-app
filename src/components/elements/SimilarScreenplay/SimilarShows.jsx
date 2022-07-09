@@ -7,15 +7,15 @@ import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SimilarScreenplay.scss';
 
 const SimilarMovies = () => {
-    const [similarShows, setSimilarShows] = useState();
-    const currentLocation = useLocation();
+  const [similarShows, setSimilarShows] = useState();
+  const currentLocation = useLocation();
   useEffect(() => {
     const endpoint = `${API_URL}${currentLocation.pathname}/similar?api_key=${API_KEY}`;
     fetch(endpoint)
       .then(resolve => resolve.json())
       .then(result => {
         setSimilarShows(result.results);
-        console.log(result.results)
+        console.log(result.results);
       });
   }, [currentLocation.pathname]);
 
@@ -30,7 +30,9 @@ const SimilarMovies = () => {
             <Link key={el.id} to={{ pathname: `/tv/${el.id}` }}>
               <div className="similar-screenplay-showcase-item">
                 <Thumbnail
+                  tvShow={true}
                   showName={el.name}
+                  originalTitle={el.original_name}
                   image={
                     el.poster_path
                       ? `${IMAGE_BASE_URL}${POSTER_SIZE}${el.poster_path}`

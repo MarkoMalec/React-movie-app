@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import './Header.scss';
 const Header = () => {
   const location = useLocation();
-  
+
   return (
     <Flex
       as="header"
@@ -26,7 +26,14 @@ const Header = () => {
         color="current"
       >
         <Link
-          to={{ pathname: `${location.pathname === '/TvHome' ? '/TvHome' : '/'}` }}
+          to={{
+            pathname: `${
+              location.pathname.includes('tv') ||
+              location.pathname.includes('Tv')
+                ? '/TvHome'
+                : '/'
+            }`,
+          }}
         >
           <Box className="header-title">
             <Text color="brand.700" fontSize="s" fontWeight="bold">
