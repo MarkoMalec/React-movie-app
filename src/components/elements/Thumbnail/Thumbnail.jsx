@@ -34,7 +34,7 @@ const Thumbnail = ({
               </div>
             </Link>
           ) : (
-            <img src={image} alt={movieName} loading="lazy" />
+            <img src={image} alt={movieName} loading="lazy" height="700px" width="100%" />
           )}
           {movieName ? (
             <div className="thumbnail-description">
