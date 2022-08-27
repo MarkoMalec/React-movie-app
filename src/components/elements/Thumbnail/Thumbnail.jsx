@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   CircularProgress,
@@ -20,6 +21,20 @@ const Thumbnail = ({
   showId,
   showReleaseDate,
 }) => {
+
+  const ref = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useIntersectionObserver({
+    target: ref,
+    onIntersect: ([{ isIntersecting }], observerElement) => {
+      if (isIntersecting) {
+        setIsVisible(true);
+        observerElement.unobserve(ref.current);
+      }
+    }
+  });
+
   return (
     <>
       {/* If tvShow prop is false; throw movie thumbnail */}
@@ -29,12 +44,14 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-              <div className="thumbnail-img-wrap">
-                <img src={image} alt={movieName} />
+              <div className="thumbnail-img-wrap" ref={ref}>
+                {isVisible && (
+                  <img src={image} alt={movieName} />
+                )}
               </div>
             </Link>
           ) : (
-            <img src={image} alt={movieName} loading="lazy" height="700px" width="100%" />
+            <img src={image} alt={movieName} />
           )}
           {movieName ? (
             <div className="thumbnail-description">
