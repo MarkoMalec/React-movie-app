@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState, useRef } from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
+import useIntersectionObserver from '../../../hooks/IntersectionObserver';
 import { Link } from 'react-router-dom';
 import { Text } from '@chakra-ui/react';
 import ActorMale from '../../../assets/NoActor/male.svg';
@@ -7,13 +9,27 @@ import ActorFemale from '../../../assets/NoActor/female.svg';
 import './Actor.scss';
 
 const Actor = ({ actor, loading }) => {
+  const ref = useRef();
+  const [isVisible, setIsVisible] = useState(false);
   const POSTER_SIZE = 'w342';
 
+  useIntersectionObserver({
+    target: ref,
+    onIntersect: ([{ isIntersecting }], observerElement) => {
+      if (isIntersecting) {
+        setIsVisible(true);
+        observerElement.unobserve(ref.current);
+      }
+    }
+  });
+
   return (
-    <div className="actor-thumbnail-block">
+    <div className="actor-thumbnail-block" ref={ref}>
       {loading ? null : (
         <>
           <Link to={{ pathname: `/actor/${actor.id}`, name: `${actor.name}` }}>
+            {isVisible && (
+
             <img
               src={
                 actor.profile_path
@@ -24,10 +40,8 @@ const Actor = ({ actor, loading }) => {
               }
               alt={actor.name}
               className="actor-thumbnail-img"
-              loading="lazy"
-              height="700px"
-              width="100%"
             />
+            )}
           </Link>
           <div className="actor-thumbnail-description">
             <h3>{actor.name}</h3>
