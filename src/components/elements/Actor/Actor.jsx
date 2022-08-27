@@ -24,6 +24,9 @@ const Actor = ({ actor, loading }) => {
               }
               alt={actor.name}
               className="actor-thumbnail-img"
+              loading="lazy"
+              height="700px"
+              width="100%"
             />
           </Link>
           <div className="actor-thumbnail-description">
