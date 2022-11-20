@@ -20,7 +20,7 @@ const ThumbnailGrid = ({ children, header, preHeader, loading }) => {
   };
 
   return (
-    <div key={Math.random()} className="thumbnail-grid-wrap">
+    <div className="thumbnail-grid-wrap">
       {header && !loading ? (
         <>
           {header === 'Cast' ? (
