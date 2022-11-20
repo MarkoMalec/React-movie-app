@@ -14,7 +14,8 @@ const useIntersectionObserver = ({
         threshold
       });
       
-      const current = target.current;observer.observe(current);
+      const current = target.current;
+      observer.observe(current);
       
       return () => {
         observer.unobserve(current);

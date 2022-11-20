@@ -134,10 +134,15 @@ const MovieInfo = ({
                         {movie.vote_average.toFixed(1)}
                       </CircularProgressLabel>
                     </CircularProgress>
-                    <button onClick={onOpen}>
+                    <button
+                      className={
+                        linkKey !== '' ? 'playBtn' : 'playBtn disabled'
+                      }
+                      onClick={onOpen}
+                    >
                       <FiPlayCircle />
                       <FiPlay />
-                      Play Trailer
+                      {linkKey !== '' ? 'Play Trailer' : 'Not available'}
                     </button>
                     <Modal
                       isOpen={isOpen}
@@ -231,6 +236,7 @@ const MovieInfo = ({
                       </>
                     ) : null}
                     <button
+                      className="playBtn add_to_watchlist-btn"
                       style={
                         !watchlistDisabled
                           ? {}

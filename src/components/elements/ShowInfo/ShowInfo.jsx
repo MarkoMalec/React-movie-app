@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import {
@@ -18,7 +18,9 @@ import {
   ModalCloseButton,
   Spinner,
 } from '@chakra-ui/react';
+import '@splidejs/react-splide/css';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
+import SeasonsSlider from '../Sliders/SeasonsSlider';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import '../../../styles/shared/screenplayInfo.scss';
@@ -52,27 +54,6 @@ const ShowInfo = ({
         'https://www.youtube.com/embed/' + videoArray[0] + '?&autoplay=1';
     }
   }
-
-  const carousel = useRef(null);
-  function debouncer(func, timeoutd) {
-    var timeoutID,
-      timeout = timeoutd || 1000;
-    return function () {
-      var scope = this,
-        args = arguments;
-      clearTimeout(timeoutID);
-      timeoutID = setTimeout(function () {
-        func.apply(scope, Array.prototype.slice.call(args));
-      }, timeout);
-    };
-  }
-
-  const handleScroll = () => {
-    carousel.current.addEventListener('wheel', evt => {
-      evt.preventDefault();
-      carousel.current.scrollLeft += evt.deltaY;
-    });
-  };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -170,10 +151,15 @@ const ShowInfo = ({
                         {show.vote_average.toFixed(1)}
                       </CircularProgressLabel>
                     </CircularProgress>
-                    <button onClick={onOpen}>
+                    <button
+                      className={
+                        linkKey !== '' ? 'playBtn' : 'playBtn disabled'
+                      }
+                      onClick={onOpen}
+                    >
                       <FiPlayCircle />
                       <FiPlay />
-                      Play Trailer
+                      {linkKey !== '' ? 'Play Trailer' : 'Not available'}
                     </button>
                     <Modal
                       isOpen={isOpen}
@@ -210,7 +196,12 @@ const ShowInfo = ({
                     </Text>
                     {creators ? (
                       <>
-                        <Text color="whiteAlpha.900" className="subject-heading">{creators.length > 1 ? 'creators' : 'creator'}</Text>
+                        <Text
+                          color="whiteAlpha.900"
+                          className="subject-heading"
+                        >
+                          {creators.length > 1 ? 'creators' : 'creator'}
+                        </Text>
                         <Box>
                           {creators.map((el, i) => {
                             return (
@@ -228,7 +219,12 @@ const ShowInfo = ({
                     ) : null}
                     {producers ? (
                       <>
-                        <Text color="whiteAlpha.900" className="subject-heading">{producers.length > 1 ? 'producers' : 'producer'}</Text>
+                        <Text
+                          color="whiteAlpha.900"
+                          className="subject-heading"
+                        >
+                          {producers.length > 1 ? 'producers' : 'producer'}
+                        </Text>
                         <Box>
                           {producers.map((el, i) => {
                             return (
@@ -245,32 +241,7 @@ const ShowInfo = ({
                       </>
                     ) : null}
                     <h3>Season Showcase</h3>
-                    <div className="seasons-carousel">
-                      <div
-                        ref={carousel}
-                        onWheel={debouncer(handleScroll)}
-                        className="seasons-showcase"
-                      >
-                        {showSeasons.map(season => (
-                          <Link
-                            key={season.id}
-                            to={{ pathname: `season/${season.season_number}` }}
-                          >
-                            <div className="seasons-showcase-item">
-                              <img
-                                src={
-                                  season.poster_path
-                                    ? `${IMAGE_BASE_URL}w780${season.poster_path}`
-                                    : NoPoster
-                                }
-                                alt={season.name}
-                              />
-                              <p>{season.name}</p>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                    <SeasonsSlider showSeasons={showSeasons} />
                   </div>
                 </div>
               </div>

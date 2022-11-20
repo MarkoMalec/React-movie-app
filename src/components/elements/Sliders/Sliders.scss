@@ -1,0 +1,63 @@
+.seasons-splide {
+
+    .splide__track {
+        position: relative;
+        // &::before {
+        //     content: '';
+        //     display: block;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     background: rgb(255,255,255);
+        //     background: radial-gradient(circle, rgba(255,255,255,0) 71%, rgba(0,0,0,0.7595238779105392) 100%);  
+        //     z-index: 100;
+        // }
+    }
+
+    .splide__arrow {
+        background: black;
+
+        svg {
+            fill: var(--chakra-colors-brand-700);
+        }
+    }
+
+    .splide__arrow--prev {
+        left: .2em;
+    }
+
+    .splide__arrow--next {
+        right: .2em;
+    }
+
+    .splide__pagination {
+
+        bottom: -1.6rem;
+
+        .splide__pagination__page {
+            background: rgba(0, 0, 0, 0.508);
+        }
+
+        .splide__pagination__page.is-active {
+            background-color: var(--chakra-colors-brand-700);
+            transform: scale(1.125);
+        }
+    }
+
+    img {
+        max-width: 100%;
+        background-color: #141821;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, .9);
+    }
+    p {
+        text-align: center;
+        font-size: .8em;
+        background-color: black;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+}

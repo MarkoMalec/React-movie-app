@@ -64,14 +64,15 @@ const BrowseByActor = () => {
               onClick={handleMoviesTab}
               className={activeTab === 'Movies' ? 'active' : ''}
             >
-              Movies
+              <p>Movies</p>
             </li>
             <li
               onClick={handleShowsTab}
               className={activeTab === 'Shows' ? 'active' : ''}
             >
-              TV Shows
+              <p>TV Shows</p>
             </li>
+            <li className='slide-indicator'></li>
           </ul>
           <div className="tabs-outlet">
             {activeTab === 'Movies' ? (

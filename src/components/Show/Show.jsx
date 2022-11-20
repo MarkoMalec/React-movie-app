@@ -7,8 +7,9 @@ import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Actor from '../elements/Actor/Actor';
 import ShowInfo from '../elements/ShowInfo/ShowInfo';
 import ShowInfoMore from '../elements/ShowInfoMore/ShowInfoMore';
-import './Show.scss';
+import UserReviews from '../elements/UserReviews/UserReviews';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
+import './Show.scss';
 
 const Show = () => {
   const [show, setShow] = useState(null);
@@ -99,6 +100,7 @@ const Show = () => {
               </Text>
             )}
           </Container>
+          <UserReviews />
           <Container as="main">
             <SimilarScreenplay />
           </Container>

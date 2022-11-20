@@ -10,59 +10,14 @@
         bottom: 0;
         padding: 1rem;
 
-        div>img {
+        div > img {
             margin-inline: auto;
             max-width: 100px;
         }
     }
 }
 
-.seasons-carousel {
-    overflow-x: hidden;
-    max-width: calc(53vw);
-    scroll-behavior: smooth;
-
-    .seasons-showcase {
-        scrollbar-color: tomato rgba(0, 0, 0, .2);
-        scrollbar-width: 5px;
-        display: flex;
-        gap: 15px;
-        flex: 1;
-        height: 285px;
-        overflow-x: scroll;
-        padding-left: 5px;
-
-        &::-webkit-scrollbar {
-            height: 8px;
-            width: 50px;
-            background-color: rgba(0, 0, 0, .3);
-            border-radius: 20px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: tomato;
-            border-radius: 10px;
-        }
-
-        .seasons-showcase-item {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-width: 154px;
-            max-width: 154px;
-            justify-content: flex-start;
-            align-items: center;
-
-            img {
-                max-width: 100%;
-                background-color: #141821;
-                border-radius: 6px;
-                box-shadow: 1px 1px 10px rgba(0, 0, 0, .9);
-            }
-        }
-    }
-
-    @media (max-width: 640px) {
-        max-width: 95vw;
-    }
+.playBtn.disabled {
+    background-color: #707070;
+    pointer-events: none;
 }

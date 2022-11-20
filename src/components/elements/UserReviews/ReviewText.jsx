@@ -8,14 +8,17 @@ const ReviewText = ({ text, length = 350 }) => {
   
     return (
       <>
-        <p>{showLess ? `${text.slice(0, length)}...` : text}</p>
+      <div className={!showLess ? 'text_excerpt' : 'text_excerpt text_excerpt_overlay'}>
+        <p className='review-text'>{showLess ? `${text.slice(0, length)}...` : text}</p>
+      </div>
         <span
+          className={!showLess ? 'read_less_excerpt' : 'read_more_excerpt'}
           style={{ color: 'tomato', cursor: 'pointer' }}
           onClick={() => setShowLess(!showLess)}
         >
           &nbsp;Read {showLess ? 'More' : 'Less'}
         </span>
-      </>
+        </>
     );
   };
 

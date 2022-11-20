@@ -82,7 +82,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
 .screenplay-header-description {
     font-size: 0.85rem;
 
-    button:nth-of-type(2) {
+    button.add_to_watchlist-btn {
         display: flex;
         margin-top: 1rem;
         margin-inline: 0;
@@ -118,7 +118,7 @@ $cubic-bezier: .25s cubic-bezier(0.4, 0, 0.2, 1);
             }
         }
     }
-    button {
+    .playBtn {
         display: inline-flex;
         position: relative;
         top: 1.15rem;

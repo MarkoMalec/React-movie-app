@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Container, Flex, Box, Text } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import './Header.scss';
@@ -44,15 +44,29 @@ const Header = () => {
           </Box>
         </Link>
         <ul className="header-navigation">
-          <li>
-            <Link to={{ pathname: '/' }}>Movies</Link>
-          </li>
-          <li>
-            <Link to={{ pathname: 'TvHome' }}>TV Shows</Link>
-          </li>
-          <li>
-            <Link to={{ pathname: 'watchlist' }}>Watchlist</Link>
-          </li>
+          <NavLink
+            activeclassname="active"
+            className={location.pathname.includes('movie') ? 'active' : ''}
+            to={{ pathname: '/' }}
+          >
+            Movies
+          </NavLink>
+          <NavLink
+            activeclassname="active"
+            className={
+              location.pathname.includes('tv') ||
+              location.pathname.includes('Tv')
+                ? 'active'
+                : ''
+            }
+            to={{ pathname: 'TvHome' }}
+          >
+            TV Shows
+          </NavLink>
+          <NavLink activeclassname="active" to={{ pathname: 'watchlist' }}>
+            Watchlist
+          </NavLink>
+          <a className="hslide"></a>
         </ul>
       </Container>
     </Flex>

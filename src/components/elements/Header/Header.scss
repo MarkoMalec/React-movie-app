@@ -1,22 +1,60 @@
 @import url(//fonts.googleapis.com/css?family=Vibur);
 
 .header-title {
-  
 
-    @media (max-width: 500px) {
-      font-size: .75rem;
-    }
-  
+  @media (max-width: 500px) {
+    font-size: .75rem;
+  }
+
 }
 
-.header-navigation {
+.hslide {
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  background: none;
+  border: 2px solid tomato;
+  transition: .5s ease-in-out;
+  opacity: 0;
+  border-radius: 10px;
+}
+
+ul.header-navigation {
+  position: relative;
   list-style: none;
   align-self: center;
   display: flex;
-  gap: 1.3rem;
-  li:last-child {
-    border-left: 2px solid tomato;
-    padding-left: 1.3rem;
+
+  a {
+    display: block;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    line-height: 1;
+  }
+
+  a.active {
+    color: tomato;
+  }
+
+  a:nth-child(1).active~.hslide {
+    left: 0;
+    opacity: 1;
+  }
+
+  a:nth-child(2).active~.hslide {
+    left: 80px;
+    opacity: 1;
+  }
+
+  a:nth-child(3).active~.hslide {
+    left: 160px;
+    opacity: 1;
   }
 }
-

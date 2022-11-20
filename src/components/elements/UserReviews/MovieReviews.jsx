@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../fetch';
 import { useLocation } from 'react-router-dom';
 import ReviewText from './ReviewText';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const MovieReviews = () => {
   const [movieReviews, setMovieReviews] = useState();
@@ -20,7 +21,26 @@ const MovieReviews = () => {
   return (
     <>
       {movieReviews?.length
-        ? movieReviews.slice(0, 4).map(review => (
+        ? (
+          
+          <Splide options={{
+            gap: '1rem',
+            perPage: 4,
+            breakpoints: {
+              991: {
+                perPage: 3,
+              },
+              678: {
+                perPage: 2,
+              },
+              475: {
+                paginationDirection: 'ttb',
+                destroy: true,
+              }
+            }
+          }}>
+          {movieReviews.map(review => (
+            <SplideSlide>
             <div key={review.id} className="review-box">
               <div className="review-user-info">
                 <img
@@ -37,11 +57,15 @@ const MovieReviews = () => {
                 <h3>{review.author_details.username}</h3>
                 <span>{review.created_at.slice(0, 10)}</span>
               </div>
-              <div className="review-text">
+              
                 <ReviewText text={review.content} />
-              </div>
+              
             </div>
-          ))
+            </SplideSlide>
+        ))}
+        </Splide>
+      
+          )
         : 'No reviews available for this movie.'}
     </>
   );

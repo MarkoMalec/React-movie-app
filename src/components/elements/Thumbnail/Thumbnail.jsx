@@ -6,6 +6,7 @@ import {
   CircularProgressLabel,
   Text,
 } from '@chakra-ui/react';
+import useIntersectionObserver from '../../../hooks/IntersectionObserver';
 import './Thumbnail.scss';
 
 const Thumbnail = ({
@@ -44,14 +45,15 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-              <div className="thumbnail-img-wrap" ref={ref}>
+                <div className="observer" style={{position: 'absolute'}} ref={ref}></div>
+              <div className="thumbnail-img-wrap">
                 {isVisible && (
                   <img src={image} alt={movieName} />
                 )}
               </div>
             </Link>
           ) : (
-            <img src={image} alt={movieName} />
+            <img src={image} alt={movieName} ref={ref} />
           )}
           {movieName ? (
             <div className="thumbnail-description">
@@ -116,11 +118,11 @@ const Thumbnail = ({
           {clickable ? (
             <Link to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}>
               <div className="thumbnail-img-wrap">
-                <img src={image} alt={showName} />
+                <img src={image} alt={showName} ref={ref} />
               </div>
             </Link>
           ) : (
-            <img src={image} alt={showName} />
+            <img src={image} alt={showName} ref={ref} />
           )}
           {showName ? (
             <div className="thumbnail-description">
