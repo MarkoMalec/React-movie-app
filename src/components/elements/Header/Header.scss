@@ -7,9 +7,6 @@
     width: 100%;
 
   }
-  @media (max-width: 476px) {
-   max-width: 35px; 
-  }
 
   @media (max-width: 500px) {
     font-size: .75rem;
@@ -40,13 +37,16 @@ ul.header-navigation {
 
   a {
     display: block;
-    width: 80px;
+    width: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 4px;
     padding-bottom: 6px;
     line-height: 1;
+    font-size: 1.1em;
+    -webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
   }
 
   a.active {
@@ -64,12 +64,12 @@ ul.header-navigation {
   }
 
   a:nth-child(2).active~.hslide {
-    left: 80px;
+    left: 90px;
     opacity: 1;
   }
 
   a:nth-child(3).active~.hslide {
-    left: 160px;
+    left: 180px;
     opacity: 1;
   }
 }

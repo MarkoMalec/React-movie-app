@@ -18,6 +18,7 @@ import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './Home.scss';
+import logoMovie from '../../assets/Movie reel logo.svg'
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
