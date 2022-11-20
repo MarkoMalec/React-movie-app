@@ -40,6 +40,7 @@ const Header = () => {
             <Text color="brand.700" fontSize="s" fontWeight="bold">
               MovieDB
             </Text>
+            
             <Text color="whiteAlpha.700">Made in ReactJS</Text>
           </Box>
         </Link>

@@ -1,6 +1,15 @@
 @import url(//fonts.googleapis.com/css?family=Vibur);
 
 .header-title {
+  // max-width: 45px;
+
+  svg {
+    width: 100%;
+
+  }
+  @media (max-width: 476px) {
+   max-width: 35px; 
+  }
 
   @media (max-width: 500px) {
     font-size: .75rem;
@@ -15,11 +24,12 @@
   height: 100%;
   bottom: 0;
   left: 0;
-  background: none;
+  background: tomato;
   border: 2px solid tomato;
   transition: .7s cubic-bezier(.93,-0.83,0,1.51);
   opacity: 0;
   border-radius: 10px;
+  z-index: -1;
 }
 
 ul.header-navigation {
@@ -40,7 +50,12 @@ ul.header-navigation {
   }
 
   a.active {
-    color: tomato;
+    // color: tomato;
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+    font-weight: 900;
+    transition: .2s ease-in;
+    transition-delay: .3s;
   }
 
   a:nth-child(1).active~.hslide {
