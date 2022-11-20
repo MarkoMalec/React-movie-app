@@ -26,15 +26,15 @@ const Thumbnail = ({
   const ref = useRef();
   const [isVisible, setIsVisible] = useState(false);
 
-  useIntersectionObserver({
-    target: ref,
-    onIntersect: ([{ isIntersecting }], observerElement) => {
-      if (isIntersecting) {
-        setIsVisible(true);
-        observerElement.unobserve(ref.current);
-      }
-    }
-  });
+  // useIntersectionObserver({
+  //   target: ref,
+  //   onIntersect: ([{ isIntersecting }], observerElement) => {
+  //     if (isIntersecting) {
+  //       setIsVisible(true);
+  //       observerElement.unobserve(ref.current);
+  //     }
+  //   }
+  // });
 
   return (
     <>
@@ -45,11 +45,11 @@ const Thumbnail = ({
             <Link
               to={{ pathname: `/movie/${movieId}`, movieName: `${movieName}` }}
             >
-                <div className="observer" style={{position: 'absolute'}} ref={ref}></div>
+                {/* <div className="observer" style={{position: 'absolute'}} ref={ref}></div> */}
               <div className="thumbnail-img-wrap">
-                {isVisible && (
+                {/* {isVisible && ( */}
                   <img src={image} alt={movieName} />
-                )}
+                {/* )} */}
               </div>
             </Link>
           ) : (
