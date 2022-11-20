@@ -17,7 +17,7 @@
   left: 0;
   background: none;
   border: 2px solid tomato;
-  transition: .5s ease-in-out;
+  transition: .7s cubic-bezier(.93,-0.83,0,1.51);
   opacity: 0;
   border-radius: 10px;
 }

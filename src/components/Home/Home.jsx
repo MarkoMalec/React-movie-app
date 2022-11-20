@@ -128,6 +128,7 @@ const Home = () => {
             const watchlistDisabled = storedMovie ? true : false;
 
             return (
+              <>
               <div key={i} className="watchlist-thumbnail-wrapper">
                 <ul className="watchlist-controlls">
                   {!watchlistDisabled ? (
@@ -165,6 +166,8 @@ const Home = () => {
                     </li>
                   )}
                 </ul>
+              </div>
+              
                 <Thumbnail
                   clickable={true}
                   image={
@@ -179,7 +182,7 @@ const Home = () => {
                   voteAverage={element.vote_average}
                   tvShow={false}
                 />
-              </div>
+              </>
             );
           })}
         </ThumbnailGrid>

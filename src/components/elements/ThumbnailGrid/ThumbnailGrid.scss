@@ -1,3 +1,16 @@
+@keyframes render {
+    0% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
+
+.thumbnail-grid-wrap {
+    animation: render 1s linear;
+}
 
 .thumbnail-grid-title {
     font-size: 2rem;
