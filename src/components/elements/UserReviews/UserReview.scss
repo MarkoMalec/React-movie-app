@@ -60,13 +60,20 @@
         h3 {
             align-self: center;
         }
-
-        img {
-            width: 100%;
-            max-width: 100px;
-            height: 100%;
-            max-height: 60px;
+        .review-user-image {
+            max-width: 50px;
             clip-path: circle();
+
+            img {
+                width: 100%;
+                object-fit: cover;
+
+            }
+        }
+        .review_rating {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
         }
     }
 
