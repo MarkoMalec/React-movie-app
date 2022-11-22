@@ -14,16 +14,16 @@ const Header = () => {
       top="0"
       zIndex="950"
       w="100%"
-      bg="primary.main"
-      style={{ boxShadow: '1px 1px 20px #000' }}
+      // bg="primary.main"
+      // style={{ boxShadow: '1px 1px 20px #000' }}
     >
       <Container
         maxW="1400px"
         display="flex"
         justifyContent="space-between"
         alignContent="center"
-        pt="2"
-        pb="2"
+        pt="4"
+        pb="4"
         color="current"
       >
         <Link

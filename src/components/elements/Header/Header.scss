@@ -1,17 +1,38 @@
 @import url(//fonts.googleapis.com/css?family=Vibur);
+@import url(//fonts.googleapis.com/css2?family=Londrina+Outline&display=swap);
 
-.header-title {
-  // max-width: 45px;
+header {
 
-  svg {
+  background: transparent;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0, .9);
+    background-color: rgba(0,0,0, .5);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
-  @media (max-width: 500px) {
-    font-size: .75rem;
-  }
+  .header-title {
+    // max-width: 45px;
 
+    svg {
+      width: 100%;
+
+    }
+
+    @media (max-width: 500px) {
+      font-size: .75rem;
+    }
+
+  }
 }
 
 .hslide {
@@ -23,7 +44,7 @@
   left: 0;
   background: tomato;
   border: 2px solid tomato;
-  transition: .7s cubic-bezier(.93,-0.83,0,1.51);
+  transition: .9s cubic-bezier(.93, -0.83, 0, 1.51);
   opacity: 0;
   border-radius: 10px;
   z-index: -1;
@@ -37,21 +58,19 @@ ul.header-navigation {
 
   a {
     display: block;
-    width: 90px;
+    width: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 4px;
     padding-bottom: 6px;
-    line-height: 1;
+    line-height: 1.3;
     font-size: 1.1em;
   }
-
+  
   a.active {
-    // color: tomato;
-    -webkit-text-stroke: 1px white;
-    color: transparent;
-    font-weight: 900;
+    font-weight: 700;
+    letter-spacing: 1px;
     transition: .2s ease-in;
     transition-delay: .3s;
   }
@@ -62,12 +81,33 @@ ul.header-navigation {
   }
 
   a:nth-child(2).active~.hslide {
-    left: 90px;
+    left: 110px;
     opacity: 1;
   }
 
   a:nth-child(3).active~.hslide {
-    left: 180px;
+    left: 220px;
     opacity: 1;
+  }
+
+  @media (max-width: 476px) {
+    a {
+      font-size: .8em;
+      width: 70px;
+    }
+    a:nth-child(1).active~.hslide {
+      left: 0;
+      opacity: 1;
+    }
+  
+    a:nth-child(2).active~.hslide {
+      left: 70px;
+      opacity: 1;
+    }
+  
+    a:nth-child(3).active~.hslide {
+      left: 140px;
+      opacity: 1;
+    }
   }
 }

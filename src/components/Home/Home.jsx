@@ -24,6 +24,7 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [expanded, setExpanded] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -118,6 +119,7 @@ const Home = () => {
   return (
     <>
       <SearchBar placeholder="Search for a movie" callback={searchMovies} />
+      
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}

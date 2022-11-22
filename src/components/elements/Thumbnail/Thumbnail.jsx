@@ -50,7 +50,7 @@ const Thumbnail = ({
                 ref={ref}
               ></div>
               <div className="thumbnail-img-wrap">
-                {isVisible && <img src={image} alt={movieName} />}
+                {isVisible && <img src={image} alt={movieName} width='327px' height='490px' />}
               </div>
             </Link>
           ) : (
@@ -119,7 +119,7 @@ const Thumbnail = ({
           {clickable ? (
             <Link to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}>
               <div className="thumbnail-img-wrap">
-                <img src={image} alt={showName} ref={ref} />
+                <img src={image} alt={showName} ref={ref} width='327px' height='490px' />
               </div>
             </Link>
           ) : (
