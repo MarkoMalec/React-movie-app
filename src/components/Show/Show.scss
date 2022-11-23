@@ -6,3 +6,32 @@
         flex-wrap: wrap;
     }
 }
+
+.grid-placeholder {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    p {
+        font-size: 1.6em;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url('../../assets/QuestionMark.svg');
+        background-repeat: no-repeat;
+        background-position-x: 50%;
+        z-index: -1;
+    }
+
+    @media (max-width: 991px) {
+        width: 100%;
+        height: 350px;
+    }
+}

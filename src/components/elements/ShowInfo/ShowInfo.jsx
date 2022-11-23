@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
 import {
@@ -22,6 +22,7 @@ import '@splidejs/react-splide/css';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
 import SeasonsSlider from '../Sliders/SeasonsSlider';
 import Thumbnail from '../Thumbnail/Thumbnail';
+import Vibrant from 'node-vibrant/dist/vibrant';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import '../../../styles/shared/screenplayInfo.scss';
 import './ShowInfo.scss';
@@ -40,6 +41,13 @@ const ShowInfo = ({
   const headerBackground = {
     backgroundImage: `url("${IMAGE_BASE_URL}${BACKDROP_SIZE}${show.backdrop_path}")`,
   };
+
+  const [filter, setFilter] = useState(null);
+
+  useEffect(() => {
+    Vibrant.from(`${IMAGE_BASE_URL}${BACKDROP_SIZE}${show?.backdrop_path}`, [1]).getPalette()
+    .then((palette) => setFilter(palette.DarkVibrant));
+  }, [])
 
   var videoArray = [];
   var linkKey = '';
@@ -69,7 +77,7 @@ const ShowInfo = ({
           show.backdrop_path ? headerBackground : { backgroundColor: '#141821' }
         }
       >
-        <div className="screenplay-header-filter">
+        <div className="screenplay-header-filter" style={{ backgroundColor: `rgba(${filter?._rgb[0]}, ${filter?._rgb[1]}, ${filter?._rgb[2]}, .9)` }}>
           <Container pt={150}>
             <Center>
               <div className="screenplay-header-flex-container">

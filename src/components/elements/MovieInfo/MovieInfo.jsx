@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../context/GlobalState';
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../fetch';
 import { Link } from 'react-router-dom';
@@ -19,9 +19,11 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { FiPlayCircle, FiPlay, FiPlus, FiPlusCircle } from 'react-icons/fi';
+import Vibrant from 'node-vibrant/dist/vibrant';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import '../../../styles/shared/screenplayInfo.scss';
+
 
 const MovieInfo = ({
   movie,
@@ -34,6 +36,13 @@ const MovieInfo = ({
 }) => {
   const { addItemToWatchlist, watchlist } = useContext(GlobalContext);
   let storedMovie = watchlist.find(i => i.id === movie.id);
+
+  const [filter, setFilter] = useState(null);
+
+  useEffect(() => {
+    Vibrant.from(`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie?.backdrop_path}`, [1]).getPalette()
+    .then((palette) => setFilter(palette.DarkMuted));
+  }, [])
 
   const watchlistDisabled = storedMovie ? true : false;
 
@@ -55,9 +64,11 @@ const MovieInfo = ({
     }
   }
 
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
+    {console.log(filter?._rgb)}
       <div
         className="screenplay-header-wrapper"
         style={
@@ -66,7 +77,7 @@ const MovieInfo = ({
             : { backgroundColor: '#141821' }
         }
       >
-        <div className="screenplay-header-filter">
+        <div className="screenplay-header-filter" style={{ backgroundColor: `rgba(${filter?._rgb[0]}, ${filter?._rgb[1]}, ${filter?._rgb[2]}, .9)` }}>
           <Container pt={150}>
             <Center>
               <div className="screenplay-header-flex-container">

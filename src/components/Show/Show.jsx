@@ -78,11 +78,20 @@ const Show = () => {
           <Container className="screenplay-MoreInfo-area" as="main">
             {actors ? (
               <>
-                <ThumbnailGrid header="Cast">
-                  {actors.map((el, i) => {
-                    return <Actor key={i} actor={el} loading={loading} />;
-                  })}
-                </ThumbnailGrid>
+                {actors === [] ? (
+                  <ThumbnailGrid header="Cast">
+                    {actors.map((el, i) => {
+                      return <Actor key={i} actor={el} loading={loading} />;
+                    })}
+                  </ThumbnailGrid>
+                ) : (
+                  <div className="grid-placeholder">
+                  
+                    <p>No cast provided for this show.</p>
+
+                  </div>
+                )}
+
                 <ShowInfoMore
                   showName={show.name}
                   originalName={show.original_name}
