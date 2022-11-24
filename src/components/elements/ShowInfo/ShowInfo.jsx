@@ -20,9 +20,10 @@ import {
 } from '@chakra-ui/react';
 import '@splidejs/react-splide/css';
 import { FiPlayCircle, FiPlay } from 'react-icons/fi';
+import Vibrant from 'node-vibrant/dist/vibrant';
 import SeasonsSlider from '../Sliders/SeasonsSlider';
 import Thumbnail from '../Thumbnail/Thumbnail';
-import Vibrant from 'node-vibrant/dist/vibrant';
+import Rating from '../Rating/Rating';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import '../../../styles/shared/screenplayInfo.scss';
 import './ShowInfo.scss';
@@ -43,14 +44,13 @@ const ShowInfo = ({
   };
 
   const [filter, setFilter] = useState(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`, [1]).getPalette()
-    .then((palette) => setFilter(palette.DarkVibrant));
-    setProgress(show.vote_average);
-  }, [])
-  
+    Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`, [1])
+      .getPalette()
+      .then(palette => setFilter(palette.DarkVibrant));
+  }, []);
+
   var videoArray = [];
   var linkKey = '';
   if (videos.length > 0) {
@@ -79,7 +79,12 @@ const ShowInfo = ({
           show.backdrop_path ? headerBackground : { backgroundColor: '#141821' }
         }
       >
-        <div className="screenplay-header-filter" style={{ backgroundColor: `rgba(${filter?._rgb[0]}, ${filter?._rgb[1]}, ${filter?._rgb[2]}, .9)` }}>
+        <div
+          className="screenplay-header-filter"
+          style={{
+            backgroundColor: `rgba(${filter?._rgb[0]}, ${filter?._rgb[1]}, ${filter?._rgb[2]}, .9)`,
+          }}
+        >
           <Container pt={150}>
             <Center>
               <div className="screenplay-header-flex-container">
@@ -134,33 +139,7 @@ const ShowInfo = ({
                         })}
                       </Box>
                     ) : null}
-                    <CircularProgress
-                      min={0}
-                      max={10}
-                      value={progress}
-                      size="53px"
-                      mt="1rem"
-                      trackColor="#1A202C"
-                      color={
-                        show.vote_average >= 7.5
-                          ? 'green'
-                          : show.vote_average >= 5
-                          ? 'yellow'
-                          : 'red'
-                      }
-                      thickness={4}
-                      bgColor="rgba(0, 0, 0, .3)"
-                      borderRadius="50px"
-                      animation={true}
-                    >
-                      <CircularProgressLabel
-                        fontSize="17px"
-                        pt="4px"
-                        color="whiteAlpha.900"
-                      >
-                        {show.vote_average.toFixed(1)}
-                      </CircularProgressLabel>
-                    </CircularProgress>
+                    <Rating rating={show.vote_average} />
                     <button
                       className={
                         linkKey !== '' ? 'playBtn' : 'playBtn disabled'

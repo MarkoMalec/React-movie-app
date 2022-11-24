@@ -6,6 +6,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import useIntersectionObserver from '../../../hooks/IntersectionObserver';
+import Rating from '../Rating/Rating';
 import './Thumbnail.scss';
 
 const Thumbnail = ({
@@ -23,7 +24,6 @@ const Thumbnail = ({
 }) => {
   const ref = useRef();
   const [isVisible, setIsVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useIntersectionObserver({
     target: ref,
@@ -34,10 +34,6 @@ const Thumbnail = ({
       }
     },
   });
-
-  useEffect(() => {
-    setProgress(voteAverage);
-  }, []);
 
   return (
     <>
@@ -87,31 +83,7 @@ const Thumbnail = ({
               )}
               {voteAverage ? (
                 <div className="average-score">
-                  <CircularProgress
-                    min={0}
-                    max={10}
-                    value={progress}
-                    size="27px"
-                    trackColor="#1A202C"
-                    color={
-                      voteAverage >= 7.5
-                        ? 'green'
-                        : voteAverage >= 5
-                        ? 'yellow'
-                        : 'red'
-                    }
-                    bgColor="rgba(0, 0, 0, .2)"
-                    borderRadius="50px"
-                    thickness={7}
-                  >
-                    <CircularProgressLabel
-                      color="whiteAlpha.900"
-                      fontWeight="700"
-                      fontSize=".65rem"
-                    >
-                      {voteAverage}
-                    </CircularProgressLabel>
-                  </CircularProgress>
+                  <Rating rating={voteAverage} isThumbnailRating />
                 </div>
               ) : null}
             </div>
@@ -120,6 +92,7 @@ const Thumbnail = ({
       ) : (
         // if tvShow prop is true; throw Show thumbnail
         <div className="thumbnail-block">
+          
           {clickable ? (
             <Link to={{ pathname: `/tv/${showId}`, showName: `${showName}` }}>
               <div className="thumbnail-img-wrap">
@@ -153,31 +126,7 @@ const Thumbnail = ({
               )}
               {voteAverage ? (
                 <div className="average-score">
-                  <CircularProgress
-                    min={0}
-                    max={10}
-                    value={voteAverage}
-                    size="27px"
-                    trackColor="#1A202C"
-                    color={
-                      voteAverage >= 7.5
-                        ? 'green'
-                        : voteAverage >= 5
-                        ? 'yellow'
-                        : 'red'
-                    }
-                    bgColor="rgba(0, 0, 0, .2)"
-                    borderRadius="50px"
-                    thickness={7}
-                  >
-                    <CircularProgressLabel
-                      color="whiteAlpha.900"
-                      fontWeight="700"
-                      fontSize=".65rem"
-                    >
-                      {voteAverage}
-                    </CircularProgressLabel>
-                  </CircularProgress>
+                  <Rating isThumbnailRating rating={voteAverage} />
                 </div>
               ) : null}
             </div>
