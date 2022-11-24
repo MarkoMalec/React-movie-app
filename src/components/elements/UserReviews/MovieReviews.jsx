@@ -14,7 +14,7 @@ const MovieReviews = () => {
       .then(resolve => resolve.json())
       .then(result => {
         setMovieReviews(result.results);
-        console.log(result);
+        console.table(result, ' movie review results');
       });
   }, [currentLocation.pathname]);
 
@@ -57,7 +57,7 @@ const MovieReviews = () => {
                     />
                     </div>
                 <h3>{review.author_details.username}</h3>
-                <p class="review_rating">{review.author_details.rating}</p>
+                <p className="review_rating">{review.author_details.rating}</p>
                 <span>{review.created_at.slice(0, 10)}</span>
               </div>
               

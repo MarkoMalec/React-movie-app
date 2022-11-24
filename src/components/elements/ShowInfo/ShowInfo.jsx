@@ -43,12 +43,14 @@ const ShowInfo = ({
   };
 
   const [filter, setFilter] = useState(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    Vibrant.from(`${IMAGE_BASE_URL}${BACKDROP_SIZE}${show?.backdrop_path}`, [1]).getPalette()
+    Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`, [1]).getPalette()
     .then((palette) => setFilter(palette.DarkVibrant));
+    setProgress(show.vote_average);
   }, [])
-
+  
   var videoArray = [];
   var linkKey = '';
   if (videos.length > 0) {
@@ -135,7 +137,7 @@ const ShowInfo = ({
                     <CircularProgress
                       min={0}
                       max={10}
-                      value={show.vote_average}
+                      value={progress}
                       size="53px"
                       mt="1rem"
                       trackColor="#1A202C"

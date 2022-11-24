@@ -61,7 +61,7 @@ const TvHome = () => {
           setLoading(false);
         }, 300)
       )
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   const searchFetch = endpoint => {
@@ -71,7 +71,7 @@ const TvHome = () => {
         setShows(result.results);
         setTotalPages(result.total_pages);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   const loadMoreFetch = endpoint => {
@@ -80,7 +80,7 @@ const TvHome = () => {
       .then(result => {
         setShows([...shows, ...result.results]);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   if (loading) {

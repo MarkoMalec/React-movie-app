@@ -18,7 +18,7 @@ import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './Home.scss';
-import logoMovie from '../../assets/Movie reel logo.svg'
+import logoMovie from '../../assets/Movie reel logo.svg';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -86,7 +86,7 @@ const Home = () => {
           setLoading(false);
         }, 300)
       )
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   const searchFetch = endpoint => {
@@ -96,7 +96,7 @@ const Home = () => {
         setMovies(result.results);
         setTotalPages(result.total_pages);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   const loadMoreFetch = endpoint => {
@@ -105,7 +105,7 @@ const Home = () => {
       .then(result => {
         setMovies([...movies, ...result.results]);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   if (loading) {
@@ -119,7 +119,7 @@ const Home = () => {
   return (
     <>
       <SearchBar placeholder="Search for a movie" callback={searchMovies} />
-      
+
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
@@ -132,45 +132,45 @@ const Home = () => {
 
             return (
               <span key={i}>
-              <div className="watchlist-thumbnail-wrapper">
-                <ul className="watchlist-controlls">
-                  {!watchlistDisabled ? (
-                    <li
-                      onClick={() => {
-                        addItemToWatchlist(element);
-                        onOpen();
-                        modalTimeout();
-                      }}
-                    >
-                      <ImEyePlus />
-                      <Modal
-                        blockScrollOnMount={false}
-                        isOpen={isOpen}
-                        onClose={onClose}
-                        motionPreset="slideInBottom"
-                        size="xs"
+                <div className="watchlist-thumbnail-wrapper">
+                  <ul className="watchlist-controlls">
+                    {!watchlistDisabled ? (
+                      <li
+                        onClick={() => {
+                          addItemToWatchlist(element);
+                          onOpen();
+                          modalTimeout();
+                        }}
                       >
-                        <ModalOverlay bg="none" />
-                        <ModalContent top="-3.5rem" boxShadow="none">
-                          <ModalBody>
-                            <p className="watchlist-modal-text-added">
-                              <span>
-                                <ImCheckmark />
-                              </span>
-                              Added to watchlist!
-                            </p>
-                          </ModalBody>
-                        </ModalContent>
-                      </Modal>
-                    </li>
-                  ) : (
-                    <li onClick={() => removeItemFromWatchList(element.id)}>
-                      <ImEyeBlocked />
-                    </li>
-                  )}
-                </ul>
-              </div>
-              
+                        <ImEyePlus />
+                        <Modal
+                          blockScrollOnMount={false}
+                          isOpen={isOpen}
+                          onClose={onClose}
+                          motionPreset="slideInBottom"
+                          size="xs"
+                        >
+                          <ModalOverlay bg="none" />
+                          <ModalContent top="-3.5rem" boxShadow="none">
+                            <ModalBody>
+                              <p className="watchlist-modal-text-added">
+                                <span>
+                                  <ImCheckmark />
+                                </span>
+                                Added to watchlist!
+                              </p>
+                            </ModalBody>
+                          </ModalContent>
+                        </Modal>
+                      </li>
+                    ) : (
+                      <li onClick={() => removeItemFromWatchList(element.id)}>
+                        <ImEyeBlocked />
+                      </li>
+                    )}
+                  </ul>
+                </div>
+
                 <Thumbnail
                   clickable={true}
                   image={

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   CircularProgress,
@@ -24,6 +23,7 @@ const Thumbnail = ({
 }) => {
   const ref = useRef();
   const [isVisible, setIsVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useIntersectionObserver({
     target: ref,
@@ -34,6 +34,10 @@ const Thumbnail = ({
       }
     },
   });
+
+  useEffect(() => {
+    setProgress(voteAverage);
+  }, []);
 
   return (
     <>
@@ -86,7 +90,7 @@ const Thumbnail = ({
                   <CircularProgress
                     min={0}
                     max={10}
-                    value={voteAverage}
+                    value={progress}
                     size="27px"
                     trackColor="#1A202C"
                     color={

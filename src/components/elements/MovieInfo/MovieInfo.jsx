@@ -38,10 +38,12 @@ const MovieInfo = ({
   let storedMovie = watchlist.find(i => i.id === movie.id);
 
   const [filter, setFilter] = useState(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    Vibrant.from(`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie?.backdrop_path}`, [1]).getPalette()
-    .then((palette) => setFilter(palette.DarkMuted));
+    Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`, [1]).getPalette()
+    .then((palette) => setFilter(palette.DarkVibrant));
+    setProgress(movie.vote_average);
   }, [])
 
   const watchlistDisabled = storedMovie ? true : false;
@@ -121,7 +123,7 @@ const MovieInfo = ({
                     <CircularProgress
                       min={0}
                       max={10}
-                      value={movie.vote_average}
+                      value={progress}
                       size="53px"
                       mt="1rem"
                       trackColor="#1A202C"
@@ -136,6 +138,7 @@ const MovieInfo = ({
                       bgColor="rgba(0, 0, 0, .3)"
                       borderRadius="50px"
                       animation={true}
+                      
                     >
                       <CircularProgressLabel
                         fontSize="17px"

@@ -6,9 +6,10 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 import NoPoster from '../../../assets/NoPoster/no_poster.png';
 import './SimilarScreenplay.scss';
 
-const SimilarMovies = () => {
+const SimilarShows = () => {
   const [similarShows, setSimilarShows] = useState();
   const currentLocation = useLocation();
+
   useEffect(() => {
     const endpoint = `${API_URL}${currentLocation.pathname}/similar?api_key=${API_KEY}`;
     fetch(endpoint)
@@ -50,4 +51,4 @@ const SimilarMovies = () => {
   );
 };
 
-export default SimilarMovies;
+export default SimilarShows;

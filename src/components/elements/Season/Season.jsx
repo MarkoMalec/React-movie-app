@@ -23,15 +23,15 @@ const Season = () => {
       .then(result => {
         setSeason(result);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   if (!season) {
     return (
       <Center>
-        <Spinner color='tomato' size='xl' />
+        <Spinner color="tomato" size="xl" />
       </Center>
-    )
+    );
   }
 
   return (
@@ -45,9 +45,7 @@ const Season = () => {
         overview={season.overview}
         seasonEpisodes={season.episodes}
       />
-      <SeasonEpisodes 
-        seasonEpisodes={season.episodes}
-      />
+      <SeasonEpisodes seasonEpisodes={season.episodes} />
     </>
   );
 };

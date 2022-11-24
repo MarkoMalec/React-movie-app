@@ -42,7 +42,7 @@ const Show = () => {
           setLoading(false);
         }
       } catch (error) {
-        console.log('error: ', error);
+        console.error('error: ', error);
       }
     };
     fetchItems(endpoint);
@@ -76,38 +76,30 @@ const Show = () => {
             loading={loading}
           />
           <Container className="screenplay-MoreInfo-area" as="main">
-            {actors ? (
-              <>
-                {actors === [] ? (
-                  <ThumbnailGrid header="Cast">
-                    {actors.map((el, i) => {
-                      return <Actor key={i} actor={el} loading={loading} />;
-                    })}
-                  </ThumbnailGrid>
-                ) : (
-                  <div className="grid-placeholder">
-                  
-                    <p>No cast provided for this show.</p>
-
-                  </div>
-                )}
-
-                <ShowInfoMore
-                  showName={show.name}
-                  originalName={show.original_name}
-                  voteCount={show.vote_count}
-                  lastEpisode={show.last_episode_to_air}
-                  nextEpisode={show.next_episode_to_air}
-                  productionCompanies={show.production_companies}
-                  productionCountries={show.production_countries}
-                  homepage={show.homepage}
-                />
-              </>
+            {actors.length ? (
+              <ThumbnailGrid header="Cast">
+                {actors.map((el, i) => {
+                  return <Actor key={i} actor={el} loading={loading} />;
+                })}
+              </ThumbnailGrid>
             ) : (
-              <Text as="h2" color="whiteAlpha.800">
-                No cast provided for this title.
-              </Text>
+              <div className="grid-placeholder">
+                <Text as="h2" color="whiteAlpha.800">
+                  No cast provided for this title.
+                </Text>
+              </div>
             )}
+
+            <ShowInfoMore
+              showName={show.name}
+              originalName={show.original_name}
+              voteCount={show.vote_count}
+              lastEpisode={show.last_episode_to_air}
+              nextEpisode={show.next_episode_to_air}
+              productionCompanies={show.production_companies}
+              productionCountries={show.production_countries}
+              homepage={show.homepage}
+            />
           </Container>
           <UserReviews />
           <Container as="main">

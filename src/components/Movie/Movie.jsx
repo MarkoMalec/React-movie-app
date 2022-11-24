@@ -46,7 +46,7 @@ const Movie = () => {
           setLoading(false);
         }
       } catch (error) {
-        console.log('error: ', error);
+        console.error('error: ', error);
       }
     };
     fetchItems(endpoint);

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from "../../fetch";
-import Thumbnail from "../elements/Thumbnail/Thumbnail";
-import ThumbnailGrid from "../elements/ThumbnailGrid/ThumbnailGrid";
-import { Container, Flex, Spinner } from "@chakra-ui/react";
-import LoadMoreButton from "../elements/LoadMoreButton/LoadMoreButton";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
+import Thumbnail from '../elements/Thumbnail/Thumbnail';
+import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
+import { Container, Flex, Spinner } from '@chakra-ui/react';
+import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 
 const BrowseByGenre = () => {
@@ -26,7 +26,6 @@ const BrowseByGenre = () => {
         setTotalPages(res.total_pages);
         fetchGenreName(endpointName, genreId);
         setLoading(false);
-        console.log(res)
       })
       .catch(error => console.log(error));
   }, [genreId]);
@@ -43,17 +42,17 @@ const BrowseByGenre = () => {
 
   const fetchGenreName = async (endpointName, genreId) => {
     try {
-        const genreName = await (await fetch(endpointName)).json();
-        const genreArray = genreName.genres.filter(
-            (member) => member.id === parseInt(genreId)
-        );
-        if(genreArray.length) {
-            setGenre(genreArray[0].name)
-        }
-    } catch(error) {
-        console.log(error);
+      const genreName = await (await fetch(endpointName)).json();
+      const genreArray = genreName.genres.filter(
+        member => member.id === parseInt(genreId)
+      );
+      if (genreArray.length) {
+        setGenre(genreArray[0].name);
+      }
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   const loadMoreItems = () => {
     let endpoint = '';
@@ -65,9 +64,9 @@ const BrowseByGenre = () => {
     fetchItems(endpoint);
   };
 
-  return(
+  return (
     <>
-        <Container as="main" mt="-2.5rem">
+      <Container as="main" mt="-2.5rem">
         <ThumbnailGrid
           preHeader={'Browse by genre'}
           header={genre}
@@ -92,16 +91,15 @@ const BrowseByGenre = () => {
             );
           })}
         </ThumbnailGrid>
-        <Flex justifyContent='center'>
-          {loading ? <Spinner size='xl' /> : null}
+        <Flex justifyContent="center">
+          {loading ? <Spinner size="xl" /> : null}
         </Flex>
         {currentPage < totalPages && !loading ? (
-          <LoadMoreButton onClick={loadMoreItems} text='Load more movies' />
+          <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
         ) : null}
       </Container>
     </>
-  )
-
-}
+  );
+};
 
 export default BrowseByGenre;
