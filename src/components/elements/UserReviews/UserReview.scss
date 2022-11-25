@@ -1,13 +1,13 @@
 .screenplay-reviews-container {
     margin-top: 5rem;
+    overflow: hidden;
+    height: 300px;
 
-    .splide__track {}
 
     h1 {
         font-size: 1.2rem;
         font-family: 'muli', sans-serif;
     }
-
 }
 
 .review-box {
@@ -15,8 +15,8 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100%;
-    max-width: 350px;
-    min-height: 90%;
+    // max-width: 350px;
+    // min-height: 90%;
     overflow: hidden;
     background-color: #232938;
     position: relative;
@@ -24,9 +24,10 @@
     p {
         padding: .5rem 1rem;
     }
+
     .text_excerpt_overlay {
         position: relative;
-    
+
         &::before {
             content: '';
             display: block;
@@ -39,16 +40,22 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.9976191160057774) 100%);
         }
     }
+
     .review-text {
         padding: .5rem 1rem;
+        // max-width: 991px;
+        padding-right: 500px;
     }
 
     .review-user-info {
         position: relative;
         display: flex;
+        align-items: center;
+        gap: 1rem;
         margin-bottom: 1rem;
-        padding: 1rem 0;
+        padding: 1rem .7rem;
         background-color: #141821;
+        height: 125px;
 
         span {
             position: absolute;
@@ -59,10 +66,19 @@
 
         h3 {
             align-self: center;
+            font-size: 1.1em;
+            font-weight: 600;
         }
+
         .review-user-image {
-            max-width: 50px;
+            max-width: 85px;
             clip-path: circle();
+
+            .blank-avatar {
+                width: 85px;
+                height: 85px;
+                border-radius: 200px;
+            }
 
             img {
                 width: 100%;
@@ -70,10 +86,21 @@
 
             }
         }
+
         .review_rating {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+            background: rgba(0, 0, 0, 0.9);
+            color: tomato;
+            padding: 0;
+            // padding-top: .3rem;
+            // padding-bottom: .4rem;
+            line-height: 1;
+            width: 50px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-radius: 5px;
         }
     }
 
@@ -82,6 +109,7 @@
         bottom: .5rem;
         left: .5rem;
     }
+
     .read_less_excerpt {
         padding-left: .65rem;
         line-height: 2;
@@ -90,4 +118,8 @@
     @media (max-width: 700px) {
         max-width: 100%;
     }
+}
+
+.see_more_reviews {
+    text-decoration: underline;
 }

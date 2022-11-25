@@ -48,7 +48,7 @@ const ShowInfo = ({
   useEffect(() => {
     Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`, [1])
       .getPalette()
-      .then(palette => setFilter(palette.DarkVibrant));
+      .then(palette => setFilter(palette.DarkMuted));
   }, []);
 
   var videoArray = [];
@@ -124,8 +124,9 @@ const ShowInfo = ({
                       {showSeasonsAmount}{' '}
                       {showSeasonsAmount > 1 ? 'Seasons' : 'season'}
                     </span>
+                    <Box>
                     {show.genres.length ? (
-                      <Box>
+                      <>
                         {show.genres.map((el, i) => {
                           return (
                             <Link
@@ -137,8 +138,9 @@ const ShowInfo = ({
                             </Link>
                           );
                         })}
-                      </Box>
-                    ) : null}
+                        </>
+                        ) : null}
+                        </Box>
                     <Rating rating={show.vote_average} />
                     <button
                       className={

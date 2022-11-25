@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   Container,
   Center,
-  CircularProgress,
-  CircularProgressLabel,
   Text,
   Box,
   useDisclosure,
@@ -42,7 +40,7 @@ const MovieInfo = ({
   useEffect(() => {
     Vibrant.from(`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`, [1])
       .getPalette()
-      .then(palette => setFilter(palette.DarkVibrant));
+      .then(palette => setFilter(palette.DarkMuted));
   }, []);
 
   const watchlistDisabled = storedMovie ? true : false;
@@ -107,21 +105,23 @@ const MovieInfo = ({
                         runtime % 60
                       }min`}</span>
                     ) : null}
-                    {movie.genres.length ? (
-                      <Box>
-                        {movie.genres.map((el, i) => {
-                          return (
-                            <Link
-                              key={i}
-                              to={{ pathname: `/genre/${el.id}` }}
-                              className="additional-link"
-                            >
-                              <p>{el.name}</p>
-                            </Link>
-                          );
-                        })}
-                      </Box>
-                    ) : null}
+                    <Box>
+                      {movie.genres.length ? (
+                        <>
+                          {movie.genres.map((el, i) => {
+                            return (
+                              <Link
+                                key={i}
+                                to={{ pathname: `/genre/${el.id}` }}
+                                className="additional-link"
+                              >
+                                <p>{el.name}</p>
+                              </Link>
+                            );
+                          })}
+                        </>
+                      ) : null}
+                    </Box>
                     <Rating rating={movie.vote_average} />
                     <button
                       className={

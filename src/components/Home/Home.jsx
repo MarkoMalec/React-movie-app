@@ -1,37 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
-import {
-  Container,
-  Spinner,
-  Center,
-  Modal,
-  ModalContent,
-  ModalBody,
-  ModalOverlay,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { ImEyePlus, ImEyeBlocked, ImCheckmark } from 'react-icons/im';
+import { Container, Spinner, Center } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
+import AddToWatchlist from '../WatchList/WatchlistComponents/AddToWatchlist';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './Home.scss';
-import logoMovie from '../../assets/Movie reel logo.svg';
+import LogoMovie from '../../assets/Movie reel logo.svg';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [expanded, setExpanded] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
-
-  const { addItemToWatchlist, watchlist } = useContext(GlobalContext);
-  const { removeItemFromWatchList } = useContext(GlobalContext);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
@@ -63,12 +47,6 @@ const Home = () => {
     }
     setCurrentPage(prev => prev + 1);
     loadMoreFetch(endpoint);
-  };
-
-  const modalTimeout = () => {
-    setTimeout(() => {
-      onClose();
-    }, 2000);
   };
 
   ////////// fetches ///////////
@@ -127,49 +105,9 @@ const Home = () => {
           loading={loading}
         >
           {movies?.map((element, i) => {
-            let storedMovie = watchlist.find(o => o.id === element.id);
-            const watchlistDisabled = storedMovie ? true : false;
-
             return (
               <span key={i}>
-                <div className="watchlist-thumbnail-wrapper">
-                  <ul className="watchlist-controlls">
-                    {!watchlistDisabled ? (
-                      <li
-                        onClick={() => {
-                          addItemToWatchlist(element);
-                          onOpen();
-                          modalTimeout();
-                        }}
-                      >
-                        <ImEyePlus />
-                        <Modal
-                          blockScrollOnMount={false}
-                          isOpen={isOpen}
-                          onClose={onClose}
-                          motionPreset="slideInBottom"
-                          size="xs"
-                        >
-                          <ModalOverlay bg="none" />
-                          <ModalContent top="-3.5rem" boxShadow="none">
-                            <ModalBody>
-                              <p className="watchlist-modal-text-added">
-                                <span>
-                                  <ImCheckmark />
-                                </span>
-                                Added to watchlist!
-                              </p>
-                            </ModalBody>
-                          </ModalContent>
-                        </Modal>
-                      </li>
-                    ) : (
-                      <li onClick={() => removeItemFromWatchList(element.id)}>
-                        <ImEyeBlocked />
-                      </li>
-                    )}
-                  </ul>
-                </div>
+                <AddToWatchlist movie={element} />
 
                 <Thumbnail
                   clickable={true}

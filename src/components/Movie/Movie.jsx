@@ -81,8 +81,8 @@ const Movie = () => {
             {actors ? (
               <>
                 <ThumbnailGrid header="Cast">
-                  {actors.map((el, i) => {
-                    return <Actor key={i} actor={el} loading={loading} />;
+                  {actors.map(el => {
+                    return <Actor key={el.id} actor={el} loading={loading} />;
                   })}
                 </ThumbnailGrid>
                 <MovieInfoMore

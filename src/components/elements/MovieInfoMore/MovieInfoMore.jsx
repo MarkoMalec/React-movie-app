@@ -55,8 +55,8 @@ const MovieInfoMore = ({
                   ? 'Production Countries'
                   : 'Production Country'}
               </Text>
-              {productionCountries.map(el => (
-                <p key={el.id}>{el.name}</p>
+              {productionCountries.map((el, i) => (
+                <p key={i}>{el.name}</p>
               ))}
             </>
           ) : null}
