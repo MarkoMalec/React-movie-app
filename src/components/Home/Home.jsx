@@ -108,7 +108,6 @@ const Home = () => {
             return (
               <span key={i}>
                 <AddToWatchlist movie={element} />
-
                 <Thumbnail
                   clickable={true}
                   image={
