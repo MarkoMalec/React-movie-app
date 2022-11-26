@@ -5,6 +5,9 @@ const initialState = {
   watchlist: localStorage.getItem('watchlist')
     ? JSON.parse(localStorage.getItem('watchlist'))
     : [],
+    tvWatchlist: localStorage.getItem('tvWatchlist')
+    ? JSON.parse(localStorage.getItem('tvWatchlist'))
+    : [],
   watched: localStorage.getItem('watched')
     ? JSON.parse(localStorage.getItem('watched'))
     : [],
@@ -19,26 +22,37 @@ export const GlobalProvider = props => {
 
   useEffect(() => {
     localStorage.setItem('watchlist', JSON.stringify(state.watchlist));
+    localStorage.setItem('tvWatchlist', JSON.stringify(state.tvWatchlist));
     localStorage.setItem('watched', JSON.stringify(state.watched));
 
   }, [state]);
 
   //actions
-  const addItemToWatchlist = screenplay => {
+  const addMovieToWatchlist = screenplay => {
     dispatch({ type: 'ADD_MOVIE_TO_WATCHLIST', payload: screenplay });
   };
 
-  const removeItemFromWatchList = id => {
-    dispatch({ type: 'REMOVE_ITEM_FROM_WATCHLIST', payload: id })
+  const addShowToWatchlist = screenplay => {
+    dispatch({ type: 'ADD_SHOW_TO_WATCHLIST', payload: screenplay });
+  };
+
+  const removeMovieFromWatchlist = id => {
+    dispatch({ type: 'REMOVE_MOVIE_FROM_WATCHLIST', payload: id })
+  }
+  const removeShowFromWatchlist = id => {
+    dispatch({ type: 'REMOVE_SHOW_FROM_WATCHLIST', payload: id })
   }
 
   return (
     <GlobalContext.Provider
       value={{
         watchlist: state.watchlist,
+        tvWatchlist: state.tvWatchlist,
         watched: state.watched,
-        addItemToWatchlist,
-        removeItemFromWatchList,
+        addMovieToWatchlist,
+        addShowToWatchlist,
+        removeMovieFromWatchlist,
+        removeShowFromWatchlist,
       }}
     >
       {props.children}

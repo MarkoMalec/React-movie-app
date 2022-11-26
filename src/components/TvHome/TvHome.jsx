@@ -4,6 +4,7 @@ import { Container, Center, Spinner } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
+import AddToWatchlist from '../WatchList/WatchlistComponents/AddToWatchlist';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 
@@ -162,21 +163,23 @@ const TvHome = () => {
         >
           {shows?.map((element, i) => {
             return (
-              <Thumbnail
-                key={i}
-                clickable={true}
-                image={
-                  element.poster_path
-                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
-                    : NoPoster
-                }
-                showId={element.id}
-                showName={element.name}
-                originalTitle={element.original_name}
-                showReleaseDate={element.first_air_date}
-                voteAverage={element.vote_average}
-                tvShow={true}
-              />
+              <span key={i}>
+                <AddToWatchlist show={element} movie={element} />
+                <Thumbnail
+                  clickable={true}
+                  image={
+                    element.poster_path
+                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
+                      : NoPoster
+                  }
+                  showId={element.id}
+                  showName={element.name}
+                  originalTitle={element.original_name}
+                  showReleaseDate={element.first_air_date}
+                  voteAverage={element.vote_average}
+                  tvShow={true}
+                />
+              </span>
             );
           })}
         </ThumbnailGrid>

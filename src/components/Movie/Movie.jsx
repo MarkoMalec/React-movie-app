@@ -8,6 +8,7 @@ import MovieInfo from '../elements/MovieInfo/MovieInfo';
 import MovieInfoMore from '../elements/MovieInfoMore/MovieInfoMore';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 import UserReviews from '../elements/UserReviews/UserReviews';
+// import { setFiles } from '@testing-library/user-event/dist/types/utils';
 
 const Movie = () => {
   const [movie, setMovie] = useState(null);
@@ -18,6 +19,12 @@ const Movie = () => {
   const [loading, setLoading] = useState(true);
 
   const movieId = useLocation();
+
+  // useEffect(() => {
+  //   const fileEndpoint = `http://files.tmdb.org/p/exports/movie_ids_08_28_2022.json.gz`;
+  //   fetch(fileEndpoint).then((response) => response.json())
+  //   .then((data) => console.log(data));
+  // },[])
 
   useEffect(() => {
     const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;

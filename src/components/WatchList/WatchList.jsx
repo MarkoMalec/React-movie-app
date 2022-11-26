@@ -9,16 +9,21 @@ import { ImEyeBlocked } from 'react-icons/im';
 import './WatchList.scss';
 
 const WatchList = () => {
-  const { watchlist } = useContext(GlobalContext);
-  const { removeItemFromWatchList } = useContext(GlobalContext);
+  const { watchlist, tvWatchlist } = useContext(GlobalContext);
+  const { removeMovieFromWatchlist, removeShowFromWatchlist } =
+    useContext(GlobalContext);
   return (
     <Container as="main">
       {watchlist.length ? (
-        <ThumbnailGrid preHeader={null} header={'Watchlist'} loading={false}>
+        <ThumbnailGrid
+          preHeader={null}
+          header={'Movie Watchlist'}
+          loading={false}
+        >
           {watchlist.map(movie => (
             <div key={movie.id} className="watchlist-thumbnail-wrapper">
               <ul className="watchlist-controlls">
-                <li onClick={() => removeItemFromWatchList(movie.id)}>
+                <li onClick={() => removeMovieFromWatchlist(movie.id)}>
                   <ImEyeBlocked />
                 </li>
               </ul>
@@ -40,7 +45,39 @@ const WatchList = () => {
           ))}
         </ThumbnailGrid>
       ) : (
-        `You have no movies on watchlist, go add some!`
+        'no movies added'
+      )}
+      {tvWatchlist.length ? (
+        <ThumbnailGrid preHeader={null} header={'TV Watchlist'} loading={false}>
+          {tvWatchlist.map(show => (
+            <>
+              {console.log(show.first_air_date)}
+              <div key={show.id} className="watchlist-thumbnail-wrapper">
+                <ul className="watchlist-controlls">
+                  <li onClick={() => removeShowFromWatchlist(show.id)}>
+                    <ImEyeBlocked />
+                  </li>
+                </ul>
+                <Thumbnail
+                  clickable={true}
+                  showId={show.id}
+                  image={
+                    show.poster_path
+                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${show.poster_path}`
+                      : NoPoster
+                  }
+                  showName={show.name}
+                  originalTitle={show.original_name}
+                  showReleaseDate={show.first_air_date}
+                  voteAverage={show.vote_average}
+                  tvShow={true}
+                />
+              </div>
+            </>
+          ))}
+        </ThumbnailGrid>
+      ) : (
+        'You got nothing to watch!'
       )}
     </Container>
   );
