@@ -8,6 +8,7 @@ import MovieInfo from '../elements/MovieInfo/MovieInfo';
 import MovieInfoMore from '../elements/MovieInfoMore/MovieInfoMore';
 import SimilarScreenplay from '../elements/SimilarScreenplay/SimilarScreenplay';
 import UserReviews from '../elements/UserReviews/UserReviews';
+import pako from 'pako';
 // import { setFiles } from '@testing-library/user-event/dist/types/utils';
 
 const Movie = () => {
@@ -20,11 +21,49 @@ const Movie = () => {
 
   const movieId = useLocation();
 
-  // useEffect(() => {
-  //   const fileEndpoint = `http://files.tmdb.org/p/exports/movie_ids_08_28_2022.json.gz`;
-  //   fetch(fileEndpoint).then((response) => response.json())
-  //   .then((data) => console.log(data));
-  // },[])
+  const urls = [
+    'http://files.tmdb.org/p/exports/movie_ids_11_22_2022.json.gz',
+  ]
+  
+
+  useEffect(() => {
+    
+    async function exec(i = 0) {
+      console.group('file: ', i);
+      try {
+        
+        const res = await fetch(urls[i], {
+          mode: 'no-cors'
+        });
+        // convert to arrayBuffer for further processing
+        const buf = await res.arrayBuffer();
+        // or get blob using `await res.blob()`
+        // and convert blob to arrayBuffer using `await blob.arrayBuffer()`
+    
+        console.log('input size: ', buf.byteLength);
+    
+        // decompress file
+        const outBuf = pako.inflate(buf);
+        // console.log('output size: ', outBuf.byteLength);
+    
+        // convert arrayBuffer to string
+        const str = new TextDecoder().decode(outBuf);
+        // console.log('json string', str);
+        
+        // print json object
+        console.log('json object', JSON.parse(str));
+      } catch (err) {
+        console.error('unable to decompress', err);
+      }
+      console.groupEnd('file: ', i);
+    }
+
+    async function init() {
+      for (let i in urls) await exec(i)
+    }
+    init();
+
+  },[])
 
   useEffect(() => {
     const endpoint = `${API_URL}${movieId.pathname}?api_key=${API_KEY}&language=en-US`;
