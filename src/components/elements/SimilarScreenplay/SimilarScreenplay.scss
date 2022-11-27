@@ -1,50 +1,14 @@
-.similar-screenplay-carousel {
-    overflow-x: hidden;
-    max-width: calc(100vw);
-    scroll-behavior: smooth;
+.splide.similar_screenplay_splide {
 
-    .similar-screenplay-showcase {
-        display: flex;
-        flex: 1;
-        gap: 15px;
-        height: 350px;
-        padding-left: 5px;
-        scrollbar-color: tomato rgba(0, 0, 0, .2);
-        scrollbar-width: 5px;
-        overflow-x: scroll;
+    
+        .splide__track {
+            // height: 500px;
+            overflow:visible;
 
-        &::-webkit-scrollbar {
-            height: 8px;
-            width: 50px;
-            background-color: rgba(0, 0, 0, .3);
-            border-radius: 20px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: tomato;
-            border-radius: 10px;
-        }
-
-        .similar-screenplay-showcase-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            flex: 1;
-            min-width: 154px;
-            max-width: 154px;
-            font-size: .6rem;
-            border-radius: 6px;
-            overflow: hidden;
-
-            img {
-                max-width: 100%;
-                background-color: #141821;
+            @media (max-width: 678px) {
+                overflow: visible;
             }
         }
-    }
 
-    @media (max-width: 640px) {
-        max-width: 95vw;
-    }
+   
 }

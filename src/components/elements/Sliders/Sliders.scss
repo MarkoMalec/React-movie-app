@@ -16,22 +16,6 @@
         // }
     }
 
-    .splide__arrow {
-        background: black;
-
-        svg {
-            fill: var(--chakra-colors-brand-700);
-        }
-    }
-
-    .splide__arrow--prev {
-        left: .2em;
-    }
-
-    .splide__arrow--next {
-        right: .2em;
-    }
-
     .splide__pagination {
 
         bottom: -1.6rem;
@@ -59,5 +43,44 @@
         background-color: black;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
+    }
+}
+
+.splide__arrow--prev {
+    left: .2em;
+}
+
+.splide__arrow--next {
+    right: .2em;
+}
+
+.splide__arrow {
+    background: black;
+
+    svg {
+        fill: var(--chakra-colors-brand-700);
+    }
+}
+.similar_screenplay_splide {
+
+
+    .thumbnail-description {
+        padding: 2px 8px 8px 8px;
+    }
+    
+    .average-score {
+        display: none;
+    }
+    .splide__pagination {
+        bottom: -3rem;
+        
+        .splide__pagination__page {
+            background: #141821;
+            opacity: 1;
+            &.is-active {
+                background: tomato;
+            }
+        }
+        
     }
 }
