@@ -26,7 +26,6 @@ const SimilarShowsSlider = ({ similarShows }) => {
             991: {
               perPage: 3,
               arrows: true,
-            //   width: '100vw',
             },
             678: {
               perPage: 2,
