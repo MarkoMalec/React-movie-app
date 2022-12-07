@@ -2,6 +2,7 @@ import React from 'react';
 import { IMAGE_BASE_URL } from '../../../fetch';
 import { Link as A } from '@chakra-ui/react';
 import { Flex, Text } from '@chakra-ui/react';
+import PopularityChart from '../PopularityChart/PopularityChart';
 import './MovieInfoMore.scss';
 
 const MovieInfoMore = ({
@@ -14,6 +15,7 @@ const MovieInfoMore = ({
   spokenLanguages,
   imdb,
   homepage,
+  popularity,
 }) => {
   return (
     <>
@@ -96,6 +98,7 @@ const MovieInfoMore = ({
             </Flex>
           ) : null}
         </div>
+        {/* <PopularityChart popularity={popularity} /> */}
       </div>
     </>
   );

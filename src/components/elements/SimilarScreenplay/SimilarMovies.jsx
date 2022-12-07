@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../../fetch';
-import { useLocation, Link } from 'react-router-dom';
-import { Box, Text } from '@chakra-ui/react';
-import Thumbnail from '../Thumbnail/Thumbnail';
-import NoPoster from '../../../assets/NoPoster/no_poster.png';
+import { useLocation } from 'react-router-dom';
 import SimilarMoviesSlider from '../Sliders/SimilarMoviesSlider';
 import './SimilarScreenplay.scss';
 

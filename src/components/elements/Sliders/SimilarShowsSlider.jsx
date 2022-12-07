@@ -18,7 +18,7 @@ const SimilarShowsSlider = ({ similarShows }) => {
           gap: '1rem',
           perPage: 5,
           Width: '100vw',
-          autoplay: false,
+          autoplay: true,
           rewind: true,
           padding: '3rem',
           arrows: false,
@@ -29,6 +29,7 @@ const SimilarShowsSlider = ({ similarShows }) => {
             },
             678: {
               perPage: 2,
+              autoplay: false,
             }
           },
         }}

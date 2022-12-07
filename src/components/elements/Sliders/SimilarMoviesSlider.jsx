@@ -18,7 +18,7 @@ const SimilarMoviesSlider = ({ similarMovies }) => {
           gap: '1rem',
           perPage: 5,
           Width: '100vw',
-          autoplay: false,
+          autoplay: true,
           rewind: true,
           padding: '3rem',
           arrows: false,
@@ -30,6 +30,7 @@ const SimilarMoviesSlider = ({ similarMovies }) => {
             },
             678: {
               perPage: 2,
+              autoplay: false,
               
             }
           },
