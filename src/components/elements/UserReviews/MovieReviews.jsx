@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../fetch';
 import { useLocation } from 'react-router-dom';
 import { Container } from '@chakra-ui/react';
@@ -7,8 +7,10 @@ import ReviewText from './ReviewText';
 
 const MovieReviews = () => {
   const [movieReviews, setMovieReviews] = useState();
-  const [color, setColor] = useState('');
   const currentLocation = useLocation();
+  const [showLess, setShowLess] = useState(false);
+
+  const ref = useRef();
 
   useEffect(() => {
     const endpoint = `${API_URL}${currentLocation.pathname}/reviews?api_key=${API_KEY}&page=1`;
@@ -19,14 +21,18 @@ const MovieReviews = () => {
       });
   }, [currentLocation.pathname]);
 
-  const randomColor = () => {
-    return '#' + Math.floor(Math.random() * 0xffffff).toString(16);
-  };
+  // const randomColor = () => {
+  //   return '#' + Math.floor(Math.random() * 0xffffff).toString(16);
+  // };
+
+  const showAllReviews = () => {
+    setShowLess(!showLess);
+  }
 
   return (
     <Container as="main">
-      <div className="screenplay-reviews-container">
-        {movieReviews ? (
+      <div className={showLess ? "screenplay-reviews-container active" : "screenplay-reviews-container"} ref={ref}>
+        {movieReviews?.length ? (
           <>
             {movieReviews.map(review => (
               <div key={review.id} className="review-box">
@@ -49,11 +55,14 @@ const MovieReviews = () => {
                     ) : (
                       <div
                         className="blank-avatar"
-                        style={{ backgroundColor: randomColor() }}
+                        // style={{ backgroundColor: randomColor() }}
                       ></div>
                     )}
                   </div>
-                  <h3>{review.author_details.username}</h3>
+                  <div className="author-container">
+                    <h6>User</h6>
+                    <h3>{review.author_details.username}</h3>
+                  </div>
                   <p className="review_rating">
                     <FiStar />
                     {review.author_details.rating
@@ -71,9 +80,9 @@ const MovieReviews = () => {
         )}
       </div>
       {movieReviews?.length > 1 ? (
-        <a className="see_more_reviews" href="#">See all reviews ({movieReviews.length})</a> 
+        <span className="see_more_reviews" onClick={showAllReviews}>{!showLess ? "Expand" : "Hide"} all reviews ({movieReviews.length})</span>
       )
-      : 'less than 1'}
+      : null}
     </Container>
   );
 };
