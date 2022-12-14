@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
 import { Container, Spinner, Center } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
@@ -8,7 +8,6 @@ import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
 import AddToWatchlist from '../WatchList/WatchlistComponents/AddToWatchlist';
 import NoPoster from '../../assets/NoPoster/no_poster.png';
 import './Home.scss';
-import LogoMovie from '../../assets/Movie reel logo.svg';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -97,7 +96,6 @@ const Home = () => {
   return (
     <>
       <SearchBar placeholder="Search for a movie" callback={searchMovies} />
-
       <Container as="main">
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}

@@ -45,7 +45,7 @@ const WatchList = () => {
           ))}
         </ThumbnailGrid>
       ) : (
-        'no movies added'
+        'Your movie watchlist is empty!'
       )}
       {tvWatchlist.length ? (
         <ThumbnailGrid preHeader={null} header={'TV Watchlist'} loading={false}>
@@ -77,7 +77,7 @@ const WatchList = () => {
           ))}
         </ThumbnailGrid>
       ) : (
-        'You got nothing to watch!'
+        'Your TV watchlist is empty!'
       )}
     </Container>
   );

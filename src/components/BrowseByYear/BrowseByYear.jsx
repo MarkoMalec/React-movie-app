@@ -23,8 +23,7 @@ const BrowseByYear = () => {
         setCurrentPage(res.page);
         setTotalPages(res.total_pages);
         setLoading(false);
-      })
-      .catch(error => console.error(error));
+      }).catch(error => console.error(error));
   }, [yearId]);
 
   const fetchItems = async endpoint => {
