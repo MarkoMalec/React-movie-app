@@ -29,7 +29,7 @@ const TrendingTodayMovie = () => {
   }
 
   return (
-    <Container as="main">
+    <Container as="main" className='trending_container'>
       <Splide
         className="trending_splider"
         options={{

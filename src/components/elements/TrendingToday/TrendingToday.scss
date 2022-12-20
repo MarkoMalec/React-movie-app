@@ -1,3 +1,13 @@
+main.trending_container {
+
+    @media (max-width: 991px) {
+        margin-inline: 0;
+        padding-inline-end: 0;
+        padding-inline-start: 0;
+        width: 100%;
+    }
+}
+
 .trending_splider {
     margin-top: -5rem;
     margin-bottom: 3rem;
