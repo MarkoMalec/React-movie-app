@@ -28,45 +28,55 @@ ChartJS.register(
 );
 
 const PopularityChart = ({ popularity }) => {
-//   const [theDate, setTheDate] = useState();
-//   const [chartOptions, setChartOptions] = useState({});
-//   const [chartData, setChartData] = useState({});
-//   const [files, setFiles] = useState({});
+  const [theDate, setTheDate] = useState();
+  const [chartOptions, setChartOptions] = useState({});
+  const [chartData, setChartData] = useState({});
+  const [files, setFiles] = useState({});
 
-//   const exec = async () => {
-//     // const first = getDateXDaysAgo(0);
-//     // const second = getDateXDaysAgo(1);
-//     // const third = getDateXDaysAgo(2);
-//     // const fourth = getDateXDaysAgo(3);
-//     // const fifth = getDateXDaysAgo(4);
-//     // console.log(first);
-//     // console.log(second);
+  const exec = async () => {
+    // const first = getDateXDaysAgo(0);
+    // const second = getDateXDaysAgo(1);
+    // const third = getDateXDaysAgo(2);
+    // const fourth = getDateXDaysAgo(3);
+    // const fifth = getDateXDaysAgo(4);
+    // console.log(first);
+    // console.log(second);
 
-//     try {
-//       const res = await fetch(
-//         `http://files.tmdb.org/p/exports/movie_ids_10_10_2022.json.gz`
-//       );
-//       const buf = await res.arrayBuffer();
-//       const outBuf = pako.inflate(buf);
 
-//       const str = new TextDecoder().decode(outBuf);
-//       const jsonString = str.split('\n').join(',').slice(0, -1);
-//       const test = `[${jsonString}]`;
-//       // console.log('returning', JSON.parse(test));
-//       const results = JSON.parse(test);
-//       // console.log(results, 'file export');
+    function getDateXDaysAgo() {
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth() - 1;
+      const year = date.getFullYear();
+      const today = `${year}-${month}-${day}`;
+      setTheDate(today);
+    }
 
-//     setChartOptions(options);
-//     setChartData(data);
-//     console.log(results);
-//     // return results;
-//   } catch (err) {
-  //     console.error('unable to decompress', err);
-  //   }
-  // };
+    try {
+      const res = await fetch(
+        `http://files.tmdb.org/p/exports/movie_ids_10_10_2022.json.gz`
+      );
+      const buf = await res.arrayBuffer();
+      const outBuf = pako.inflate(buf);
+
+      const str = new TextDecoder().decode(outBuf);
+      const jsonString = str.split('\n').join(',').slice(0, -1);
+      const test = `[${jsonString}]`;
+      // console.log('returning', JSON.parse(test));
+      const results = JSON.parse(test);
+      // console.log(results, 'file export');
+
+    // setChartOptions(options);
+    // setChartData(data);
+    console.log(results);
+    // return results;
+  } catch (err) {
+      console.error('unable to decompress', err);
+    }
+  };
   
-  // const { data, error, isLoading } = useQuery('popularity', exec);
-  // console.log(data, 'this is the data');
+  const { data, error, isLoading } = useQuery('popularity', exec);
+  console.log(data, 'this is the data');
   
   // if (error) return <p>error</p>;
   // if (isLoading) return <p>loading...</p>;
@@ -88,23 +98,23 @@ const PopularityChart = ({ popularity }) => {
   //   'June', 'July', 'August', 'September', 'November', 'Today',
   // ];
   
-  const data = {
-    labels: ['Nov', 'Dec'],
-    datasets: [
-      {
-        label: 'Today',
-        data: [3400, popularity],
-        borderColor: 'tomato',
-        backgroundColor: ['rgba(255, 99, 71, .2)'],
-        // width: '10px',
-        borderWidth: 1,
-      },
-    ],
-  }
+  // const data = {
+  //   labels: ['Nov', 'Dec'],
+  //   datasets: [
+  //     {
+  //       label: 'Today',
+  //       data: [3400, popularity],
+  //       borderColor: 'tomato',
+  //       backgroundColor: ['rgba(255, 99, 71, .2)'],
+  //       // width: '10px',
+  //       borderWidth: 1,
+  //     },
+  //   ],
+  // }
 
   return (
     <>
-      <Doughnut data={data} />
+      {/* <Doughnut data={data} /> */}
     </>
   );
 };

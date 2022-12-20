@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../../fetch';
 import { Container, Spinner, Center } from '@chakra-ui/react';
 import SearchBar from '../elements/SearchBar/SearchBar';
+import TrendingTodayMovie from '../elements/TrendingToday/TrendingTodayMovie';
 import ThumbnailGrid from '../elements/ThumbnailGrid/ThumbnailGrid';
 import Thumbnail from '../elements/Thumbnail/Thumbnail';
 import LoadMoreButton from '../elements/LoadMoreButton/LoadMoreButton';
@@ -14,6 +15,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState('Popular');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,11 +37,17 @@ const Home = () => {
 
   const loadMoreItems = () => {
     let endpoint = '';
-    if (searchTerm === '') {
+    if (searchTerm === '' && activeTab === 'Popular') {
       endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${
         currentPage + 1
       }`;
-    } else {
+    }
+    else if (searchTerm === '' && activeTab === 'In Theaters') {
+      endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${
+        currentPage + 1
+      }`;
+    }
+    else {
       endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${
         currentPage + 1
       }`;
@@ -85,6 +93,13 @@ const Home = () => {
       .catch(error => console.error(error));
   };
 
+  const handlePopularTab = () => {
+    setActiveTab('Popular');
+  };
+  const handleTheatersTab = () => {
+    setActiveTab('In Theaters');
+  };
+
   if (loading) {
     return (
       <Center h="100vh">
@@ -95,8 +110,32 @@ const Home = () => {
 
   return (
     <>
+      <TrendingTodayMovie />
       <SearchBar placeholder="Search for a movie" callback={searchMovies} />
       <Container as="main">
+      <ul className="tabs-navigation on_home">
+            <li
+              onClick={handlePopularTab}
+              className={activeTab === 'Popular' ? 'active' : ''}
+            >
+              <p>Popular</p>
+            </li>
+            <li
+              onClick={handleTheatersTab}
+              className={activeTab === 'In Theaters' ? 'active' : ''}
+            >
+              <p>In Theaters</p>
+            </li>
+            <li className='slide-indicator'></li>
+          </ul>
+          {/* <div className="tabs-outlet">
+            {activeTab === 'Movies' ? (
+              <BrowseByActorMovies person={actor} />
+            ) : (
+              <BrowseByActorTV person={actor} />
+            )}
+          </div> */}
+          {activeTab === 'Popular' ? (
         <ThumbnailGrid
           preHeader={searchTerm ? 'Search Result for ' : null}
           header={searchTerm ? `"${searchTerm}"` : 'Trending Movies'}
@@ -124,9 +163,14 @@ const Home = () => {
             );
           })}
         </ThumbnailGrid>
-        {currentPage < totalPages && !loading ? (
-          <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
-        ) : null}
+        
+
+          ) : (
+            <p>kekw</p>
+          )}
+          {currentPage < totalPages && !loading ? (
+            <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />
+          ) : null}
       </Container>
     </>
   );

@@ -23,6 +23,15 @@ import NotFound from '../elements/NotFound/NotFound';
 import AppFooter from '../elements/AppFooter/AppFooter';
 import './App.scss';
 import '../../styles/global/globals.scss';
+import Login from '../Authentication/Login/Login';
+
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory()
+
+history.listen((location, action) => {
+    window.scrollTo(0, 0)
+})
 
 function App() {
   const theme = extendTheme({
@@ -48,7 +57,7 @@ function App() {
     components: {
       Container: {
         baseStyle: {
-          maxWidth: '1400px',
+          maxWidth: '1240px',
         },
       },
     },
@@ -58,7 +67,7 @@ function App() {
     },
   });
   return (
-    <GlobalProvider>
+    <GlobalProvider history={history}>
       <ChakraProvider theme={theme}>
         <AnimatePresence>
           <Router basename="">
@@ -87,6 +96,7 @@ function App() {
               <Route path="/" element={<Home />} exact />
               <Route path="/:shows" element={<TvHome />} exact />
               <Route path="/watchlist" element={<WatchList />} exact />
+              <Route path="/login" element={<Login />} exact />
               <Route element={<NotFound />} />
             </Switch>
             <AppFooter />

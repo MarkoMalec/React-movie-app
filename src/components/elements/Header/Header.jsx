@@ -67,7 +67,10 @@ const Header = () => {
           <NavLink activeclassname="active" to={{ pathname: 'watchlist' }}>
             Watchlist
           </NavLink>
-          <a className="hslide"></a>
+          {/* <NavLink activeclassname="active" to={{ pathname: 'login' }}> */}
+            {/* Login */}
+          {/* </NavLink> */}
+          <a href="" className="hslide"></a>
         </ul>
       </Container>
     </Flex>

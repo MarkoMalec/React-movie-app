@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Container, Flex, Input } from '@chakra-ui/react';
+import { Flex, Input } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -31,25 +31,24 @@ const SearchBar = ({ callback, placeholder }) => {
         inputRef.current.focus();
       }
       if (expanded && ref.current && !ref.current.contains(e.target)) {
-        setExpanded(false)
+        setExpanded(false);
       }
       if (expanded && inputRef.current && inputRef.current.contains(e.target)) {
         setExpanded(true);
       }
-    }
+    };
 
-    document.addEventListener("click", checkIfClickedOutside)
+    document.addEventListener('click', checkIfClickedOutside);
 
     return () => {
       // Cleanup
-      document.removeEventListener("click", checkIfClickedOutside)
-    }
-  }, [expanded])
+      document.removeEventListener('click', checkIfClickedOutside);
+    };
+  }, [expanded]);
 
   return (
     <div className="search-section">
       <div className={expanded ? 'input-part active' : 'input-part'}>
-        {/* <Container> */}
         <Flex>
           <Input
             type="text"
@@ -62,12 +61,11 @@ const SearchBar = ({ callback, placeholder }) => {
           />
           {/* <ColorModeSwitcher /> */}
         </Flex>
-        {/* </Container> */}
       </div>
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         style={{ fontSize: '1.6em', color: 'tomato' }}
-        onClick={() => !expanded ? setExpanded(true) : setExpanded(false)}
+        onClick={() => (!expanded ? setExpanded(true) : setExpanded(false))}
         ref={ref}
       />
     </div>

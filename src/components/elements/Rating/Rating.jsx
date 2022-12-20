@@ -6,32 +6,32 @@ const Rating = ({ rating, isThumbnailRating }) => {
 
   useEffect(() => {
     setTimeout(() => {
-        setProgress(rating);
-    }, 500)
+      setProgress(rating);
+    }, 500);
   }, []);
-
 
   if (isThumbnailRating) {
     return (
-        <CircularProgress
-                    min={0}
-                    max={10}
-                    value={progress}
-                    size="27px"
-                    trackColor="#1A202C"
-                    color={rating >= 7.5 ? '#098500' : rating >= 5 ? '#c7b000' : '#9e0303'}
-                    bgColor="rgba(0, 0, 0, .2)"
-                    borderRadius="50px"
-                    thickness={7}
-                  >
-                    <CircularProgressLabel
-                      color="whiteAlpha.900"
-                      fontWeight="700"
-                      fontSize=".65rem"
-                    >
-                      {rating}
-                    </CircularProgressLabel>
-                  </CircularProgress>
+      <CircularProgress
+        min={0}
+        max={10}
+        value={progress}
+        size="27px"
+        trackColor="#1A202C"
+        color={rating >= 7.5 ? '#098500' : rating >= 5 ? '#c7b000' : '#9e0303'}
+        bgColor="rgba(0, 0, 0, .2)"
+        borderRadius="50px"
+        thickness={7}
+        animation={true}
+      >
+        <CircularProgressLabel
+          color="whiteAlpha.900"
+          fontWeight="700"
+          fontSize=".65rem"
+        >
+          {rating}
+        </CircularProgressLabel>
+      </CircularProgress>
     );
   }
   return (
@@ -54,5 +54,6 @@ const Rating = ({ rating, isThumbnailRating }) => {
     </CircularProgress>
   );
 };
+
 
 export default Rating;
