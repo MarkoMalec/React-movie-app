@@ -166,7 +166,7 @@ const Home = () => {
         
 
           ) : (
-            <p>kekw</p>
+            <p>In development, coming soon!</p>
           )}
           {currentPage < totalPages && !loading ? (
             <LoadMoreButton onClick={loadMoreItems} text="Load more movies" />

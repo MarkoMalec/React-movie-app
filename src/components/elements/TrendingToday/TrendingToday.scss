@@ -48,13 +48,16 @@ main.trending_container {
             padding-bottom: 4rem;
             z-index: 10;
             position: relative;
+
             h2.trending_slide_title {
                 font-size: 36px;
                 line-height: 1;
                 padding-bottom: 1rem;
             }
+
             .trending_slide_overview {
                 font-size: 14px;
+
                 @media (min-width: 991px) {
                     max-width: 800px;
                 }

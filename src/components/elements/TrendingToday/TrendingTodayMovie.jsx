@@ -34,7 +34,7 @@ const TrendingTodayMovie = () => {
         className="trending_splider"
         options={{
           rewind: true,
-          drag: false,
+          // drag: false,
           autoplay: true,
           interval: 7000,
           arrows: false,
